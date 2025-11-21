@@ -29,7 +29,7 @@ function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path={"/"} component={CorporateLanding} />
+      <Route path={"/"} component={IndividualLanding} />
       <Route path="/individual-coaching" component={IndividualLanding} />
       <Route path="/ai-coaching" component={AICoaching} />
       <Route path="/dashboard" component={Dashboard} />
