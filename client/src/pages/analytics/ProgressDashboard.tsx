@@ -1,7 +1,10 @@
 import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, TrendingDown, Activity, Brain, User } from "lucide-react";
+import { ArrowLeft, TrendingUp, TrendingDown, Activity, Brain, User, Download } from "lucide-react";
+import { downloadProgressReport } from "@/lib/pdfExport";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { useLocation } from "wouter";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
@@ -17,6 +20,8 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, L
 
 export default function ProgressDashboard() {
   const [, navigate] = useLocation();
+  const { toast } = useToast();
+  const { user } = useAuth();
 
   const { data: healthHistory } = trpc.health.getHistory.useQuery({ limit: 30 });
   const { data: stressHistory } = trpc.stress.getHistory.useQuery({ limit: 30 });

@@ -1747,3 +1747,58 @@
 - [x] Award points for completing routines, sessions, milestones
 - [x] Badge system for streaks and achievements
 - [x] Add route to App.tsx
+
+
+## PHASE 4: ADDITIONAL HIGH-VALUE FEATURES
+
+### Feature 19: PWA (Progressive Web App)
+- [x] Create manifest.json for installability
+- [x] Add service worker for offline support
+- [x] Configure app icons and splash screens
+- [x] Test install on iOS and Android
+- [x] Add "Add to Home Screen" prompt
+
+### Feature 20: Push Notifications
+- [x] Integrate web push notifications
+- [x] Morning routine reminders
+- [x] Evening review reminders
+- [x] Session booking confirmations
+- [x] Achievement unlock notifications
+
+### Feature 21: PDF Progress Reports
+- [ ] Build PDF generation system
+- [ ] Weekly progress report template
+- [ ] Monthly transformation summary
+- [ ] Export health/stress/identity data
+- [ ] Add download button to analytics page
+
+### Feature 22: Video Content Library
+- [ ] Create content management system
+- [ ] Video embedding (YouTube/Vimeo)
+- [ ] Categorize by topic (health, stress, identity)
+- [ ] Progress tracking for watched videos
+- [ ] Recommended content based on user data
+
+### Feature 23: Community Features
+- [ ] User profiles with achievements
+- [ ] Public leaderboard opt-in
+- [ ] Success stories sharing
+- [ ] Peer accountability partners
+- [ ] Group challenges
+
+
+## TIER 1 COGNITIVE PROTECTION FEATURES (COMPLETE)
+- [x] Decision Fatigue Eliminator - Pre-made decision trees
+- [x] Mental Clarity Tracker - Rate clarity 1-10
+- [x] Cognitive Load Monitor - Track mental bandwidth
+- [x] Energy Level Tracking - Hourly energy monitoring
+- [x] Spiral Detection System - Alert when stuck in loops
+- [x] Cognitive Protection Hub - Central dashboard
+- [x] Added to navigation
+
+## TIER 2 FEATURES (IN PROGRESS)
+- [ ] Identity Statement Builder
+- [ ] Mission Statement Builder
+- [ ] Habit Stacking Builder
+- [ ] Micro-Habit Library
+- [ ] Weekly System Review

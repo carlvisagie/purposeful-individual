@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/sidebar";
 import { APP_LOGO, APP_TITLE, getLoginUrl } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { LayoutDashboard, LogOut, PanelLeft, Users, Sunrise, Sunset, Heart, Brain, User, Target, Compass, Activity, Bot, BarChart3, Trophy } from "lucide-react";
+import { LayoutDashboard, LogOut, PanelLeft, Users, Sunrise, Sunset, Heart, Brain, User, Target, Compass, Activity, Bot, BarChart3, Trophy, Shield } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
@@ -32,6 +32,7 @@ const menuItems = [
   { icon: Bot, label: "AI Coach", path: "/ai-coach" },
   { icon: BarChart3, label: "Analytics", path: "/analytics" },
   { icon: Trophy, label: "Achievements", path: "/achievements" },
+  { icon: Shield, label: "Cognitive Protection", path: "/cognitive" },
   { icon: Activity, label: "Health Tracker", path: "/health/dashboard" },
   { icon: Brain, label: "Stress Relief", path: "/stress" },
   { icon: Sunrise, label: "Daily OS", path: "/daily-os/dashboard" },

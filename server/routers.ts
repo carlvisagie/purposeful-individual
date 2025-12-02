@@ -34,6 +34,8 @@ import { dailyOSRouter } from "./routers/dailyOS";
 import { masterSystemsRouter } from "./routers/masterSystems";
 import { aiCoachRouter } from "./routers/aiCoach";
 import { gamificationRouter } from "./routers/gamification";
+import { pushNotificationsRouter } from "./routers/pushNotifications";
+import { cognitiveRouter } from "./routers/cognitive";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -80,6 +82,8 @@ export const appRouter = router({
   masterSystems: masterSystemsRouter,
   aiCoach: aiCoachRouter,
   gamification: gamificationRouter,
+  pushNotifications: pushNotificationsRouter,
+  cognitive: cognitiveRouter,
 });
 
 export type AppRouter = typeof appRouter;

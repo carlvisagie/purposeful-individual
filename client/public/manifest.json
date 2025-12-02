@@ -1,0 +1,48 @@
+{
+  "name": "Purposeful Live Coaching",
+  "short_name": "Purposeful",
+  "description": "Transform your life through identity-based coaching, behavioral science, and evidence-based protocols",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "productivity"],
+  "shortcuts": [
+    {
+      "name": "AI Coach",
+      "short_name": "AI Coach",
+      "description": "Chat with your AI coach",
+      "url": "/ai-coach",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Daily OS",
+      "short_name": "Daily OS",
+      "description": "Access your daily operating system",
+      "url": "/daily-os/dashboard",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Health Tracker",
+      "short_name": "Health",
+      "description": "Log your health data",
+      "url": "/health/log",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -41,6 +41,8 @@ import MasterHub from "./pages/master/MasterHub";
 import AICoachChat from "./pages/ai/AICoachChat";
 import ProgressDashboard from "./pages/analytics/ProgressDashboard";
 import GamificationHub from "./pages/gamification/GamificationHub";
+import CognitiveHub from "./pages/cognitive/CognitiveHub";
+import DecisionHelper from "./pages/cognitive/DecisionHelper";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -81,6 +83,8 @@ function Router() {
       <Route path="/ai-coach" component={AICoachChat} />
       <Route path="/analytics" component={ProgressDashboard} />
       <Route path="/achievements" component={GamificationHub} />
+      <Route path="/cognitive" component={CognitiveHub} />
+      <Route path="/cognitive/decision-helper" component={DecisionHelper} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
