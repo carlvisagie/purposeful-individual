@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { trpc } from "@/lib/trpc";
-import { useNavigate } from "wouter/use-hash-location";
+import { useLocation } from "wouter";
 import { CheckCircle2, Brain, Heart, Zap, Target } from "lucide-react";
 
 /**
@@ -20,7 +20,7 @@ import { CheckCircle2, Brain, Heart, Zap, Target } from "lucide-react";
  * - Andrew Huberman's Neurochemical Optimization
  */
 export default function DailyCheckIn() {
-  const navigate = useNavigate();
+  const [, navigate] = useLocation();
   const [energyLevel, setEnergyLevel] = useState([5]);
   const [moodLevel, setMoodLevel] = useState([5]);
   const [focusLevel, setFocusLevel] = useState([5]);

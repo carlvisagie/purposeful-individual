@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "wouter/use-hash-location";
+import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { ZoomVideoComponent } from "@/components/ZoomVideo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useNavigate } from "wouter/use-hash-location";
 
 /**
  * SESSION DELIVERY ROOM
@@ -13,8 +12,11 @@ import { useNavigate } from "wouter/use-hash-location";
  * Provides video call, session notes, and real-time coaching tools
  */
 export default function SessionRoom() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [location, navigate] = useLocation();
+  // Extract query params from hash location
+  const hash = window.location.hash;
+  const queryString = hash.includes('?') ? hash.split('?')[1] : '';
+  const searchParams = new URLSearchParams(queryString);
   const sessionId = searchParams.get("sessionId");
   const [zoomConfig, setZoomConfig] = useState<{
     token: string;
