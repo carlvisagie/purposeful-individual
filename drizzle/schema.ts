@@ -35,6 +35,41 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 /**
+ * Physical Health Tracking - Daily logs for movement, food, sleep, hydration
+ * Evidence-based: Matthew Walker (sleep), Peter Attia (health optimization)
+ */
+export const healthLogs = mysqlTable("health_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id),
+  logDate: date("logDate").notNull(),
+  
+  // Movement tracking
+  steps: int("steps"),
+  workoutMinutes: int("workoutMinutes"),
+  workoutType: varchar("workoutType", { length: 100 }),
+  
+  // Nutrition tracking
+  mealsLogged: int("mealsLogged"),
+  waterIntakeOz: int("waterIntakeOz"),
+  nutritionQuality: int("nutritionQuality"), // 1-10 scale
+  
+  // Sleep tracking
+  sleepHours: int("sleepHours"), // stored as minutes (e.g., 480 = 8 hours)
+  sleepQuality: int("sleepQuality"), // 1-10 scale
+  wakeTime: varchar("wakeTime", { length: 8 }), // HH:MM:SS format
+  
+  // Energy and well-being
+  energyLevel: int("energyLevel"), // 1-10 scale
+  notes: text("notes"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type HealthLog = typeof healthLogs.$inferSelect;
+export type InsertHealthLog = typeof healthLogs.$inferInsert;
+
+/**
  * Coaches table - extends users with coaching-specific information
  */
 export const coaches = mysqlTable("coaches", {

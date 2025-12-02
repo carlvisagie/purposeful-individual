@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS health_logs (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  logDate DATE NOT NULL,\n  steps INT,\n  workoutMinutes INT,\n  workoutType VARCHAR(100),\n  mealsLogged INT,\n  waterIntakeOz INT,\n  nutritionQuality INT,\n  sleepHours INT,\n  sleepQuality INT,\n  wakeTime VARCHAR(8),\n  energyLevel INT,\n  notes TEXT,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  FOREIGN KEY (userId) REFERENCES users(id)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3ygUAfurMsr4XGZ.9b825a1803c1 --database A6mMgwvSXTxUoWKTdXF6U3 --execute CREATE TABLE IF NOT EXISTS health_logs (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  userId INT NOT NULL,\n  logDate DATE NOT NULL,\n  steps INT,\n  workoutMinutes INT,\n  workoutType VARCHAR(100),\n  mealsLogged INT,\n  waterIntakeOz INT,\n  nutritionQuality INT,\n  sleepHours INT,\n  sleepQuality INT,\n  wakeTime VARCHAR(8),\n  energyLevel INT,\n  notes TEXT,\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  FOREIGN KEY (userId) REFERENCES users(id)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 309
+}

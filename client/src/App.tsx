@@ -31,6 +31,12 @@ import SessionRoom from "./pages/SessionRoom";
 import TransformationDashboard from "./pages/transformation/TransformationDashboard";
 import DailyCheckIn from "./pages/transformation/DailyCheckIn";
 import HabitTracker from "./pages/transformation/HabitTracker";
+import HealthDashboard from "./pages/health/HealthDashboard";
+import HealthLogger from "./pages/health/HealthLogger";
+import StressReliefHub from "./pages/stress/StressReliefHub";
+import DailyOSDashboard from "./pages/dailyOS/DailyOSDashboard";
+import MorningRoutine from "./pages/dailyOS/MorningRoutine";
+import EveningReview from "./pages/dailyOS/EveningReview";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -61,6 +67,12 @@ function Router() {
       <Route path="/transformation/dashboard" component={TransformationDashboard} />
       <Route path="/transformation/check-in" component={DailyCheckIn} />
       <Route path="/transformation/habits" component={HabitTracker} />
+      <Route path="/health/dashboard" component={HealthDashboard} />
+      <Route path="/health/log" component={HealthLogger} />
+      <Route path="/stress" component={StressReliefHub} />
+      <Route path="/daily-os/dashboard" component={DailyOSDashboard} />
+      <Route path="/daily-os/morning" component={MorningRoutine} />
+      <Route path="/daily-os/evening" component={EveningReview} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

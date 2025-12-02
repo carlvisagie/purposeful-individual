@@ -28,7 +28,9 @@ import { identityRouter } from "./routers/identity";
 import { adaptiveLearningRouter } from "./routers/adaptiveLearning";
 import { autismRouter } from "./routers/autism";
 import { paymentsRouter } from "./routers/payments";
-import { zoomRouter } from "./routers/zoom";
+import { healthRouter } from "./routers/health";
+import { stressRouter } from "./routers/stress";
+import { dailyOSRouter } from "./routers/dailyOS";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -69,7 +71,9 @@ export const appRouter = router({
   adaptiveLearning: adaptiveLearningRouter,
   autism: autismRouter,
   payments: paymentsRouter,
-  zoom: zoomRouter,
+  health: healthRouter,
+  stress: stressRouter,
+  dailyOS: dailyOSRouter,
 });
 
 export type AppRouter = typeof appRouter;
