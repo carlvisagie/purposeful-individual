@@ -37,6 +37,10 @@ import StressReliefHub from "./pages/stress/StressReliefHub";
 import DailyOSDashboard from "./pages/dailyOS/DailyOSDashboard";
 import MorningRoutine from "./pages/dailyOS/MorningRoutine";
 import EveningReview from "./pages/dailyOS/EveningReview";
+import MasterHub from "./pages/master/MasterHub";
+import AICoachChat from "./pages/ai/AICoachChat";
+import ProgressDashboard from "./pages/analytics/ProgressDashboard";
+import GamificationHub from "./pages/gamification/GamificationHub";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -73,6 +77,10 @@ function Router() {
       <Route path="/daily-os/dashboard" component={DailyOSDashboard} />
       <Route path="/daily-os/morning" component={MorningRoutine} />
       <Route path="/daily-os/evening" component={EveningReview} />
+      <Route path="/master" component={MasterHub} />
+      <Route path="/ai-coach" component={AICoachChat} />
+      <Route path="/analytics" component={ProgressDashboard} />
+      <Route path="/achievements" component={GamificationHub} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Users, BookOpen, Brain, Calendar, TrendingUp, AlertCircle, Video, DollarSign, Clock, CheckCircle2 } from "lucide-react";
-import { ZOOM_MEETING_URL } from "@/config/zoom";
+// Zoom integration removed - use Calendly for session booking
 import { Badge } from "@/components/ui/badge";
 import AITierToggle from "@/components/AITierToggle";
 import { getLoginUrl } from "@/const";
@@ -114,7 +114,7 @@ export default function Dashboard() {
                 variant="default" 
                 size="sm"
                 className="bg-blue-600 hover:bg-blue-700"
-                onClick={() => window.open(ZOOM_MEETING_URL, '_blank')}
+                onClick={() => window.location.href = '/book-session'}
               >
                 <Video className="h-4 w-4 mr-2" />
                 Start Video Session
@@ -251,7 +251,7 @@ export default function Dashboard() {
                             )}
                             <Button 
                               size="sm" 
-                              onClick={() => window.open(ZOOM_MEETING_URL, '_blank')}
+                              onClick={() => window.location.href = '/book-session'}
                               disabled={!isToday}
                             >
                               <Video className="h-4 w-4 mr-2" />
