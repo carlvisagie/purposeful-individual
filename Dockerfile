@@ -1,47 +1,22 @@
-# Multi-stage build for PurposefulLive
-
-# Stage 1: Build
-FROM node:22-alpine AS builder
+# Simplified single-stage build for PurposefulLive
+FROM node:22-alpine
 
 WORKDIR /app
 
 # Install pnpm
-RUN npm install -g pnpm@10.18.0
+RUN npm install -g pnpm@latest
 
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml* ./
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install all dependencies (including dev dependencies needed for build)
+RUN pnpm install --frozen-lockfile || pnpm install
 
 # Copy source code
 COPY . .
 
 # Build application
 RUN pnpm build
-
-# Stage 2: Production
-FROM node:22-alpine
-
-WORKDIR /app
-
-# Install pnpm
-RUN npm install -g pnpm@10.18.0
-
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
-
-# Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile
-
-# Copy built application from builder
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/client/dist ./client/dist
-
-# Copy necessary runtime files
-COPY drizzle ./drizzle
-COPY server ./server
-COPY shared ./shared
 
 # Expose port
 EXPOSE 3000
