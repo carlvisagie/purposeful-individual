@@ -48,24 +48,49 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "../..", "dist", "public");
-  console.log(`[Static Files] Looking for static files in: ${distPath}`);
-  console.log(`[Static Files] import.meta.dirname = ${import.meta.dirname}`);
-  console.log(`[Static Files] Directory exists: ${fs.existsSync(distPath)}`);
-  if (fs.existsSync(distPath)) {
-    const files = fs.readdirSync(distPath);
-    console.log(`[Static Files] Found ${files.length} files/folders:`, files.slice(0, 10));
+  // Try multiple possible paths
+  const possiblePaths = [
+    path.resolve(import.meta.dirname, "../..", "dist", "public"),
+    path.resolve(import.meta.dirname, "..", "dist", "public"),
+    path.resolve(import.meta.dirname, "dist", "public"),
+    path.resolve(process.cwd(), "dist", "public"),
+    path.resolve(process.cwd(), "dist/public"),
+  ];
+  
+  console.log(`[Static Files] Current working directory: ${process.cwd()}`);
+  console.log(`[Static Files] import.meta.dirname: ${import.meta.dirname}`);
+  console.log(`[Static Files] __dirname equivalent: ${path.dirname(import.meta.url)}`);
+  
+  let distPath: string | null = null;
+  for (const testPath of possiblePaths) {
+    console.log(`[Static Files] Testing path: ${testPath}`);
+    if (fs.existsSync(testPath)) {
+      console.log(`[Static Files] ✅ FOUND! Using: ${testPath}`);
+      distPath = testPath;
+      const files = fs.readdirSync(testPath);
+      console.log(`[Static Files] Contains ${files.length} items:`, files.slice(0, 10));
+      break;
+    } else {
+      console.log(`[Static Files] ❌ Not found: ${testPath}`);
+    }
   }
-  if (!fs.existsSync(distPath)) {
+  
+  if (!distPath) {
     console.error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`
+      `[Static Files] ERROR: Could not find dist/public in any of the expected locations!`
     );
+    console.error(`[Static Files] Tried paths:`, possiblePaths);
+    // Serve a helpful error page
+    app.use("*", (_req, res) => {
+      res.status(500).send(`Build directory not found. Paths tried: ${possiblePaths.join(', ')}`);
+    });
+    return;
   }
 
   app.use(express.static(distPath));
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+    res.sendFile(path.resolve(distPath!, "index.html"));
   });
 }
