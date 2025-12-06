@@ -75,17 +75,17 @@ export default function AutismDashboard() {
                   </div>
                 )}
 
-                <div className="flex gap-2 pt-4">
-                  <Link href={`/autism/profile/${profile.id}`}>
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Activity className="mr-2 h-4 w-4" />
-                      View Details
+                <div className="grid grid-cols-2 gap-2 pt-4">
+                  <Link href={`/autism/progress/${profile.id}`}>
+                    <Button variant="outline" size="sm" className="w-full">
+                      <TrendingUp className="mr-2 h-4 w-4" />
+                      Progress
                     </Button>
                   </Link>
-                  <Link href={`/autism/interventions/${profile.id}`}>
-                    <Button size="sm" className="flex-1">
-                      <TrendingUp className="mr-2 h-4 w-4" />
-                      Interventions
+                  <Link href={`/autism/daily-log/${profile.id}`}>
+                    <Button size="sm" className="w-full">
+                      <Activity className="mr-2 h-4 w-4" />
+                      Daily Log
                     </Button>
                   </Link>
                 </div>

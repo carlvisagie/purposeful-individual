@@ -207,3 +207,28 @@ export const autismProviders = mysqlTable("autismProviders", {
 
 export type AutismProvider = typeof autismProviders.$inferSelect;
 export type InsertAutismProvider = typeof autismProviders.$inferInsert;
+
+// Daily Tracking Logs
+export const autismDailyLogs = mysqlTable("autismDailyLogs", {
+  id: int("id").autoincrement().primaryKey(),
+  profileId: int("profileId").notNull().references(() => autismProfiles.id),
+  
+  date: timestamp("date").notNull(),
+  mood: int("mood").notNull(), // 1-10 scale
+  sleepQuality: int("sleepQuality").notNull(), // 1-10 scale
+  sleepHours: int("sleepHours"), // Decimal hours (stored as int * 10, e.g., 8.5 hours = 85)
+  
+  // Behaviors
+  meltdownCount: int("meltdownCount").notNull().default(0),
+  communicationAttempts: int("communicationAttempts").notNull().default(0),
+  
+  // Observations
+  wins: text("wins"), // Today's wins/successes
+  challenges: text("challenges"), // Today's challenges
+  notes: text("notes"), // Additional notes
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AutismDailyLog = typeof autismDailyLogs.$inferSelect;
+export type InsertAutismDailyLog = typeof autismDailyLogs.$inferInsert;

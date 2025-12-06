@@ -26,6 +26,8 @@ import AICoaching from "./pages/AICoaching";
 import IntroSession from "./pages/IntroSession";
 import AutismDashboard from "./pages/AutismDashboard";
 import CreateAutismProfile from "./pages/CreateAutismProfile";
+import AutismProgress from "./pages/AutismProgress";
+import AutismDailyLog from "./pages/AutismDailyLog";
 import Login from "./pages/Login";
 
 function Router() {
@@ -53,6 +55,8 @@ function Router() {
       <Route path="/coach/dashboard" component={CoachDashboard} />
       <Route path="/autism" component={AutismDashboard} />
       <Route path="/autism/create-profile" component={CreateAutismProfile} />
+      <Route path="/autism/progress/:id" component={AutismProgress} />
+      <Route path="/autism/daily-log/:id" component={AutismDailyLog} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

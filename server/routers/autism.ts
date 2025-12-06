@@ -11,6 +11,7 @@ import {
   autismOutcomeTracking,
   autismPatternDetection,
   autismProviders,
+  autismDailyLogs,
 } from "../../drizzle/schema";
 import { eq, and, desc } from "drizzle-orm";
 
@@ -404,5 +405,63 @@ export const autismRouter = router({
       }
 
       return await query.orderBy(desc(autismProviders.rating));
+    }),
+
+  // ========================================
+  // DAILY TRACKING LOGS
+  // ========================================
+
+  saveDailyLog: protectedProcedure
+    .input(
+      z.object({
+        profileId: z.number(),
+        date: z.date(),
+        mood: z.number().min(1).max(10),
+        sleepQuality: z.number().min(1).max(10),
+        sleepHours: z.number().optional(),
+        meltdownCount: z.number().min(0).default(0),
+        communicationAttempts: z.number().min(0).default(0),
+        wins: z.string().optional(),
+        challenges: z.string().optional(),
+        notes: z.string().optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await db.insert(autismDailyLogs).values({
+        profileId: input.profileId,
+        date: input.date,
+        mood: input.mood,
+        sleepQuality: input.sleepQuality,
+        sleepHours: input.sleepHours ? Math.round(input.sleepHours * 10) : null,
+        meltdownCount: input.meltdownCount,
+        communicationAttempts: input.communicationAttempts,
+        wins: input.wins || null,
+        challenges: input.challenges || null,
+        notes: input.notes || null,
+        createdAt: new Date(),
+      });
+
+      return { success: true };
+    }),
+
+  getDailyLogs: protectedProcedure
+    .input(
+      z.object({
+        profileId: z.number(),
+        limit: z.number().optional().default(30),
+      })
+    )
+    .query(async ({ input }) => {
+      const logs = await db
+        .select()
+        .from(autismDailyLogs)
+        .where(eq(autismDailyLogs.profileId, input.profileId))
+        .orderBy(desc(autismDailyLogs.date))
+        .limit(input.limit);
+
+      return logs.map((log) => ({
+        ...log,
+        sleepHours: log.sleepHours ? log.sleepHours / 10 : null,
+      }));
     }),
 });
