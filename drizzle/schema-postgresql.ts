@@ -327,3 +327,243 @@ export const complianceFlags = pgTable("compliance_flags", {
 
 export type ComplianceFlag = typeof complianceFlags.$inferSelect;
 export type InsertComplianceFlag = typeof complianceFlags.$inferInsert;
+
+// ============================================================================
+// AUTISM TRANSFORMATION MODULE
+// ============================================================================
+
+// Autism-specific enums
+export const autismSeverityEnum = pgEnum("autism_severity", ["mild", "moderate", "severe"]);
+export const communicationLevelEnum = pgEnum("communication_level", ["nonverbal", "minimally_verbal", "verbal"]);
+export const interventionPhaseEnum = pgEnum("intervention_phase", ["foundation", "biomedical", "behavioral", "advanced"]);
+export const supplementFrequencyEnum = pgEnum("supplement_frequency", ["daily", "twice_daily", "every_3_days"]);
+export const dietTypeEnum = pgEnum("diet_type", ["GFCF", "ketogenic", "SCD"]);
+export const therapyTypeEnum = pgEnum("therapy_type", ["ABA", "OT", "speech", "Floortime", "neurofeedback"]);
+export const patternTypeEnum = pgEnum("pattern_type", ["high_responder", "moderate_responder", "non_responder"]);
+export const providerTypeEnum = pgEnum("provider_type", ["ABA", "OT", "speech", "FMT_clinic", "neurofeedback"]);
+export const acceptsInsuranceEnum = pgEnum("accepts_insurance", ["true", "false"]);
+
+// Child Profile & Assessment
+export const autismProfiles = pgTable("autism_profiles", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  childName: varchar("child_name", { length: 255 }).notNull(),
+  dateOfBirth: timestamp("date_of_birth").notNull(),
+  diagnosisDate: timestamp("diagnosis_date"),
+  severity: autismSeverityEnum("severity").notNull(),
+  
+  // Assessment Data
+  atecScore: integer("atec_score"),
+  carsScore: integer("cars_score"),
+  communicationLevel: communicationLevelEnum("communication_level").notNull(),
+  
+  // Symptoms & Challenges (stored as JSON)
+  giSymptoms: json("gi_symptoms"),
+  sleepIssues: json("sleep_issues"),
+  sensoryProfile: json("sensory_profile"),
+  behaviorChallenges: json("behavior_challenges"),
+  
+  // Family Context
+  familyResources: json("family_resources"),
+  treatmentPriorities: json("treatment_priorities"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type AutismProfile = typeof autismProfiles.$inferSelect;
+export type InsertAutismProfile = typeof autismProfiles.$inferInsert;
+
+// Personalized Intervention Plans
+export const interventionPlans = pgTable("intervention_plans", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  // Tiered Interventions (JSON arrays)
+  tier1Interventions: json("tier1_interventions").notNull(),
+  tier2Interventions: json("tier2_interventions"),
+  tier3Interventions: json("tier3_interventions"),
+  tier4Interventions: json("tier4_interventions"),
+  
+  // Timeline & Providers
+  currentPhase: interventionPhaseEnum("current_phase").notNull(),
+  startDate: timestamp("start_date").notNull(),
+  providerDirectory: json("provider_directory"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type InterventionPlan = typeof interventionPlans.$inferSelect;
+export type InsertInterventionPlan = typeof interventionPlans.$inferInsert;
+
+// Supplement Tracking
+export const supplementTracking = pgTable("supplement_tracking", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  supplementName: varchar("supplement_name", { length: 255 }).notNull(),
+  dosage: varchar("dosage", { length: 255 }).notNull(),
+  frequency: supplementFrequencyEnum("frequency").notNull(),
+  
+  startDate: timestamp("start_date").notNull(),
+  endDate: timestamp("end_date"),
+  
+  // Tracking
+  adherence: integer("adherence"),
+  sideEffects: json("side_effects"),
+  perceivedBenefit: integer("perceived_benefit"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type SupplementTracking = typeof supplementTracking.$inferSelect;
+export type InsertSupplementTracking = typeof supplementTracking.$inferInsert;
+
+// Dietary Interventions
+export const dietaryInterventions = pgTable("dietary_interventions", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  dietType: dietTypeEnum("diet_type").notNull(),
+  startDate: timestamp("start_date").notNull(),
+  endDate: timestamp("end_date"),
+  
+  // Tracking
+  adherence: integer("adherence"),
+  giSymptomChanges: json("gi_symptom_changes"),
+  behaviorChanges: json("behavior_changes"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type DietaryIntervention = typeof dietaryInterventions.$inferSelect;
+export type InsertDietaryIntervention = typeof dietaryInterventions.$inferInsert;
+
+// Therapy Sessions
+export const therapySessions = pgTable("therapy_sessions", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  therapyType: therapyTypeEnum("therapy_type").notNull(),
+  sessionDate: timestamp("session_date").notNull(),
+  duration: integer("duration").notNull(),
+  
+  // Session Details
+  goalsAddressed: json("goals_addressed"),
+  progress: json("progress"),
+  parentFeedback: text("parent_feedback"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type TherapySession = typeof therapySessions.$inferSelect;
+export type InsertTherapySession = typeof therapySessions.$inferInsert;
+
+// Autism Outcome Tracking
+export const autismOutcomeTracking = pgTable("autism_outcome_tracking", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  assessmentDate: timestamp("assessment_date").notNull(),
+  
+  // Core Autism Symptoms
+  atecScore: integer("atec_score"),
+  carsScore: integer("cars_score"),
+  communicationLevel: communicationLevelEnum("communication_level"),
+  
+  // Behavior & Function
+  behaviorScore: integer("behavior_score"),
+  adaptiveFunctionScore: integer("adaptive_function_score"),
+  
+  // Physical Health
+  giSymptomScore: integer("gi_symptom_score"),
+  sleepScore: integer("sleep_score"),
+  
+  // Family Quality of Life
+  familyQOL: integer("family_qol"),
+  parentStress: integer("parent_stress"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type AutismOutcomeTracking = typeof autismOutcomeTracking.$inferSelect;
+export type InsertAutismOutcomeTracking = typeof autismOutcomeTracking.$inferInsert;
+
+// Adaptive Learning - Pattern Detection for Autism
+export const autismPatternDetection = pgTable("autism_pattern_detection", {
+  id: serial("id").primaryKey(),
+  
+  // Child Profile Characteristics
+  childProfile: json("child_profile").notNull(),
+  
+  // Intervention Combination
+  interventionCombination: json("intervention_combination").notNull(),
+  
+  // Outcome Data
+  outcomeData: json("outcome_data").notNull(),
+  
+  // Pattern Insights
+  patternType: patternTypeEnum("pattern_type"),
+  confidence: integer("confidence"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type AutismPatternDetection = typeof autismPatternDetection.$inferSelect;
+export type InsertAutismPatternDetection = typeof autismPatternDetection.$inferInsert;
+
+// Provider Directory for Autism Services
+export const autismProviders = pgTable("autism_providers", {
+  id: serial("id").primaryKey(),
+  
+  providerType: providerTypeEnum("provider_type").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  location: varchar("location", { length: 255 }).notNull(),
+  
+  // Contact & Details
+  phone: varchar("phone", { length: 50 }),
+  email: varchar("email", { length: 320 }),
+  website: varchar("website", { length: 500 }),
+  
+  // Ratings & Reviews
+  rating: integer("rating"),
+  reviewCount: integer("review_count"),
+  
+  // Insurance & Cost
+  acceptsInsurance: acceptsInsuranceEnum("accepts_insurance").notNull(),
+  costRange: varchar("cost_range", { length: 100 }),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type AutismProvider = typeof autismProviders.$inferSelect;
+export type InsertAutismProvider = typeof autismProviders.$inferInsert;
+
+// Daily Tracking Logs
+export const autismDailyLogs = pgTable("autism_daily_logs", {
+  id: serial("id").primaryKey(),
+  profileId: integer("profile_id").notNull().references(() => autismProfiles.id, { onDelete: "cascade" }),
+  
+  date: timestamp("date").notNull(),
+  mood: integer("mood").notNull(),
+  sleepQuality: integer("sleep_quality").notNull(),
+  sleepHours: integer("sleep_hours"),
+  
+  // Behaviors
+  meltdownCount: integer("meltdown_count").notNull().default(0),
+  communicationAttempts: integer("communication_attempts").notNull().default(0),
+  
+  // Observations
+  wins: text("wins"),
+  challenges: text("challenges"),
+  notes: text("notes"),
+  
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type AutismDailyLog = typeof autismDailyLogs.$inferSelect;
+export type InsertAutismDailyLog = typeof autismDailyLogs.$inferInsert;
