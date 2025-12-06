@@ -5,7 +5,7 @@
 
 import { z } from "zod";
 import { publicProcedure, router } from "../_core/trpc";
-import * as db from "../db-standalone";
+import * as db from "../db-auth";
 import { TRPCError } from "@trpc/server";
 import crypto from "crypto";
 
@@ -57,14 +57,9 @@ export const authRouter = router({
         lastSignedIn: new Date(),
       });
 
-      // Create client profile
-      await db.createClient({
-        userId: user.id,
-      });
-
       // Create session
       const sessionToken = generateSessionToken();
-      await db.createAuthSession({
+      await db.createSession({
         userId: user.id,
         token: sessionToken,
         expiresAt: new Date(Date.now() + ONE_YEAR_MS),
@@ -120,7 +115,7 @@ export const authRouter = router({
 
       // Create session
       const sessionToken = generateSessionToken();
-      await db.createAuthSession({
+      await db.createSession({
         userId: user.id,
         token: sessionToken,
         expiresAt: new Date(Date.now() + ONE_YEAR_MS),
@@ -151,7 +146,7 @@ export const authRouter = router({
       return null;
     }
 
-    const session = await db.getAuthSessionByToken(sessionToken);
+      const session = await db.getSessionByToken(sessionToken);
     if (!session || session.expiresAt < new Date()) {
       return null;
     }
@@ -173,7 +168,7 @@ export const authRouter = router({
   logout: publicProcedure.mutation(async ({ ctx }) => {
     const sessionToken = ctx.req.cookies.session;
     if (sessionToken) {
-      await db.deleteAuthSession(sessionToken);
+      await db.deleteSession(sessionToken);
     }
 
     ctx.res.clearCookie("session", { path: "/" });
