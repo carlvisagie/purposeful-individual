@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const router = Router();
 
@@ -16,11 +17,16 @@ router.get('/run-migration', async (req, res) => {
       });
     }
 
-    // Dynamic import of postgres to avoid build-time resolution issues
-    const { default: postgres } = await import('postgres');
+    // Dynamic import of pg (already installed as dependency)
+    const { Client } = await import('pg');
     
     // Connect to PostgreSQL
-    const sql = postgres(process.env.DATABASE_URL);
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    });
+    
+    await client.connect();
     console.log('Connected to PostgreSQL database');
 
     // Read the migration SQL file
@@ -29,11 +35,11 @@ router.get('/run-migration', async (req, res) => {
     console.log('Loaded migration SQL file');
 
     // Execute the migration
-    await sql.unsafe(migrationSQL);
+    await client.query(migrationSQL);
     console.log('Migration executed successfully');
 
     // Close the connection
-    await sql.end();
+    await client.end();
 
     res.json({ 
       success: true, 
