@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "wouter";
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,13 +15,13 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
   const utils = trpc.useUtils();
 
   const loginMutation = trpc.auth.login.useMutation({
     onSuccess: () => {
       utils.auth.me.invalidate();
-      navigate("/");
+      setLocation("/");
     },
     onError: (error) => {
       setError(error.message);
@@ -31,7 +31,7 @@ export default function Login() {
   const registerMutation = trpc.auth.register.useMutation({
     onSuccess: () => {
       utils.auth.me.invalidate();
-      navigate("/");
+      setLocation("/");
     },
     onError: (error) => {
       setError(error.message);

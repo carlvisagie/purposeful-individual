@@ -9,9 +9,11 @@ import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Plus, Edit, Trash2, DollarSign, Clock } from "lucide-react";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function ManageSessionTypes() {
-  const [coachId] = useState(1); // TODO: Get from auth context
+  const { user } = useAuth();
+  const coachId = user?.id || 1; // Get from authenticated user (coaches are also users)
   const [showDialog, setShowDialog] = useState(false);
   const [editingType, setEditingType] = useState<any>(null);
   

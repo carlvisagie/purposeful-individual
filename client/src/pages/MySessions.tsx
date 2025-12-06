@@ -8,9 +8,11 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { toast } from "sonner";
 import { Calendar, Clock, Video, XCircle, AlertCircle } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 export default function MySessions() {
-  const [clientId] = useState(1); // TODO: Get from auth context
+  const { user } = useAuth();
+  const clientId = user?.id || 0; // Get from authenticated user
   const [cancellingSession, setCancellingSession] = useState<number | null>(null);
   const [, setLocation] = useLocation();
 

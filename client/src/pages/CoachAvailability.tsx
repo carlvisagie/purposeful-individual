@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Calendar, Clock, Plus, Trash2, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 const DAYS_OF_WEEK = [
   { value: 0, label: "Sunday" },
@@ -20,7 +21,8 @@ const DAYS_OF_WEEK = [
 ];
 
 export default function CoachAvailability() {
-  const [coachId, setCoachId] = useState(1); // TODO: Get from auth context
+  const { user } = useAuth();
+  const coachId = user?.id || 1; // Get from authenticated user (coaches are also users)
   const [selectedDay, setSelectedDay] = useState<number>(1);
   const [startTime, setStartTime] = useState("09:00");
   const [endTime, setEndTime] = useState("17:00");

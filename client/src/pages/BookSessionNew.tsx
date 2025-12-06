@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Calendar, Clock, CheckCircle2, Shield, Award, TrendingUp, AlertCircle, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 /**
  * ZERO-FRICTION SINGLE-PAGE BOOKING
@@ -20,8 +21,9 @@ import { useLocation } from "wouter";
 
 export default function BookSessionNew() {
   const [, setLocation] = useLocation();
-  const [coachId] = useState(1); // TODO: Get from context
-  const [clientId] = useState(1); // TODO: Get from auth context
+  const { user } = useAuth();
+  const [coachId] = useState(1); // Default coach ID - will be dynamic when multiple coaches
+  const clientId = user?.id || 0; // Get from authenticated user
   
   // Selection state
   const [selectedTypeId, setSelectedTypeId] = useState<number | null>(null);

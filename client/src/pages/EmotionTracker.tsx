@@ -38,7 +38,7 @@ import { Badge } from "@/components/ui/badge";
  */
 export default function EmotionTracker() {
   const { user, loading: authLoading } = useAuth();
-  const [clientId] = useState(1); // TODO: Get from context
+  const clientId = user?.id || 0; // Get from authenticated user
   
   // Form state
   const [emotionType, setEmotionType] = useState("");
