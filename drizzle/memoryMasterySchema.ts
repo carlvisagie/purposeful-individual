@@ -3,7 +3,8 @@
  * Evidence-based approach using Memory Science, Neuroscience, Learning Theory, and Cognitive Psychology
  * Research sources: Barbara Oakley (learning science), Hermann Ebbinghaus (spaced repetition), 
  * Joshua Foer (memory palace), Piotr Wozniak (SuperMemo/spaced repetition algorithms),
- * Matthew Walker (sleep & memory consolidation), John Medina (Brain Rules)
+ * Matthew Walker (sleep & memory consolidation), John Medina (Brain Rules),
+ * Harry Lorayne (name-face association, link system, phonetic number system)
  * 
  * CORE MEMORY TECHNIQUES:
  * 1. Spaced Repetition (Ebbinghaus Forgetting Curve)
@@ -16,6 +17,9 @@
  * 8. Sleep-Based Consolidation
  * 9. Mnemonics & Acronyms
  * 10. Storytelling & Narrative
+ * 11. Name-Face Association (Harry Lorayne)
+ * 12. Link System (absurd imagery)
+ * 13. Phonetic Number System (Major System)
  * 
  * SELF-LEARNING CAPABILITIES:
  * - Tracks which techniques work best for each user
@@ -414,6 +418,122 @@ export const memoryMasteryAnalytics = mysqlTable("memory_mastery_analytics", {
   userCount: int("user_count"),
   
   lastCalculated: timestamp("last_calculated").defaultNow(),
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Name-Face Memory (Harry Lorayne Method)
+export const nameFaceMemory = mysqlTable("name_face_memory", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  profileId: varchar("profile_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  
+  // Person Details
+  personName: varchar("person_name", { length: 255 }).notNull(),
+  firstName: varchar("first_name", { length: 255 }),
+  lastName: varchar("last_name", { length: 255 }),
+  
+  // Face Photo
+  facePhoto: varchar("face_photo", { length: 255 }),
+  
+  // Harry Lorayne Technique: Outstanding Feature
+  outstandingFeature: text("outstanding_feature"), // Most memorable facial feature
+  
+  // Harry Lorayne Technique: Name Association
+  nameAssociation: text("name_association"), // Mental image/story for the name
+  substituteWord: varchar("substitute_word", { length: 255 }), // If name is abstract
+  
+  // Harry Lorayne Technique: Link Feature to Name
+  mentalLink: text("mental_link"), // Absurd image linking feature to name
+  
+  // Context
+  whereMet: varchar("where_met", { length: 255 }),
+  whenMet: timestamp("when_met"),
+  relationship: varchar("relationship", { length: 255 }), // Colleague, friend, client, etc.
+  
+  // Additional Info (helps with recall)
+  occupation: varchar("occupation", { length: 255 }),
+  interests: text("interests"), // JSON array
+  mutualConnections: text("mutual_connections"), // JSON array
+  conversationTopics: text("conversation_topics"), // What you talked about
+  
+  // Memory Performance
+  totalEncounters: int("total_encounters").default(1),
+  successfulRecalls: int("successful_recalls").default(0),
+  lastEncounter: timestamp("last_encounter"),
+  
+  // Importance
+  importance: int("importance"), // 1-10
+  
+  // Status
+  mastered: boolean("mastered").default(false), // Can recall instantly
+  
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Name Recall Practice
+export const nameRecallPractice = mysqlTable("name_recall_practice", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  nameFaceId: varchar("name_face_id", { length: 255 }).notNull(),
+  profileId: varchar("profile_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  practiceDate: timestamp("practice_date").notNull(),
+  
+  // Practice Type
+  practiceType: mysqlEnum("practice_type", [
+    "face_to_name", // See face, recall name
+    "name_to_face", // Hear name, visualize face
+    "feature_identification", // Identify outstanding feature
+    "association_review" // Review mental associations
+  ]).notNull(),
+  
+  // Performance
+  recalled: boolean("recalled"),
+  recallSpeed: mysqlEnum("recall_speed", ["instant", "quick", "slow", "failed"]),
+  confidence: int("confidence"), // 1-10
+  
+  // Time
+  timeToRecall: int("time_to_recall"), // seconds
+  
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Number Memory (Major/Phonetic System)
+export const numberMemory = mysqlTable("number_memory", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  profileId: varchar("profile_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  
+  // Number to Remember
+  number: varchar("number", { length: 255 }).notNull(),
+  numberType: mysqlEnum("number_type", [
+    "phone",
+    "pin",
+    "date",
+    "address",
+    "credit_card",
+    "id_number",
+    "mathematical_constant",
+    "other"
+  ]).notNull(),
+  
+  label: varchar("label", { length: 255 }), // What is this number?
+  
+  // Harry Lorayne Phonetic System
+  phoneticWords: text("phonetic_words"), // Words that encode the number
+  visualStory: text("visual_story"), // Story using the phonetic words
+  
+  // Alternative: Chunking
+  chunks: text("chunks"), // JSON array: break into memorable chunks
+  
+  // Performance
+  totalRecalls: int("total_recalls").default(0),
+  successfulRecalls: int("successful_recalls").default(0),
+  
+  // Status
+  mastered: boolean("mastered").default(false),
   
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
