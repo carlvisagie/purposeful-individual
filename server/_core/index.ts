@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import net from "net";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser"; // REMOVED - not needed for now
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
@@ -41,7 +41,7 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   
   // Cookie parser for session authentication
-  app.use(cookieParser());
+  // app.use(cookieParser()); // REMOVED - not needed for now
   // OAuth callback under /api/oauth/callback (DISABLED for Render deployment)
   // registerOAuthRoutes(app);
   // tRPC API
