@@ -59,6 +59,22 @@ export default function IndividualLanding() {
         type="individual"
       />
       <LiveChatWidget type="individual" routeToTeam="support" />
+      
+      {/* $1 INTRO OFFER BANNER - Top of Page */}
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-3 px-4 text-center">
+        <p className="text-sm md:text-base font-semibold">
+          <span className="inline-block animate-pulse mr-2">🎯</span>
+          Limited Time: Try Professional Coaching for Just $1
+          <Button
+            size="sm"
+            variant="secondary"
+            className="ml-4 bg-white text-emerald-700 hover:bg-emerald-50"
+            onClick={() => window.location.href = '/intro'}
+          >
+            Book Now
+          </Button>
+        </p>
+      </div>
       {/* HERO SECTION - Emotional Focus */}
       <section className="py-20 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,18 +94,28 @@ export default function IndividualLanding() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg shadow-emerald-600/30"
+                onClick={() => window.location.href = '/intro'}
+              >
+                Try Coaching for $1
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-600 text-emerald-700 hover:bg-emerald-50"
                 onClick={() =>
                   document
                     .getElementById("pricing")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
+                See All Options
               </Button>
-
             </div>
+            <p className="text-sm text-gray-600 mt-4">
+              ✓ 20-minute clarity session • ✓ Real certified coach • ✓ Book in 60 seconds
+            </p>
           </div>
         </div>
       </section>

@@ -16,7 +16,7 @@ import { useLocation } from "wouter";
  * 
  * Target: 60-80% conversion to $49/$99/$149 sessions
  */
-export default function IntroSession() {
+export default function IntroSessionV2() {
   const [, setLocation] = useLocation();
 
   const handleBookIntro = () => {
