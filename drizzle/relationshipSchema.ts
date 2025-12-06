@@ -24,6 +24,12 @@ export const relationshipProfiles = mysqlTable("relationship_profiles", {
   attachmentStyle: mysqlEnum("attachment_style", ["secure", "anxious", "avoidant", "fearful_avoidant"]),
   partnerAttachmentStyle: mysqlEnum("partner_attachment_style", ["secure", "anxious", "avoidant", "fearful_avoidant", "unknown"]),
   
+  // Love Languages (Gary Chapman's 5 Love Languages)
+  primaryLoveLanguage: mysqlEnum("primary_love_language", ["words_of_affirmation", "quality_time", "receiving_gifts", "acts_of_service", "physical_touch"]),
+  secondaryLoveLanguage: mysqlEnum("secondary_love_language", ["words_of_affirmation", "quality_time", "receiving_gifts", "acts_of_service", "physical_touch"]),
+  partnerPrimaryLoveLanguage: mysqlEnum("partner_primary_love_language", ["words_of_affirmation", "quality_time", "receiving_gifts", "acts_of_service", "physical_touch", "unknown"]),
+  partnerSecondaryLoveLanguage: mysqlEnum("partner_secondary_love_language", ["words_of_affirmation", "quality_time", "receiving_gifts", "acts_of_service", "physical_touch", "unknown"]),
+  
   // Relationship Goals
   primaryGoal: mysqlEnum("primary_goal", [
     "improve_communication",
@@ -256,4 +262,44 @@ export const breakupRecovery = mysqlTable("breakup_recovery", {
   
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+
+// Love Language Actions - Track how you express & receive love (Gary Chapman's 5 Love Languages)
+export const loveLanguageActions = mysqlTable("love_language_actions", {
+  id: varchar("id", { length: 255 }).primaryKey(),
+  profileId: varchar("profile_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
+  actionDate: timestamp("action_date").notNull(),
+  
+  // Action Type
+  actionType: mysqlEnum("action_type", ["given", "received"]).notNull(),
+  
+  // Love Language
+  loveLanguage: mysqlEnum("love_language", [
+    "words_of_affirmation",
+    "quality_time",
+    "receiving_gifts",
+    "acts_of_service",
+    "physical_touch"
+  ]).notNull(),
+  
+  // Specific Action
+  actionDescription: text("action_description").notNull(),
+  
+  // Examples by type:
+  // Words: "Said 'I'm proud of you'", "Wrote a love note", "Complimented their effort"
+  // Quality Time: "Had dinner without phones", "Went for a walk together", "Had deep conversation"
+  // Gifts: "Brought their favorite coffee", "Surprise flowers", "Meaningful book"
+  // Acts of Service: "Did the dishes", "Filled their car with gas", "Made their favorite meal"
+  // Physical Touch: "Long hug", "Held hands during movie", "Back massage"
+  
+  // Impact
+  emotionalImpact: int("emotional_impact"), // 1-10
+  connectionFelt: int("connection_felt"), // 1-10
+  
+  // Partner Response (if given)
+  partnerResponse: text("partner_response"),
+  
+  createdAt: timestamp("created_at").defaultNow(),
 });
