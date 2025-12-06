@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import postgres from 'postgres';
 import fs from 'fs';
 import path from 'path';
 
@@ -17,6 +16,9 @@ router.get('/run-migration', async (req, res) => {
       });
     }
 
+    // Dynamic import of postgres to avoid build-time resolution issues
+    const { default: postgres } = await import('postgres');
+    
     // Connect to PostgreSQL
     const sql = postgres(process.env.DATABASE_URL);
     console.log('Connected to PostgreSQL database');
