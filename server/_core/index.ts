@@ -9,6 +9,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { webhookRouter } from "../routers/webhooks";
+import runMigrationRouter from "../routers/run-migration";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,6 +36,9 @@ async function startServer() {
   
   // Stripe webhooks need raw body - register BEFORE body parser
   app.use("/api/webhooks", express.raw({ type: "application/json" }), webhookRouter);
+  
+  // Migration endpoint
+  app.use("/api", runMigrationRouter);
   
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
