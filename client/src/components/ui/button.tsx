@@ -11,6 +11,7 @@ export const buttonVariants = cva(
         ghost: 'hover:bg-gray-100',
         destructive: 'bg-red-600 text-white hover:bg-red-700',
         link: 'text-blue-600 underline-offset-4 hover:underline',
+        secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
       },
       size: {
         default: 'h-10 px-4 py-2',
@@ -27,7 +28,7 @@ export const buttonVariants = cva(
 );
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'outline' | 'ghost' | 'destructive' | 'link';
+  variant?: 'default' | 'outline' | 'ghost' | 'destructive' | 'link' | 'secondary';
   size?: 'default' | 'sm' | 'lg' | 'icon';
   asChild?: boolean;
 }
@@ -42,6 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ghost: 'hover:bg-gray-100',
       destructive: 'bg-red-600 text-white hover:bg-red-700',
       link: 'text-blue-600 underline-offset-4 hover:underline',
+      secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
     };
     
     const sizeStyles = {
