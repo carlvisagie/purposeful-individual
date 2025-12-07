@@ -167,5 +167,5 @@ export * from './identitySchema';
 
 // Original schema files (may be deprecated)
 export * from './schema';
-export * from './schema-postgresql';
+// export * from './schema-postgresql'; // Disabled - using MySQL only
 export * from './relations';
