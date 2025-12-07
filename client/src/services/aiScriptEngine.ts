@@ -27,7 +27,7 @@ export interface ScriptSuggestion {
 export interface ConversationContext {
   clientEmotionalState: "calm" | "anxious" | "distressed" | "crisis";
   topicsDiscussed: string[];
-  objections Raised: string[];
+  objectionsRaised: string[];
   positiveSignals: string[];
   riskLevel: "low" | "medium" | "high" | "critical";
   sessionDuration: number;
