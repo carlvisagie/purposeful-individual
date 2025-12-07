@@ -29,6 +29,7 @@ import CreateAutismProfile from "./pages/CreateAutismProfile";
 import AutismProgress from "./pages/AutismProgress";
 import AutismDailyLog from "./pages/AutismDailyLog";
 import Login from "./pages/Login";
+import CoachingSession from "./pages/CoachingSession";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -57,6 +58,7 @@ function Router() {
       <Route path="/autism/create-profile" component={CreateAutismProfile} />
       <Route path="/autism/progress/:id" component={AutismProgress} />
       <Route path="/autism/daily-log/:id" component={AutismDailyLog} />
+      <Route path="/coaching-session" component={CoachingSession} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
