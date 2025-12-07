@@ -1,7 +1,7 @@
 import { InlineWidget } from 'react-calendly';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Calendar, Clock, DollarSign } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, DollarSign, Phone } from 'lucide-react';
 import { Link } from 'wouter';
 import { useState } from 'react';
 
@@ -90,6 +90,24 @@ export default function BookSession() {
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Select the coaching session that best fits your needs. All sessions include personalized guidance and actionable insights.
               </p>
+            </div>
+
+            {/* Quick Support Banner */}
+            <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 max-w-3xl mx-auto mb-8">
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-purple-900 mb-2">
+                  Need Immediate Support?
+                </h3>
+                <p className="text-purple-700 mb-4">
+                  Talk to our AI coach right now - available 24/7
+                </p>
+                <a href="tel:+15645296454">
+                  <Button className="bg-purple-600 hover:bg-purple-700">
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call Now: +1 (564) 529-6454
+                  </Button>
+                </a>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">

@@ -7,10 +7,10 @@ import { router, publicProcedure } from "../_core/trpc";
 import { z } from "zod";
 import { db } from "../db";
 import { sql } from "drizzle-orm";
-import Vapi from "@vapi-ai/server-sdk";
+import { VapiClient } from "@vapi-ai/server-sdk";
 
 // Initialize Vapi client
-const vapi = new Vapi({
+const vapi = new VapiClient({
   token: process.env.VAPI_API_KEY || "",
 });
 

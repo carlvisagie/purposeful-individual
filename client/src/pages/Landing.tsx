@@ -14,7 +14,8 @@ import {
   TrendingUp, 
   Shield,
   ArrowRight,
-  Check
+  Check,
+  Phone
 } from "lucide-react";
 
 export default function Landing() {
@@ -70,21 +71,49 @@ export default function Landing() {
             transformation journey in seconds—no signup required.
           </p>
 
-          {/* Primary CTA */}
-          <div className="space-y-4">
-            <Button
-              size="lg"
-              className="text-xl px-12 py-8 bg-purple-600 hover:bg-purple-700 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
-              onClick={() => setShowChat(true)}
-            >
-              <Sparkles className="w-6 h-6 mr-3" />
-              Start Talking to Your AI Coach Now
-              <ArrowRight className="w-6 h-6 ml-3" />
-            </Button>
+          {/* Primary CTAs */}
+          <div className="space-y-6">
+            {/* Chat CTA */}
+            <div className="space-y-2">
+              <Button
+                size="lg"
+                className="text-xl px-12 py-8 bg-purple-600 hover:bg-purple-700 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
+                onClick={() => setShowChat(true)}
+              >
+                <Sparkles className="w-6 h-6 mr-3" />
+                Start Talking to Your AI Coach Now
+                <ArrowRight className="w-6 h-6 ml-3" />
+              </Button>
 
-            <p className="text-sm text-gray-500">
-              No signup. No credit card. Just start talking.
-            </p>
+              <p className="text-sm text-gray-500">
+                No signup. No credit card. Just start talking.
+              </p>
+            </div>
+
+            {/* OR Divider */}
+            <div className="flex items-center gap-4 max-w-md mx-auto">
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <span className="text-gray-500 font-medium">OR</span>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            {/* Phone CTA */}
+            <div className="space-y-2">
+              <a href="tel:+15645296454">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-xl px-12 py-8 border-2 border-purple-600 text-purple-600 hover:bg-purple-50 shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Phone className="w-6 h-6 mr-3" />
+                  Call 24/7: +1 (564) 529-6454
+                </Button>
+              </a>
+
+              <p className="text-sm text-gray-500">
+                Talk to your AI coach anytime, day or night.
+              </p>
+            </div>
           </div>
 
           {/* Secondary CTA */}
