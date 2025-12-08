@@ -4,6 +4,8 @@
  */
 
 import { useState } from "react";
+import { useModuleLearning, useCrossModuleInsights } from "@/hooks/useModuleLearning";
+import { FeedbackWidget, CrossModuleInsights } from "@/components/FeedbackWidget";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,6 +53,11 @@ const copingStrategies = [
 export default function AnxietyManagement() {
   const [anxietyLevel, setAnxietyLevel] = useState(5);
   const [showLogForm, setShowLogForm] = useState(false);
+  
+  // Self-learning system
+  const learning = useModuleLearning("anxiety");
+  const { relatedInsights } = useCrossModuleInsights("anxiety");
+  const [currentIntervention, setCurrentIntervention] = useState<string | null>(null);
 
   const getAnxietyColor = (level: number) => {
     if (level <= 3) return "text-green-600 bg-green-100";
@@ -290,6 +297,31 @@ export default function AnxietyManagement() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Cross-Module Insights */}
+        {relatedInsights.length > 0 && (
+          <div className="mb-8">
+            <CrossModuleInsights insights={relatedInsights} />
+          </div>
+        )}
+
+        {/* Feedback Widget */}
+        {learning.showFeedback && currentIntervention && (
+          <div className="mb-8">
+            <FeedbackWidget
+              interventionName={currentIntervention}
+              onSubmit={(feedback) => {
+                learning.submitFeedback({
+                  recommendationType: "coping-strategy",
+                  recommendationContent: currentIntervention,
+                  feedback,
+                  clientId: 1, // TODO: Get from auth context
+                });
+              }}
+              onClose={() => learning.setShowFeedback(false)}
+            />
+          </div>
+        )}
 
         {/* Evidence-Based Resources */}
         <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
