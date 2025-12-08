@@ -26,8 +26,8 @@ import AICoaching from "./pages/AICoaching";
 import IntroSession from "./pages/IntroSession";
 import AutismDashboard from "./pages/AutismDashboard";
 import CreateAutismProfile from "./pages/CreateAutismProfile";
-import AutismProgress from "./pages/AutismProgress";
-import AutismDailyLog from "./pages/AutismDailyLog";
+// import AutismProgress from "./pages/AutismProgress"; // Moved to backup
+// import AutismDailyLog from "./pages/AutismDailyLog"; // Moved to backup
 import Login from "./pages/Login";
 import CoachingSession from "./pages/CoachingSession";
 import CoachView from "./pages/CoachView";
@@ -45,7 +45,7 @@ import WellnessDashboard from "./pages/WellnessDashboard";
 import ControlCenter from "./pages/admin/ControlCenter";
 // FOUNDATIONAL SYSTEMS (Required for AI and all modules)
 // import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0 - temporarily disabled for MVP
-import HabitTracking from "./pages/wellness/HabitTracking"; // Habit Formation Engine
+// import HabitTracking from "./pages/wellness/HabitTracking"; // Moved to backup - Habit Formation Engine
 // Truth Keepers already integrated in server/routers/truthKeepers.ts
 // Crisis Detection already integrated in server/routers/aiChat.ts
 
@@ -77,8 +77,8 @@ function Router() {
       <Route path="/coach/dashboard" component={CoachDashboard} />
       <Route path="/autism" component={AutismDashboard} />
       <Route path="/autism/create-profile" component={CreateAutismProfile} />
-      <Route path="/autism/progress/:id" component={AutismProgress} />
-      <Route path="/autism/daily-log/:id" component={AutismDailyLog} />
+      {/* <Route path="/autism/progress/:id" component={AutismProgress} /> */}
+      {/* <Route path="/autism/daily-log/:id" component={AutismDailyLog} /> */}
       <Route path="/coaching-session" component={CoachingSession} />
       <Route path="/coach-view" component={CoachView} />
       <Route path="/admin/dashboard">
@@ -110,7 +110,7 @@ function Router() {
       
       {/* FOUNDATIONAL ROUTES - Required for AI and all modules */}
       {/* <Route path="/research" component={ResearchDashboard} /> */} {/* Truth Seekers 2.0 - temporarily disabled */}
-      <Route path="/wellness/habits" component={HabitTracking} /> {/* Habit Formation */}
+      {/* <Route path="/wellness/habits" component={HabitTracking} /> */} {/* Habit Formation - moved to backup */}
       
       {/* Other wellness module routes temporarily removed for MVP */}
       {/* Will add back incrementally after MVP is working */}
