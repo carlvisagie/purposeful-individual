@@ -203,7 +203,7 @@ export const frictionlessRouter = router({
             conversation_data, extracted_data, media_files
           )
           VALUES (
-            ${sessionToken}, ${expiresAt}, ${input.ipAddress || null}, 
+            ${sessionToken}, ${expiresAt.toISOString()}, ${input.ipAddress || null}, 
             ${input.userAgent || null}, ${input.referrer || null},
             '[]'::jsonb, '{}'::jsonb, '[]'::jsonb
           )
