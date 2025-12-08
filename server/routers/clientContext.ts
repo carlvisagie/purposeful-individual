@@ -57,7 +57,7 @@ export const clientContextRouter = router({
         WHERE client_id = ${input.clientId}
       `);
       
-      if (result.rows.length === 0) {
+      if (result.length === 0) {
         // Cache doesn't exist, create it
         await db.execute(sql`
           SELECT update_session_context_cache(${input.clientId})
@@ -72,7 +72,7 @@ export const clientContextRouter = router({
         return newResult.rows[0] || null;
       }
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Search clients (for quick-select)
@@ -99,7 +99,7 @@ export const clientContextRouter = router({
         LIMIT ${input.limit}
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Get recent clients (for quick access)
@@ -123,7 +123,7 @@ export const clientContextRouter = router({
         LIMIT ${input.limit}
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Add session history
@@ -160,7 +160,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Get session history for a client
@@ -177,7 +177,7 @@ export const clientContextRouter = router({
         LIMIT ${input.limit}
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Add important date
@@ -198,7 +198,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Get important dates for a client
@@ -213,7 +213,7 @@ export const clientContextRouter = router({
         ORDER BY date_value
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Get upcoming birthdays (all clients)
@@ -226,7 +226,7 @@ export const clientContextRouter = router({
         SELECT * FROM get_upcoming_birthdays(${input.daysAhead})
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Add critical alert
@@ -247,7 +247,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Get active alerts for a client
@@ -265,7 +265,7 @@ export const clientContextRouter = router({
         ORDER BY priority DESC, created_at DESC
       `);
       
-      return result.rows;
+      return result;
     }),
 
   // Acknowledge alert
@@ -281,7 +281,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Resolve alert
@@ -297,7 +297,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Add personal detail
@@ -317,7 +317,7 @@ export const clientContextRouter = router({
         RETURNING *
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 
   // Get personal details for a client
@@ -334,14 +334,14 @@ export const clientContextRouter = router({
             AND category = ${input.category}
           ORDER BY importance DESC, created_at DESC
         `);
-        return result.rows;
+        return result;
       } else {
         const result = await db.execute(sql`
           SELECT * FROM personal_details
           WHERE client_id = ${input.clientId}
           ORDER BY importance DESC, created_at DESC
         `);
-        return result.rows;
+        return result;
       }
     }),
 
@@ -363,7 +363,7 @@ export const clientContextRouter = router({
           )
           RETURNING *
         `);
-        return { type: 'alert', data: result.rows[0] };
+        return { type: 'alert', data: result[0] };
       } else {
         // Add to most recent session notes
         const result = await db.execute(sql`
@@ -379,7 +379,7 @@ export const clientContextRouter = router({
             )
           RETURNING *
         `);
-        return { type: 'note', data: result.rows[0] };
+        return { type: 'note', data: result[0] };
       }
     }),
 
@@ -398,6 +398,6 @@ export const clientContextRouter = router({
         WHERE client_id = ${input.clientId}
       `);
       
-      return result.rows[0];
+      return result[0];
     }),
 });
