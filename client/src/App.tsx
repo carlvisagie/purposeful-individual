@@ -43,6 +43,9 @@ import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
 import WellnessDashboard from "./pages/WellnessDashboard";
 import ControlCenter from "./pages/admin/ControlCenter";
+import Anxiety from "./pages/wellness/Anxiety";
+import Depression from "./pages/wellness/Depression";
+import SleepOptimization from "./pages/wellness/Sleep";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -99,6 +102,9 @@ function Router() {
       </Route>
       <Route path="/pricing" component={Pricing} />
       <Route path="/wellness" component={WellnessDashboard} />
+      <Route path="/wellness/anxiety" component={Anxiety} />
+      <Route path="/wellness/depression" component={Depression} />
+      <Route path="/wellness/sleep" component={SleepOptimization} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>

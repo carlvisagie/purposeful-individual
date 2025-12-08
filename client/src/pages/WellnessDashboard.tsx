@@ -53,7 +53,7 @@ const wellnessModules = [
     color: "from-blue-400 to-cyan-500",
     description: "Track anxiety levels, triggers, and coping strategies",
     route: "/wellness/anxiety",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "depression",
@@ -63,7 +63,7 @@ const wellnessModules = [
     color: "from-indigo-400 to-purple-500",
     description: "Monitor mood, energy, and depression symptoms",
     route: "/wellness/depression",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "stress",
@@ -135,7 +135,7 @@ const wellnessModules = [
     color: "from-indigo-500 to-purple-600",
     description: "Track sleep quality, duration, and optimization",
     route: "/wellness/sleep",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "nutrition",
