@@ -11,6 +11,7 @@ import { eq, and, lt, sql } from "drizzle-orm";
 import crypto from "crypto";
 import { OpenAI } from "openai";
 import { detectCrisis, generateCrisisResponse, logCrisisAlert } from "../services/crisisDetection";
+import { safetyCheck } from "../safetyGuardrails";
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -280,6 +281,36 @@ export const frictionlessRouter = router({
       // Check if expired
       if (new Date() > session.expiresAt) {
         throw new Error("Session expired");
+      }
+
+      // SAFETY GUARDRAILS - Check BEFORE processing
+      const safetyResult = safetyCheck(input.message);
+      if (!safetyResult.safe && safetyResult.redirect) {
+        // Return safety redirect message immediately
+        const conversationData = session.conversationData as Array<{ role: string; content: string }> || [];
+        conversationData.push({
+          role: "user",
+          content: input.message,
+        });
+        conversationData.push({
+          role: "assistant",
+          content: safetyResult.output || "I can only help with wellness coaching and lifestyle support. For medical, legal, or crisis situations, please consult appropriate professionals.",
+        });
+        
+        await db
+          .update(anonymousSessions)
+          .set({
+            conversationData,
+            messageCount: conversationData.filter((m) => m.role === "user").length,
+            lastActiveAt: new Date(),
+          })
+          .where(eq(anonymousSessions.id, session.id));
+        
+        return {
+          message: safetyResult.output || "I can only help with wellness coaching.",
+          shouldPromptConversion: false,
+          safetyBlocked: true,
+        };
       }
 
       // Add user message to conversation
