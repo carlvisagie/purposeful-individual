@@ -43,39 +43,14 @@ import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
 import WellnessDashboard from "./pages/WellnessDashboard";
 import ControlCenter from "./pages/admin/ControlCenter";
-import Anxiety from "./pages/wellness/Anxiety";
-import Depression from "./pages/wellness/Depression";
-import SleepOptimization from "./pages/wellness/Sleep";
-import Nutrition from "./pages/wellness/Nutrition";
-import Exercise from "./pages/wellness/Exercise";
-import Stress from "./pages/wellness/Stress";
-import ADHD from "./pages/wellness/ADHD";
-import OCD from "./pages/wellness/OCD";
-import PTSD from "./pages/wellness/PTSD";
-import Bipolar from "./pages/wellness/Bipolar";
-import Longevity from "./pages/wellness/Longevity";
-import Supplements from "./pages/wellness/Supplements";
-import PainManagement from "./pages/wellness/PainManagement";
-import Meditation from "./pages/wellness/Meditation";
-import Gratitude from "./pages/wellness/Gratitude";
-import Relationships from "./pages/wellness/Relationships";
-import Career from "./pages/wellness/Career";
-import Financial from "./pages/wellness/Financial";
-import SocialConnection from "./pages/wellness/SocialConnection";
-import Identity from "./pages/wellness/Identity";
-import Confidence from "./pages/wellness/Confidence";
-import Boundaries from "./pages/wellness/Boundaries";
-import Spiritual from "./pages/wellness/Spiritual";
-import Meaning from "./pages/wellness/Meaning";
-import HabitTracking from "./pages/wellness/HabitTracking";
-import Addiction from "./pages/wellness/Addiction";
-import ScreenTime from "./pages/wellness/ScreenTime";
-import Energy from "./pages/wellness/Energy";
-import Hydration from "./pages/wellness/Hydration";
-import Autism from "./pages/wellness/Autism";
-import Emotions from "./pages/wellness/Emotions";
-import Mindfulness from "./pages/wellness/Mindfulness";
-import ResearchDashboard from "./pages/ResearchDashboard";
+// FOUNDATIONAL SYSTEMS (Required for AI and all modules)
+import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0
+import HabitTracking from "./pages/wellness/HabitTracking"; // Habit Formation Engine
+// Truth Keepers already integrated in server/routers/truthKeepers.ts
+// Crisis Detection already integrated in server/routers/aiChat.ts
+
+// Wellness modules temporarily removed for MVP - will add back incrementally
+// (31 modules backed up in .backup/wellness-modules/)
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -132,39 +107,13 @@ function Router() {
       </Route>
       <Route path="/pricing" component={Pricing} />
       <Route path="/wellness" component={WellnessDashboard} />
-      <Route path="/wellness/anxiety" component={Anxiety} />
-      <Route path="/wellness/depression" component={Depression} />
-      <Route path="/wellness/sleep" component={SleepOptimization} />
-      <Route path="/wellness/nutrition" component={Nutrition} />
-      <Route path="/wellness/exercise" component={Exercise} />
-      <Route path="/wellness/stress" component={Stress} />
-      <Route path="/wellness/adhd" component={ADHD} />
-      <Route path="/wellness/ocd" component={OCD} />
-      <Route path="/wellness/ptsd" component={PTSD} />
-      <Route path="/wellness/bipolar" component={Bipolar} />
-      <Route path="/wellness/longevity" component={Longevity} />
-      <Route path="/wellness/supplements" component={Supplements} />
-      <Route path="/wellness/pain" component={PainManagement} />
-      <Route path="/wellness/meditation" component={Meditation} />
-      <Route path="/wellness/gratitude" component={Gratitude} />
-      <Route path="/wellness/relationships" component={Relationships} />
-      <Route path="/wellness/career" component={Career} />
-      <Route path="/wellness/financial" component={Financial} />
-      <Route path="/wellness/social" component={SocialConnection} />
-      <Route path="/wellness/identity" component={Identity} />
-      <Route path="/wellness/confidence" component={Confidence} />
-      <Route path="/wellness/boundaries" component={Boundaries} />
-      <Route path="/wellness/spiritual" component={Spiritual} />
-      <Route path="/wellness/meaning" component={Meaning} />
-      <Route path="/wellness/habits" component={HabitTracking} />
-      <Route path="/wellness/addiction" component={Addiction} />
-      <Route path="/wellness/screen-time" component={ScreenTime} />
-      <Route path="/wellness/energy" component={Energy} />
-      <Route path="/wellness/hydration" component={Hydration} />
-      <Route path="/wellness/autism" component={Autism} />
-      <Route path="/wellness/emotions" component={Emotions} />
-      <Route path="/wellness/mindfulness" component={Mindfulness} />
-      <Route path="/research" component={ResearchDashboard} />
+      
+      {/* FOUNDATIONAL ROUTES - Required for AI and all modules */}
+      <Route path="/research" component={ResearchDashboard} /> {/* Truth Seekers 2.0 */}
+      <Route path="/wellness/habits" component={HabitTracking} /> {/* Habit Formation */}
+      
+      {/* Other wellness module routes temporarily removed for MVP */}
+      {/* Will add back incrementally after MVP is working */}
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
