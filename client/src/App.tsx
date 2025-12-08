@@ -51,6 +51,9 @@ import Exercise from "./pages/wellness/Exercise";
 import Stress from "./pages/wellness/Stress";
 import ADHD from "./pages/wellness/ADHD";
 import OCD from "./pages/wellness/OCD";
+import PTSD from "./pages/wellness/PTSD";
+import Bipolar from "./pages/wellness/Bipolar";
+import Longevity from "./pages/wellness/Longevity";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -115,6 +118,9 @@ function Router() {
       <Route path="/wellness/stress" component={Stress} />
       <Route path="/wellness/adhd" component={ADHD} />
       <Route path="/wellness/ocd" component={OCD} />
+      <Route path="/wellness/ptsd" component={PTSD} />
+      <Route path="/wellness/bipolar" component={Bipolar} />
+      <Route path="/wellness/longevity" component={Longevity} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
