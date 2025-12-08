@@ -201,9 +201,9 @@ export const frictionlessRouter = router({
           .values({
             sessionToken,
             expiresAt,
-            ipAddress: input.ipAddress,
-            userAgent: input.userAgent,
-            referrer: input.referrer,
+            ipAddress: input.ipAddress || null,
+            userAgent: input.userAgent || null,
+            referrer: input.referrer || null,
           })
           .returning();
 
