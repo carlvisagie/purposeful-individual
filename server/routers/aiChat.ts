@@ -6,6 +6,7 @@ import { z } from "zod";
 import { protectedProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { invokeLLM } from "../_core/llm";
+import { safetyCheck } from "../safetyGuardrails";
 import {
   getUserConversations,
   getConversationWithMessages,
@@ -151,6 +152,32 @@ export const aiChatRouter = router({
         });
       }
 
+      // SAFETY GUARDRAILS - Check BEFORE processing
+      const safetyResult = safetyCheck(input.message);
+      if (!safetyResult.safe && safetyResult.redirect) {
+        // Save user message
+        await addMessage({
+          conversationId: input.conversationId,
+          role: "user",
+          content: input.message,
+          crisisFlag: safetyResult.type === "crisis" ? "critical" : "none",
+        });
+        
+        // Save safety redirect response
+        await addMessage({
+          conversationId: input.conversationId,
+          role: "assistant",
+          content: safetyResult.output || "I can only help with wellness coaching and lifestyle support. For medical, legal, or crisis situations, please consult appropriate professionals.",
+          crisisFlag: "none",
+        });
+        
+        return {
+          message: safetyResult.output,
+          crisisFlag: safetyResult.type === "crisis" ? "critical" : "none",
+          safetyBlocked: true,
+        };
+      }
+      
       // Detect crisis level
       const crisisFlag = detectCrisisLevel(input.message);
 
