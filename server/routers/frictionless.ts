@@ -196,20 +196,21 @@ export const frictionlessRouter = router({
 
         console.log("[createSession] Attempting to insert:", { sessionToken, expiresAt, ...input });
 
-        const [session] = await db
-          .insert(anonymousSessions)
-          .values({
-            sessionToken,
-            expiresAt,
-            ipAddress: input.ipAddress || null,
-            userAgent: input.userAgent || null,
-            referrer: input.referrer || null,
-            // Explicitly provide JSONB values to avoid Drizzle using 'default' keyword
-            conversationData: [],
-            extractedData: {},
-            mediaFiles: [],
-          })
-          .returning();
+        // Use raw SQL to avoid Drizzle's 'default' keyword issue
+        const result = await db.execute(sql`
+          INSERT INTO anonymous_sessions (
+            session_token, expires_at, ip_address, user_agent, referrer,
+            conversation_data, extracted_data, media_files
+          )
+          VALUES (
+            ${sessionToken}, ${expiresAt}, ${input.ipAddress || null}, 
+            ${input.userAgent || null}, ${input.referrer || null},
+            '[]'::jsonb, '{}'::jsonb, '[]'::jsonb
+          )
+          RETURNING id, session_token, created_at, last_active_at, expires_at
+        `);
+        
+        const session = result.rows[0] as any;
 
         console.log("[createSession] Success! Session created:", session.id);
 
