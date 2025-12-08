@@ -41,6 +41,8 @@ import AdminAnalytics from "./pages/admin/Analytics";
 import AdminSettings from "./pages/admin/Settings";
 import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
+import WellnessDashboard from "./pages/WellnessDashboard";
+import ControlCenter from "./pages/admin/ControlCenter";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -96,6 +98,10 @@ function Router() {
         <AdminLayout><AdminSettings /></AdminLayout>
       </Route>
       <Route path="/pricing" component={Pricing} />
+      <Route path="/wellness" component={WellnessDashboard} />
+      <Route path="/admin/control-center">
+        <AdminLayout><ControlCenter /></AdminLayout>
+      </Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

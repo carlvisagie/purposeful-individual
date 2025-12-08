@@ -4,15 +4,16 @@
  */
 
 import { Link, useLocation } from "wouter";
-import { 
-  LayoutDashboard, 
-  Users, 
-  MessageSquare, 
-  AlertTriangle, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  Users,
+  MessageSquare,
+  AlertTriangle,
+  BarChart3,
   Settings,
   Activity,
-  LogOut
+  LogOut,
+  Eye
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
@@ -22,6 +23,7 @@ interface AdminLayoutProps {
 }
 
 const navItems = [
+  { href: "/admin/control-center", label: "Control Center", icon: Eye },
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/sessions", label: "Live Sessions", icon: Activity },
   { href: "/admin/ai-responses", label: "AI Responses", icon: MessageSquare },

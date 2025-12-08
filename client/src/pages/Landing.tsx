@@ -116,14 +116,24 @@ export default function Landing() {
             </div>
           </div>
 
-          {/* Secondary CTA */}
-          <div className="pt-4">
-            <a
-              href="/pricing"
-              className="text-purple-600 hover:text-purple-700 font-medium underline"
-            >
-              Already convinced? Get Full Access Now →
-            </a>
+          {/* Secondary CTAs */}
+          <div className="pt-4 space-y-2">
+            <div>
+              <a
+                href="/wellness"
+                className="text-purple-600 hover:text-purple-700 font-medium underline"
+              >
+                Explore All 31 Wellness Modules →
+              </a>
+            </div>
+            <div>
+              <a
+                href="/pricing"
+                className="text-blue-600 hover:text-blue-700 font-medium underline"
+              >
+                Already convinced? Get Full Access Now →
+              </a>
+            </div>
           </div>
         </div>
 
