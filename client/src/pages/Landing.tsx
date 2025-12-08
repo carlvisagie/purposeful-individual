@@ -3,7 +3,7 @@
  * Instant engagement with AI coach - no barriers
  */
 
-import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 // import { AnonymousChat } from "../components/AnonymousChat"; // Moved to backup
@@ -19,31 +19,7 @@ import {
 } from "lucide-react";
 
 export default function Landing() {
-  const [showChat, setShowChat] = useState(false);
-
-  if (showChat) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-purple-900">
-              Purposeful Live Coaching
-            </h1>
-            <Button
-              variant="outline"
-              onClick={() => setShowChat(false)}
-            >
-              Back to Home
-            </Button>
-          </div>
-          
-          <Card className="h-[calc(100vh-200px)] p-8">
-            <p className="text-center text-gray-600">Anonymous chat temporarily unavailable during MVP development.</p>
-          </Card>
-        </div>
-      </div>
-    );
-  }
+  const [, setLocation] = useLocation();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
@@ -78,7 +54,7 @@ export default function Landing() {
               <Button
                 size="lg"
                 className="text-xl px-12 py-8 bg-purple-600 hover:bg-purple-700 shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
-                onClick={() => setShowChat(true)}
+                onClick={() => setLocation("/ai-chat")}
               >
                 <Sparkles className="w-6 h-6 mr-3" />
                 Start Talking to Your AI Coach Now

@@ -31,6 +31,7 @@ import CreateAutismProfile from "./pages/CreateAutismProfile";
 import Login from "./pages/Login";
 import CoachView from "./pages/CoachView";
 import Pricing from "./pages/Pricing";
+import AIChat from "./pages/AIChat";
 import WellnessDashboard from "./pages/WellnessDashboard";
 // FOUNDATIONAL SYSTEMS (Required for AI and all modules)
 // import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0 - temporarily disabled for MVP
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/coach/availability" component={CoachAvailability} />
       <Route path="/coach/session-types" component={ManageSessionTypes} />
       <Route path="/ai-coach" component={AICoach} />
+      <Route path="/ai-chat" component={AIChat} />
       <Route path="/emotions" component={EmotionTracker} />
       <Route path="/insights" component={InsightsDashboard} />
       <Route path="/coach/dashboard" component={CoachDashboard} />
