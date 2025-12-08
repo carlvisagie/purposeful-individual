@@ -199,3 +199,70 @@ export type InsertJournalEntry = typeof journalEntries.$inferInsert;
 
 // Continue with rest of schema...
 // (Keeping all existing tables from the original schema)
+
+// ============================================================================
+// CRISIS ALERTS & NOTIFICATIONS
+// ============================================================================
+
+export const crisisAlerts = pgTable("crisis_alerts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  
+  // Session/User tracking
+  sessionId: uuid("session_id").references(() => anonymousSessions.id),
+  userId: integer("user_id").references(() => users.id),
+  
+  // Alert details
+  alertType: varchar("alert_type", { length: 50 }).notNull(),
+  riskScore: integer("risk_score").notNull(),
+  status: varchar("status", { length: 50 }).notNull().default("new"),
+  
+  // Detection details
+  keywords: jsonb("keywords").notNull().default(sql`'[]'::jsonb`),
+  context: text("context").notNull(),
+  fullConversation: jsonb("full_conversation").default(sql`'[]'::jsonb`),
+  
+  // Response tracking
+  responseGenerated: text("response_generated"),
+  resourcesProvided: jsonb("resources_provided").default(sql`'{}'::jsonb`),
+  
+  // Follow-up
+  assignedTo: varchar("assigned_to", { length: 255 }),
+  assignedAt: timestamp("assigned_at"),
+  resolvedAt: timestamp("resolved_at"),
+  resolutionNotes: text("resolution_notes"),
+  escalatedToEmergency: boolean("escalated_to_emergency").default(false),
+  
+  // Metadata
+  ipAddress: varchar("ip_address", { length: 45 }),
+  userAgent: text("user_agent"),
+  
+  // Timestamps
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type CrisisAlert = typeof crisisAlerts.$inferSelect;
+export type InsertCrisisAlert = typeof crisisAlerts.$inferInsert;
+
+export const crisisAlertNotifications = pgTable("crisis_alert_notifications", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  
+  alertId: uuid("alert_id").references(() => crisisAlerts.id).notNull(),
+  
+  // Notification details
+  notificationType: varchar("notification_type", { length: 50 }).notNull(),
+  recipient: varchar("recipient", { length: 255 }).notNull(),
+  status: varchar("status", { length: 50 }).notNull().default("pending"),
+  
+  // Delivery tracking
+  sentAt: timestamp("sent_at"),
+  failedAt: timestamp("failed_at"),
+  errorMessage: text("error_message"),
+  retryCount: integer("retry_count").default(0),
+  
+  // Timestamps
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type CrisisAlertNotification = typeof crisisAlertNotifications.$inferSelect;
+export type InsertCrisisAlertNotification = typeof crisisAlertNotifications.$inferInsert;
