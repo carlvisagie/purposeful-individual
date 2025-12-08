@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from "react";
+import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AIChatBox, Message } from "@/components/AIChatBox";
@@ -45,26 +46,15 @@ export default function AnonymousAIChat() {
     setIsLoading(true);
 
     try {
-      // Call the anonymous chat API
-      const response = await fetch("/api/trpc/aiChat.anonymousChat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: content,
-          conversationHistory: messages,
-        }),
+      // Call the anonymous chat API via tRPC
+      const result = await trpc.aiChat.anonymousChat.mutate({
+        message: content,
+        conversationHistory: messages,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to get AI response");
-      }
-
-      const data = await response.json();
       const aiResponse: Message = {
         role: "assistant",
-        content: data.result.data.response,
+        content: result.response,
       };
 
       setMessages((prev) => [...prev, aiResponse]);
