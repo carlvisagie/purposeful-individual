@@ -34,6 +34,7 @@ import CoachView from "./pages/CoachView";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminSessions from "./pages/admin/Sessions";
 import { AdminLayout } from "./components/AdminLayout";
+import Pricing from "./pages/Pricing";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -70,6 +71,7 @@ function Router() {
       <Route path="/admin/sessions">
         <AdminLayout><AdminSessions /></AdminLayout>
       </Route>
+      <Route path="/pricing" component={Pricing} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
