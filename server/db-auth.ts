@@ -28,8 +28,9 @@ export async function createUser(data: {
   passwordSalt: string;
   loginMethod: string;
   lastSignedIn: Date;
-}) {
-  const [user] = await db.insert(users).values({
+}): Promise<typeof users.$inferSelect | null> {
+  // MySQL insert doesn't return the inserted row
+  await db.insert(users).values({
     email: data.email,
     name: data.name,
     passwordHash: data.passwordHash,
@@ -42,7 +43,8 @@ export async function createUser(data: {
     lastSignedIn: data.lastSignedIn,
   });
   
-  return user;
+  // Fetch the inserted user
+  return getUserByEmail(data.email);
 }
 
 export async function updateUserLastSignedIn(userId: number) {
@@ -59,15 +61,17 @@ export async function createSession(data: {
   userId: number;
   token: string;
   expiresAt: Date;
-}) {
-  const [session] = await db.insert(authSessions).values({
+}): Promise<typeof authSessions.$inferSelect | null> {
+  // MySQL insert doesn't return the inserted row
+  await db.insert(authSessions).values({
     userId: data.userId,
     token: data.token,
     expiresAt: data.expiresAt,
     createdAt: new Date(),
   });
   
-  return session;
+  // Fetch the inserted session
+  return getSessionByToken(data.token);
 }
 
 export async function getSessionByToken(token: string) {
