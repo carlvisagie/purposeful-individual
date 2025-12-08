@@ -181,18 +181,49 @@ I'm here to support you, but I want to make sure you have access to the immediat
 export async function logCrisisAlert(
   sessionId: string,
   userId: number | null,
+  alert: CrisisAlert,
+  fullConversation: any[] = [],
+  ipAddress?: string,
+  userAgent?: string
+): Promise<string> {
+  const { db } = await import("../db-standalone");
+  const { crisisAlerts } = await import("../../drizzle/schema-crisis-alerts");
+  
+  // Insert crisis alert
+  const [inserted] = await db
+    .insert(crisisAlerts)
+    .values({
+      sessionId,
+      userId,
+      alertType: alert.alertType,
+      riskScore: alert.riskScore,
+      keywords: alert.keywords as any,
+      context: alert.context,
+      fullConversation: fullConversation as any,
+      responseGenerated: generateCrisisResponse(alert),
+      resourcesProvided: getEmergencyResources(alert.alertType) as any,
+      ipAddress,
+      userAgent,
+    })
+    .returning();
+  
+  console.log("[CRISIS ALERT LOGGED]", inserted.id);
+  
+  // Send notifications asynchronously (don't await)
+  sendCrisisNotifications(inserted.id, alert).catch(console.error);
+  
+  return inserted.id;
+}
+
+/**
+ * Send crisis alert notifications
+ */
+async function sendCrisisNotifications(
+  alertId: string,
   alert: CrisisAlert
 ): Promise<void> {
-  // TODO: Implement database logging
-  // This would insert into a crisis_alerts table
-  console.log("[CRISIS ALERT]", {
-    sessionId,
-    userId,
-    alert,
-  });
-  
-  // TODO: Send notifications
-  // - Email to admin
-  // - SMS to on-call crisis counselor
-  // - Slack/Discord alert
+  // TODO: Implement email notification
+  // TODO: Implement SMS notification
+  // TODO: Implement Slack/Discord webhook
+  console.log("[NOTIFICATIONS] Sending for alert:", alertId, alert.alertType, alert.riskScore);
 }

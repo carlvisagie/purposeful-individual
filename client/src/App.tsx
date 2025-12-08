@@ -37,6 +37,8 @@ import AdminSessionDetail from "./pages/admin/SessionDetail";
 import AdminCrisisAlerts from "./pages/admin/CrisisAlerts";
 import AdminAIResponses from "./pages/admin/AIResponses";
 import AdminUsers from "./pages/admin/Users";
+import AdminAnalytics from "./pages/admin/Analytics";
+import AdminSettings from "./pages/admin/Settings";
 import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
 
@@ -86,6 +88,12 @@ function Router() {
       </Route>
       <Route path="/admin/users">
         <AdminLayout><AdminUsers /></AdminLayout>
+      </Route>
+      <Route path="/admin/analytics">
+        <AdminLayout><AdminAnalytics /></AdminLayout>
+      </Route>
+      <Route path="/admin/settings">
+        <AdminLayout><AdminSettings /></AdminLayout>
       </Route>
       <Route path="/pricing" component={Pricing} />
       <Route path={"/404"} component={NotFound} />
