@@ -145,7 +145,7 @@ const wellnessModules = [
     color: "from-green-400 to-emerald-500",
     description: "Food intake, macros, and dietary goals",
     route: "/wellness/nutrition",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "exercise",
@@ -155,7 +155,7 @@ const wellnessModules = [
     color: "from-red-400 to-pink-500",
     description: "Workout tracking and fitness progress",
     route: "/wellness/exercise",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "supplements",

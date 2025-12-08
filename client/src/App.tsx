@@ -46,6 +46,8 @@ import ControlCenter from "./pages/admin/ControlCenter";
 import Anxiety from "./pages/wellness/Anxiety";
 import Depression from "./pages/wellness/Depression";
 import SleepOptimization from "./pages/wellness/Sleep";
+import Nutrition from "./pages/wellness/Nutrition";
+import Exercise from "./pages/wellness/Exercise";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -105,6 +107,8 @@ function Router() {
       <Route path="/wellness/anxiety" component={Anxiety} />
       <Route path="/wellness/depression" component={Depression} />
       <Route path="/wellness/sleep" component={SleepOptimization} />
+      <Route path="/wellness/nutrition" component={Nutrition} />
+      <Route path="/wellness/exercise" component={Exercise} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
