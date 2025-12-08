@@ -56,6 +56,7 @@ import Bipolar from "./pages/wellness/Bipolar";
 import Longevity from "./pages/wellness/Longevity";
 import Supplements from "./pages/wellness/Supplements";
 import PainManagement from "./pages/wellness/PainManagement";
+import Meditation from "./pages/wellness/Meditation";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -125,6 +126,7 @@ function Router() {
       <Route path="/wellness/longevity" component={Longevity} />
       <Route path="/wellness/supplements" component={Supplements} />
       <Route path="/wellness/pain" component={PainManagement} />
+      <Route path="/wellness/meditation" component={Meditation} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
