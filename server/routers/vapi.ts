@@ -158,8 +158,8 @@ export const vapiRouter = router({
             LIMIT 1
           `);
           
-          if (result.rows.length > 0) {
-            const client = result.rows[0];
+          if (result.length > 0) {
+            const client = result[0];
             console.log("Client identified:", client);
             
             // Return client context for AI to use
@@ -204,8 +204,8 @@ export const vapiRouter = router({
             LIMIT 1
           `);
           
-          if (result.rows.length > 0) {
-            clientId = result.rows[0].id as number;
+          if (result.length > 0) {
+            clientId = result[0].id as number;
           }
         }
         
@@ -307,7 +307,7 @@ export const vapiRouter = router({
           FROM vapi_call_logs
         `);
         
-        return { success: true, analytics: result.rows[0] };
+        return { success: true, analytics: result[0] };
       } catch (error: any) {
         console.error("Error getting analytics:", error);
         return { success: false, error: error.message };

@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Check, Clock, Shield, Sparkles } from "lucide-react";
 import { useLocation } from "wouter";
+import { Button } from "@/components/ui/button";
 
 /**
  * $1 Introductory Session Landing Page - v2 (Chase Hughes Principles)
