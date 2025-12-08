@@ -59,6 +59,7 @@ import PainManagement from "./pages/wellness/PainManagement";
 import Meditation from "./pages/wellness/Meditation";
 import Gratitude from "./pages/wellness/Gratitude";
 import Relationships from "./pages/wellness/Relationships";
+import Career from "./pages/wellness/Career";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -131,6 +132,7 @@ function Router() {
       <Route path="/wellness/meditation" component={Meditation} />
       <Route path="/wellness/gratitude" component={Gratitude} />
       <Route path="/wellness/relationships" component={Relationships} />
+      <Route path="/wellness/career" component={Career} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
