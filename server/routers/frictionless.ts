@@ -10,6 +10,7 @@ import { anonymousSessions, users, clients, clientFolders, magicLinks } from "..
 import { eq, and, lt, sql } from "drizzle-orm";
 import crypto from "crypto";
 import { OpenAI } from "openai";
+import { detectCrisis, generateCrisisResponse, logCrisisAlert } from "../services/crisisDetection";
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -287,6 +288,35 @@ export const frictionlessRouter = router({
         role: "user",
         content: input.message,
       });
+
+      // Check for crisis indicators
+      const crisisAlert = detectCrisis(input.message);
+      if (crisisAlert) {
+        console.log("[CRISIS DETECTED]", crisisAlert);
+        await logCrisisAlert(session.id, session.convertedToUserId, crisisAlert);
+        
+        // Return crisis response immediately
+        const crisisResponse = generateCrisisResponse(crisisAlert);
+        conversationData.push({
+          role: "assistant",
+          content: crisisResponse,
+        });
+        
+        await db
+          .update(anonymousSessions)
+          .set({
+            conversationData,
+            messageCount: conversationData.filter((m) => m.role === "user").length,
+            lastActiveAt: new Date(),
+          })
+          .where(eq(anonymousSessions.id, session.id));
+        
+        return {
+          message: crisisResponse,
+          shouldPromptConversion: false,
+          crisisDetected: true,
+        };
+      }
 
       // Extract data from conversation
       const extractedData = await extractDataFromConversation(conversationData);
