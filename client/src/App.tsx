@@ -60,6 +60,21 @@ import Meditation from "./pages/wellness/Meditation";
 import Gratitude from "./pages/wellness/Gratitude";
 import Relationships from "./pages/wellness/Relationships";
 import Career from "./pages/wellness/Career";
+import Financial from "./pages/wellness/Financial";
+import SocialConnection from "./pages/wellness/SocialConnection";
+import Identity from "./pages/wellness/Identity";
+import Confidence from "./pages/wellness/Confidence";
+import Boundaries from "./pages/wellness/Boundaries";
+import Spiritual from "./pages/wellness/Spiritual";
+import Meaning from "./pages/wellness/Meaning";
+import HabitTracking from "./pages/wellness/HabitTracking";
+import Addiction from "./pages/wellness/Addiction";
+import ScreenTime from "./pages/wellness/ScreenTime";
+import Energy from "./pages/wellness/Energy";
+import Hydration from "./pages/wellness/Hydration";
+import Autism from "./pages/wellness/Autism";
+import Emotions from "./pages/wellness/Emotions";
+import Mindfulness from "./pages/wellness/Mindfulness";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -133,6 +148,21 @@ function Router() {
       <Route path="/wellness/gratitude" component={Gratitude} />
       <Route path="/wellness/relationships" component={Relationships} />
       <Route path="/wellness/career" component={Career} />
+      <Route path="/wellness/financial" component={Financial} />
+      <Route path="/wellness/social" component={SocialConnection} />
+      <Route path="/wellness/identity" component={Identity} />
+      <Route path="/wellness/confidence" component={Confidence} />
+      <Route path="/wellness/boundaries" component={Boundaries} />
+      <Route path="/wellness/spiritual" component={Spiritual} />
+      <Route path="/wellness/meaning" component={Meaning} />
+      <Route path="/wellness/habits" component={HabitTracking} />
+      <Route path="/wellness/addiction" component={Addiction} />
+      <Route path="/wellness/screen-time" component={ScreenTime} />
+      <Route path="/wellness/energy" component={Energy} />
+      <Route path="/wellness/hydration" component={Hydration} />
+      <Route path="/wellness/autism" component={Autism} />
+      <Route path="/wellness/emotions" component={Emotions} />
+      <Route path="/wellness/mindfulness" component={Mindfulness} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
