@@ -5,9 +5,20 @@ import { getDb } from "../db";
 import { subscriptions, users, sessions, clients } from "../../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-const stripe = new Stripe(ENV.stripeSecretKey, {
-  apiVersion: "2025-10-29.clover",
-});
+// Lazy initialization
+let stripeInstance: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    if (!ENV.stripeSecretKey) {
+      throw new Error("STRIPE_SECRET_KEY not configured");
+    }
+    stripeInstance = new Stripe(ENV.stripeSecretKey, {
+      apiVersion: "2025-10-29.clover",
+    });
+  }
+  return stripeInstance;
+}
 
 export const webhookRouter = Router();
 
@@ -42,6 +53,7 @@ webhookRouter.post("/stripe", async (req, res) => {
     console.log("[Webhook] req.body type:", typeof req.body);
     console.log("[Webhook] req.body is Buffer:", Buffer.isBuffer(req.body));
     
+    const stripe = getStripe();
     event = stripe.webhooks.constructEvent(
       req.body,
       sig,
@@ -154,6 +166,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   // Fetch full subscription details
+  const stripe = getStripe();
   const stripeSubscription: any = await stripe.subscriptions.retrieve(subscriptionId);
 
   // Create subscription record

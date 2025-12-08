@@ -13,7 +13,19 @@ import { validateEmail, validatePhoneNumber } from "../services/validation";
 import { getDb } from "../db";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+// Lazy initialization
+let stripeInstance: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) {
+      throw new Error("STRIPE_SECRET_KEY not configured");
+    }
+    stripeInstance = new Stripe(key);
+  }
+  return stripeInstance;
+}
 
 const guestCheckoutSchema = z.object({
   sessionTypeId: z.number().positive(),
@@ -81,6 +93,7 @@ export const guestCheckoutRouter = router({
       const checkoutSession = await withErrorHandling(
         "stripe.checkout.sessions.create",
         async () => {
+          const stripe = getStripe();
           return await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: [
@@ -135,6 +148,7 @@ export const guestCheckoutRouter = router({
       const session = await withErrorHandling(
         "stripe.checkout.sessions.retrieve",
         async () => {
+          const stripe = getStripe();
           return await stripe.checkout.sessions.retrieve(input.sessionId);
         },
         null
@@ -191,6 +205,7 @@ export const guestCheckoutRouter = router({
       const session = await withErrorHandling(
         "stripe.checkout.sessions.retrieve",
         async () => {
+          const stripe = getStripe();
           return await stripe.checkout.sessions.retrieve(input.sessionId);
         },
         null

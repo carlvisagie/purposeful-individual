@@ -7,9 +7,20 @@ import { subscriptions, sessionTypes } from "../../drizzle/schema";
 import { eq } from "drizzle-orm";
 import { PRODUCTS, type ProductId } from "../products";
 
-const stripe = new Stripe(ENV.stripeSecretKey, {
-  apiVersion: "2025-10-29.clover",
-});
+// Lazy initialization - only create Stripe instance when needed and env is loaded
+let stripeInstance: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    if (!ENV.stripeSecretKey) {
+      throw new Error("STRIPE_SECRET_KEY not configured. Please add it to .env.local");
+    }
+    stripeInstance = new Stripe(ENV.stripeSecretKey, {
+      apiVersion: "2025-10-29.clover",
+    });
+  }
+  return stripeInstance;
+}
 
 export const stripeRouter = router({
   /**
@@ -51,6 +62,7 @@ export const stripeRouter = router({
       const origin = ctx.req.headers.origin || "http://localhost:3000";
 
       // Create Stripe checkout session
+      const stripe = getStripe();
       const session = await stripe.checkout.sessions.create({
         mode: input.pricingModel === 'one-time' ? 'payment' : 'subscription',
         payment_method_types: ["card"],
@@ -118,6 +130,7 @@ export const stripeRouter = router({
 
       const origin = ctx.req.headers.origin || "http://localhost:3000";
 
+      const stripe = getStripe();
       const session = await stripe.checkout.sessions.create({
         mode: "subscription",
         payment_method_types: ["card"],
@@ -187,6 +200,7 @@ export const stripeRouter = router({
 
       // Cancel in Stripe
       if (sub[0].stripeSubscriptionId) {
+        const stripe = getStripe();
         await stripe.subscriptions.cancel(sub[0].stripeSubscriptionId);
       }
 
@@ -218,6 +232,7 @@ export const stripeRouter = router({
       if (!db) throw new Error("Database not available");
 
       // Retrieve the checkout session from Stripe
+      const stripe = getStripe();
       const session = await stripe.checkout.sessions.retrieve(input.sessionId);
 
       // Verify payment was successful

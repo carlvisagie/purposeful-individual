@@ -8,9 +8,20 @@ import { TRPCError } from "@trpc/server";
 import Stripe from "stripe";
 import { ENV } from "../_core/env";
 
-const stripe = new Stripe(ENV.stripeSecretKey, {
-  apiVersion: "2025-10-29.clover",
-});
+// Lazy initialization - only create Stripe instance when needed
+let stripeInstance: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    if (!ENV.stripeSecretKey) {
+      throw new Error("STRIPE_SECRET_KEY not configured");
+    }
+    stripeInstance = new Stripe(ENV.stripeSecretKey, {
+      apiVersion: "2025-10-29.clover",
+    });
+  }
+  return stripeInstance;
+}
 
 export const sessionPaymentsRouter = router({
   /**
@@ -32,6 +43,7 @@ export const sessionPaymentsRouter = router({
     .mutation(async ({ input, ctx }) => {
       try {
         // Create Stripe checkout session
+        const stripe = getStripe();
         const session = await stripe.checkout.sessions.create({
           payment_method_types: ["card"],
           line_items: [
@@ -87,6 +99,7 @@ export const sessionPaymentsRouter = router({
     )
     .mutation(async ({ input }) => {
       try {
+        const stripe = getStripe();
         const session = await stripe.checkout.sessions.retrieve(input.sessionId);
 
         if (session.payment_status !== "paid") {

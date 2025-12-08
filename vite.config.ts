@@ -25,6 +25,9 @@ export default defineConfig({
   },
   server: {
     host: true,
+    watch: {
+      ignored: ['**/.backup/**', '**/node_modules/**']
+    },
     allowedHosts: [
       ".manuspre.computer",
       ".manus.computer",
