@@ -161,6 +161,9 @@ export * from './adaptiveLearningSchema';
 // Identity & Authentication
 export * from './identitySchema';
 
+// Truth Seekers 2.0 - Research Scraping System
+export * from './researchSchema';
+
 // ============================================================================
 // LEGACY SCHEMAS (for backward compatibility)
 // ============================================================================

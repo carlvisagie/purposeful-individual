@@ -75,6 +75,7 @@ import Hydration from "./pages/wellness/Hydration";
 import Autism from "./pages/wellness/Autism";
 import Emotions from "./pages/wellness/Emotions";
 import Mindfulness from "./pages/wellness/Mindfulness";
+import ResearchDashboard from "./pages/ResearchDashboard";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -163,6 +164,7 @@ function Router() {
       <Route path="/wellness/autism" component={Autism} />
       <Route path="/wellness/emotions" component={Emotions} />
       <Route path="/wellness/mindfulness" component={Mindfulness} />
+      <Route path="/research" component={ResearchDashboard} />
       <Route path="/admin/control-center">
         <AdminLayout><ControlCenter /></AdminLayout>
       </Route>
