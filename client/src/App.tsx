@@ -33,6 +33,10 @@ import CoachingSession from "./pages/CoachingSession";
 import CoachView from "./pages/CoachView";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminSessions from "./pages/admin/Sessions";
+import AdminSessionDetail from "./pages/admin/SessionDetail";
+import AdminCrisisAlerts from "./pages/admin/CrisisAlerts";
+import AdminAIResponses from "./pages/admin/AIResponses";
+import AdminUsers from "./pages/admin/Users";
 import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
 
@@ -70,6 +74,18 @@ function Router() {
       </Route>
       <Route path="/admin/sessions">
         <AdminLayout><AdminSessions /></AdminLayout>
+      </Route>
+      <Route path="/admin/sessions/:id">
+        <AdminLayout><AdminSessionDetail /></AdminLayout>
+      </Route>
+      <Route path="/admin/crisis">
+        <AdminLayout><AdminCrisisAlerts /></AdminLayout>
+      </Route>
+      <Route path="/admin/ai-responses">
+        <AdminLayout><AdminAIResponses /></AdminLayout>
+      </Route>
+      <Route path="/admin/users">
+        <AdminLayout><AdminUsers /></AdminLayout>
       </Route>
       <Route path="/pricing" component={Pricing} />
       <Route path={"/404"} component={NotFound} />
