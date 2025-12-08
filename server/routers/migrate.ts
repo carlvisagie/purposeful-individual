@@ -210,10 +210,14 @@ export const migrateRouter = router({
       try {
         console.log("[Migration] Starting JSONB defaults fix...");
         
-        // Apply the migrations
+        // Apply the migrations (separate statements for each column)
         await db.execute(sql`
           ALTER TABLE anonymous_sessions 
-          ALTER COLUMN conversation_data SET DEFAULT '[]'::jsonb,
+          ALTER COLUMN conversation_data SET DEFAULT '[]'::jsonb
+        `);
+        
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
           ALTER COLUMN conversation_data SET NOT NULL
         `);
         
@@ -221,7 +225,11 @@ export const migrateRouter = router({
         
         await db.execute(sql`
           ALTER TABLE anonymous_sessions 
-          ALTER COLUMN extracted_data SET DEFAULT '{}'::jsonb,
+          ALTER COLUMN extracted_data SET DEFAULT '{}'::jsonb
+        `);
+        
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
           ALTER COLUMN extracted_data SET NOT NULL
         `);
         
@@ -229,7 +237,11 @@ export const migrateRouter = router({
         
         await db.execute(sql`
           ALTER TABLE anonymous_sessions 
-          ALTER COLUMN media_files SET DEFAULT '[]'::jsonb,
+          ALTER COLUMN media_files SET DEFAULT '[]'::jsonb
+        `);
+        
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
           ALTER COLUMN media_files SET NOT NULL
         `);
         
