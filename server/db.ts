@@ -93,4 +93,5 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Export standalone auth functions
+export * from './db-auth-functions';

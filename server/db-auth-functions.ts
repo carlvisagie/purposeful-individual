@@ -4,16 +4,16 @@
  */
 
 import { db } from "./db";
-import { users, sessions } from "../drizzle/schema";
-import { eq } from "drizzle-orm";
+import { users, authSessions } from "../drizzle/schema";
+import { eq, lt } from "drizzle-orm";
 
 // User functions
-export async function getUserByEmail(email: string) {
+export async function getUserByEmail(email: string): Promise<typeof users.$inferSelect | null> {
   const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
   return result[0] || null;
 }
 
-export async function getUserById(id: number) {
+export async function getUserById(id: number): Promise<typeof users.$inferSelect | null> {
   const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
   return result[0] || null;
 }
@@ -25,9 +25,11 @@ export async function createUser(data: {
   passwordSalt: string;
   loginMethod: string;
   lastSignedIn: Date;
-}) {
-  const result = await db.insert(users).values(data).returning();
-  return result[0];
+}): Promise<typeof users.$inferSelect | null> {
+  const result = await db.insert(users).values(data);
+  // MySQL doesn't support .returning(), so we fetch the inserted user
+  const insertedUser = await getUserByEmail(data.email);
+  return insertedUser;
 }
 
 export async function updateUserLastSignedIn(userId: number) {
@@ -41,21 +43,23 @@ export async function createSession(data: {
   userId: number;
   token: string;
   expiresAt: Date;
-}) {
-  const result = await db.insert(sessions).values(data).returning();
-  return result[0];
+}): Promise<typeof authSessions.$inferSelect | null> {
+  await db.insert(authSessions).values(data);
+  // MySQL doesn't support .returning(), so we fetch the inserted session
+  const insertedSession = await getSessionByToken(data.token);
+  return insertedSession;
 }
 
-export async function getSessionByToken(token: string) {
-  const result = await db.select().from(sessions).where(eq(sessions.token, token)).limit(1);
+export async function getSessionByToken(token: string): Promise<typeof authSessions.$inferSelect | null> {
+  const result = await db.select().from(authSessions).where(eq(authSessions.token, token)).limit(1);
   return result[0] || null;
 }
 
 export async function deleteSession(token: string) {
-  await db.delete(sessions).where(eq(sessions.token, token));
+  await db.delete(authSessions).where(eq(authSessions.token, token));
 }
 
 // Clean up expired sessions (run periodically)
 export async function cleanupExpiredSessions() {
-  await db.delete(sessions).where(lt(sessions.expiresAt, new Date()));
+  await db.delete(authSessions).where(lt(authSessions.expiresAt, new Date()));
 }

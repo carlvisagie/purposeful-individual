@@ -360,7 +360,7 @@ export default function MeditationPractice() {
                 <Zap className="w-5 h-5" />
                 Build a Meditation Habit
               </CardTitle>
-              <CardDescription">
+              <CardDescription>
                 Consistency beats duration - start small
               </CardDescription>
             </CardHeader>

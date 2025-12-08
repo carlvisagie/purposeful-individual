@@ -125,12 +125,12 @@ export default function LiveVideoSession({
     onSessionEnd();
   };
 
-  const handleParticipantJoined = (event: DailyEvent) => {
-    console.log("Participant joined:", event.participant);
+  const handleParticipantJoined = (event?: any) => {
+    console.log("Participant joined:", event?.participant);
   };
 
-  const handleParticipantLeft = (event: DailyEvent) => {
-    console.log("Participant left:", event.participant);
+  const handleParticipantLeft = (event?: any) => {
+    console.log("Participant left:", event?.participant);
   };
 
   const handleNetworkQuality = (event: any) => {

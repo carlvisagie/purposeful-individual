@@ -189,10 +189,10 @@ export default function FinancialWellness() {
               </div>
 
               <div className="p-4 border-2 border-blue-200 rounded-lg">
-                <h3 className="font-semibold mb-2">3. Index Funds > Stock Picking</h3>
+                <h3 className="font-semibold mb-2">3. Index Funds &gt; Stock Picking</h3>
                 <p className="text-sm text-muted-foreground">
                   90% of active fund managers underperform index funds. Buy low-cost index funds (VTI, VOO) and 
-                  hold forever. Time in market > timing market (Bogle, 1999)
+                  hold forever. Time in market &gt; timing market (Bogle, 1999)
                 </p>
               </div>
 
@@ -205,7 +205,7 @@ export default function FinancialWellness() {
               </div>
 
               <div className="p-4 border-2 border-purple-200 rounded-lg">
-                <h3 className="font-semibold mb-2">5. Increase Income > Cut Expenses</h3>
+                <h3 className="font-semibold mb-2">5. Increase Income &gt; Cut Expenses</h3>
                 <p className="text-sm text-muted-foreground">
                   Cutting lattes has limits. Increasing income has no ceiling. Focus on: skills, side hustles, 
                   career growth, entrepreneurship.

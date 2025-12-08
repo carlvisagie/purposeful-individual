@@ -386,7 +386,7 @@ export default function Relationships() {
               <div className="p-4 border rounded-lg space-y-3">
                 <h3 className="font-semibold">Daily Meaningful Connection</h3>
                 <p className="text-sm text-muted-foreground">
-                  Have one meaningful conversation daily. Quality > quantity for relationships.
+                  Have one meaningful conversation daily. Quality &gt; quantity for relationships.
                 </p>
                 <Button onClick={handleCreateConnectionHabit} variant="outline" className="w-full">
                   Create Daily Connection Habit
@@ -494,7 +494,7 @@ export default function Relationships() {
                     <p className="font-semibold text-amber-900">The Loneliness Epidemic</p>
                     <p className="text-sm text-amber-800 mt-1">
                       Despite being more "connected" than ever (social media), loneliness is at record highs. 
-                      Digital connections don't replace face-to-face intimacy. Quality > quantity.
+                      Digital connections don't replace face-to-face intimacy. Quality &gt; quantity.
                     </p>
                   </div>
                 </div>

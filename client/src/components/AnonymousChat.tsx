@@ -253,7 +253,7 @@ export function AnonymousChat() {
           </div>
         ))}
         
-        {sendMessageMutation.isLoading && (
+        {sendMessageMutation.isPending && (
           <div className="flex justify-start">
             <div className="bg-gray-100 rounded-lg p-4">
               <Loader2 className="w-5 h-5 animate-spin text-gray-600" />
@@ -272,14 +272,14 @@ export function AnonymousChat() {
             placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            disabled={sendMessageMutation.isLoading || !sessionToken}
+            disabled={sendMessageMutation.isPending || !sessionToken}
             className="flex-1"
           />
           <Button
             type="submit"
-            disabled={!inputValue.trim() || sendMessageMutation.isLoading || !sessionToken}
+            disabled={!inputValue.trim() || sendMessageMutation.isPending || !sessionToken}
           >
-            {sendMessageMutation.isLoading ? (
+            {sendMessageMutation.isPending ? (
               <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
               <Send className="w-4 h-4" />
