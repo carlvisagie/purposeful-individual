@@ -31,6 +31,9 @@ import AutismDailyLog from "./pages/AutismDailyLog";
 import Login from "./pages/Login";
 import CoachingSession from "./pages/CoachingSession";
 import CoachView from "./pages/CoachView";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminSessions from "./pages/admin/Sessions";
+import { AdminLayout } from "./components/AdminLayout";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -61,6 +64,12 @@ function Router() {
       <Route path="/autism/daily-log/:id" component={AutismDailyLog} />
       <Route path="/coaching-session" component={CoachingSession} />
       <Route path="/coach-view" component={CoachView} />
+      <Route path="/admin/dashboard">
+        <AdminLayout><AdminDashboard /></AdminLayout>
+      </Route>
+      <Route path="/admin/sessions">
+        <AdminLayout><AdminSessions /></AdminLayout>
+      </Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
