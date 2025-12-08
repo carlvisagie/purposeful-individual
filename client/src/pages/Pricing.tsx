@@ -56,8 +56,8 @@ const tiers = [
     limitations: [],
     cta: "Start Transformation",
     popular: true,
-    stripePriceIdMonthly: "price_starter_monthly", // TODO: Replace with actual Stripe price ID
-    stripePriceIdYearly: "price_starter_yearly",
+    stripePriceIdMonthly: "price_1Sc7ocCoewQKHspl7j3lv4f3",
+    stripePriceIdYearly: "price_1Sc7ocCoewQKHspl5CK1Ma6d",
   },
   {
     name: "Professional",
@@ -80,8 +80,8 @@ const tiers = [
     limitations: [],
     cta: "Go Professional",
     popular: false,
-    stripePriceIdMonthly: "price_professional_monthly",
-    stripePriceIdYearly: "price_professional_yearly",
+    stripePriceIdMonthly: "price_1Sc7odCoewQKHsplIS5vrLkT",
+    stripePriceIdYearly: "price_1Sc7odCoewQKHsplLocuxZ8q",
   },
   {
     name: "Elite",
@@ -104,8 +104,8 @@ const tiers = [
     limitations: [],
     cta: "Join Elite",
     popular: false,
-    stripePriceIdMonthly: "price_elite_monthly",
-    stripePriceIdYearly: "price_elite_yearly",
+    stripePriceIdMonthly: "price_1Sc7oeCoewQKHspl8FMIaJnM",
+    stripePriceIdYearly: "price_1Sc7oeCoewQKHsplM9KjtVSW",
     limited: true,
     limitText: "Limited to 10 members",
   },
