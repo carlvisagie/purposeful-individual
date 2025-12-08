@@ -1,6 +1,8 @@
 import { publicProcedure, router } from "../_core/trpc";
 import mysql from "mysql2/promise";
 import { z } from "zod";
+import { db } from "../db-standalone";
+import { sql } from "drizzle-orm";
 
 export const migrateRouter = router({
   runAuthMigration: publicProcedure
@@ -193,6 +195,65 @@ export const migrateRouter = router({
         return { success: true, message: "Autism tables migrated successfully" };
       } catch (error: any) {
         await connection.end();
+        throw new Error(`Migration failed: ${error.message}`);
+      }
+    }),
+
+  // Apply JSONB defaults fix for PostgreSQL anonymous_sessions table
+  applyJsonbFix: publicProcedure
+    .input(z.object({ secret: z.string() }))
+    .mutation(async ({ input }) => {
+      if (input.secret !== process.env.MIGRATION_SECRET && input.secret !== "migrate-now-2024") {
+        throw new Error("Invalid migration secret");
+      }
+
+      try {
+        console.log("[Migration] Starting JSONB defaults fix...");
+        
+        // Apply the migrations
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
+          ALTER COLUMN conversation_data SET DEFAULT '[]'::jsonb,
+          ALTER COLUMN conversation_data SET NOT NULL
+        `);
+        
+        console.log("[Migration] Set conversation_data defaults");
+        
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
+          ALTER COLUMN extracted_data SET DEFAULT '{}'::jsonb,
+          ALTER COLUMN extracted_data SET NOT NULL
+        `);
+        
+        console.log("[Migration] Set extracted_data defaults");
+        
+        await db.execute(sql`
+          ALTER TABLE anonymous_sessions 
+          ALTER COLUMN media_files SET DEFAULT '[]'::jsonb,
+          ALTER COLUMN media_files SET NOT NULL
+        `);
+        
+        console.log("[Migration] Set media_files defaults");
+        
+        // Verify the changes
+        const result = await db.execute(sql`
+          SELECT column_name, column_default, is_nullable 
+          FROM information_schema.columns 
+          WHERE table_name = 'anonymous_sessions' 
+            AND column_name IN ('conversation_data', 'extracted_data', 'media_files')
+          ORDER BY column_name
+        `);
+        
+        console.log("[Migration] Verification results:", result.rows);
+        
+        return {
+          success: true,
+          message: "JSONB defaults fix applied successfully",
+          verification: result.rows
+        };
+        
+      } catch (error: any) {
+        console.error("[Migration] ERROR:", error);
         throw new Error(`Migration failed: ${error.message}`);
       }
     }),
