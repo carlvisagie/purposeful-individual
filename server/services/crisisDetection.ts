@@ -222,8 +222,28 @@ async function sendCrisisNotifications(
   alertId: string,
   alert: CrisisAlert
 ): Promise<void> {
-  // TODO: Implement email notification
-  // TODO: Implement SMS notification
-  // TODO: Implement Slack/Discord webhook
-  console.log("[NOTIFICATIONS] Sending for alert:", alertId, alert.alertType, alert.riskScore);
+  try {
+    const { sendCrisisAlertEmail } = await import("./emailService");
+    
+    // Get admin email from env or use default
+    const adminEmail = process.env.CRISIS_ALERT_EMAIL || "admin@purposefullive.com";
+    
+    // Send email notification
+    await sendCrisisAlertEmail(adminEmail, {
+      alertId,
+      alertType: alert.alertType,
+      riskScore: alert.riskScore,
+      keywords: alert.keywords,
+      context: alert.context,
+      sessionId: alertId, // Will be updated when we have actual session ID
+      timestamp: alert.timestamp,
+    });
+    
+    console.log("[NOTIFICATIONS] Email sent for alert:", alertId);
+    
+    // TODO: Implement SMS notification for high-risk alerts (score > 85)
+    // TODO: Implement Slack/Discord webhook
+  } catch (error) {
+    console.error("[NOTIFICATIONS] Failed to send notifications:", error);
+  }
 }
