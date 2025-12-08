@@ -57,6 +57,10 @@ export const authRouter = router({
         lastSignedIn: new Date(),
       });
 
+      if (!user) {
+        throw new Error("Failed to create user");
+      }
+
       // Create session
       const sessionToken = generateSessionToken();
       await db.createSession({
