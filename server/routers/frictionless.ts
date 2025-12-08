@@ -204,6 +204,10 @@ export const frictionlessRouter = router({
             ipAddress: input.ipAddress || null,
             userAgent: input.userAgent || null,
             referrer: input.referrer || null,
+            // Explicitly provide JSONB values to avoid Drizzle using 'default' keyword
+            conversationData: [],
+            extractedData: {},
+            mediaFiles: [],
           })
           .returning();
 
