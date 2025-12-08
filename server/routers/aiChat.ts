@@ -3,7 +3,7 @@
  */
 
 import { z } from "zod";
-import { protectedProcedure, router } from "../_core/trpc";
+import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { invokeLLM } from "../_core/llm";
 import { safetyCheck } from "../safetyGuardrails";
@@ -281,8 +281,71 @@ export const aiChatRouter = router({
         });
       }
 
-      await deleteConversation(input.conversationId);
-
+       await deleteConversation(input.conversationId);
       return { success: true };
+    }),
+
+  /**
+   * Anonymous chat - no authentication required
+   * Limited to simple request/response (no conversation history stored)
+   */
+  anonymousChat: publicProcedure
+    .input(
+      z.object({
+        message: z.string().min(1).max(5000),
+        conversationHistory: z.array(
+          z.object({
+            role: z.enum(["system", "user", "assistant"]),
+            content: z.string(),
+          })
+        ).optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      // Build conversation history
+      const messages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
+        {
+          role: "system",
+          content: SYSTEM_PROMPT,
+        },
+      ];
+
+      // Add previous messages if provided
+      if (input.conversationHistory) {
+        messages.push(...input.conversationHistory);
+      }
+
+      // Add current message
+      messages.push({
+        role: "user",
+        content: input.message,
+      });
+
+      // Safety check
+      const safety = await safetyCheck(input.message);
+      if (!safety.safe) {
+        return {
+          response: `⚠️ **I'm concerned about what you shared.** If you're in immediate danger, please call 988 (Suicide & Crisis Lifeline) or 911 right away.\n\nFor ongoing support, please sign up for a full account where I can better help you. Your wellbeing matters.`,
+          crisisDetected: true,
+        };
+      }
+
+      // Get AI response
+      try {
+        const response = await invokeLLM({ messages });
+        const content = response.choices[0]?.message?.content;
+        const aiResponse = typeof content === 'string' ? content : "I'm here to help. Could you tell me more?";
+
+        return {
+          response: aiResponse,
+          crisisDetected: false,
+        };
+      } catch (error) {
+        console.error("[Anonymous Chat] LLM error:", error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Failed to get AI response. Please try again.",
+        });
+      }
     }),
 });
