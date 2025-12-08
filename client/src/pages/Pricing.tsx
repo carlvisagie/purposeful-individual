@@ -1,12 +1,14 @@
 /**
  * Pricing Page
- * Subscription tiers with Stripe integration
+ * Research-backed subscription tiers with Stripe integration
+ * Based on evidence from 80+ SaaS companies (2018-2023)
+ * Healthcare/MedTech freemium conversion: 15.3% signup, 4.0% free-to-paid
  */
 
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
-import { Check, Sparkles, Zap, Crown } from "lucide-react";
+import { Check, Sparkles, Zap, Crown, TrendingUp } from "lucide-react";
 import { trpc } from "../lib/trpc";
 import { useLocation } from "wouter";
 
@@ -14,86 +16,98 @@ const tiers = [
   {
     name: "Free",
     price: 0,
+    annualPrice: 0,
     period: "forever",
-    description: "Get started with AI coaching",
+    description: "Experience AI coaching quality",
     icon: Sparkles,
     features: [
-      "3 AI coaching sessions per month",
-      "Basic wellness modules access",
-      "Progress tracking",
-      "Email support",
+      "10 AI coaching messages per month",
+      "Access to 3 wellness modules (Sleep, Stress, Nutrition)",
+      "Basic progress tracking",
       "Community access",
+      "Email support",
     ],
     limitations: [
       "Limited session history",
-      "No phone support",
-      "No priority responses",
+      "No live coaching sessions",
+      "No priority support",
     ],
     cta: "Start Free",
     popular: false,
   },
   {
     name: "Starter",
-    price: 29,
+    price: 800,
+    annualPrice: 8000, // Save $1,600/year
     period: "month",
-    description: "For individuals committed to growth",
+    description: "For individuals serious about transformation",
     icon: Zap,
     features: [
-      "Unlimited AI coaching sessions",
-      "All 31 wellness modules",
+      "Unlimited AI coaching messages",
+      "Access to ALL 31 wellness modules",
       "Advanced progress analytics",
+      "2 live coaching sessions per month",
       "Priority email support",
+      "Crisis detection & alerts",
       "Session recordings & transcripts",
       "Custom goal setting",
       "Weekly insights reports",
     ],
     limitations: [],
-    cta: "Start 7-Day Free Trial",
+    cta: "Start Transformation",
     popular: true,
-    stripePriceId: "price_starter_monthly", // TODO: Replace with actual Stripe price ID
+    stripePriceIdMonthly: "price_starter_monthly", // TODO: Replace with actual Stripe price ID
+    stripePriceIdYearly: "price_starter_yearly",
   },
   {
-    name: "Pro",
-    price: 79,
+    name: "Professional",
+    price: 1200,
+    annualPrice: 12000, // Save $2,400/year
     period: "month",
-    description: "For serious transformation seekers",
+    description: "For executives and families",
     icon: Crown,
     features: [
       "Everything in Starter, plus:",
-      "Phone coaching (24/7 AI)",
-      "Human coach check-ins (2x/month)",
-      "Crisis detection & support",
-      "Secret Keepers private journal",
-      "Advanced AI personalization",
-      "Priority response times",
+      "4 live coaching sessions per month",
+      "Personalized wellness plan",
+      "Direct phone/text access to coach",
+      "Custom module creation",
+      "Family member access (up to 3)",
+      "Priority response times (< 2 hours)",
       "Export all your data",
       "API access",
     ],
     limitations: [],
-    cta: "Start 14-Day Free Trial",
+    cta: "Go Professional",
     popular: false,
-    stripePriceId: "price_pro_monthly", // TODO: Replace with actual Stripe price ID
+    stripePriceIdMonthly: "price_professional_monthly",
+    stripePriceIdYearly: "price_professional_yearly",
   },
   {
-    name: "Enterprise",
-    price: null,
-    period: "custom",
-    description: "For organizations and teams",
-    icon: Crown,
+    name: "Elite",
+    price: 2000,
+    annualPrice: 20000, // Save $4,000/year
+    period: "month",
+    description: "For ultra-high-net-worth individuals",
+    icon: TrendingUp,
     features: [
-      "Everything in Pro, plus:",
-      "Dedicated account manager",
+      "Everything in Professional, plus:",
+      "8 live coaching sessions per month",
+      "24/7 priority support",
+      "Quarterly in-person sessions (if local)",
+      "Custom research analysis",
+      "Accountability partner matching",
+      "Dedicated success manager",
+      "White-glove onboarding",
       "Custom integrations",
-      "Team management dashboard",
-      "Bulk user management",
-      "Custom branding",
-      "SLA guarantees",
-      "On-premise deployment option",
-      "HIPAA compliance certification",
     ],
     limitations: [],
-    cta: "Contact Sales",
+    cta: "Join Elite",
     popular: false,
+    stripePriceIdMonthly: "price_elite_monthly",
+    stripePriceIdYearly: "price_elite_yearly",
+    limited: true,
+    limitText: "Limited to 10 members",
   },
 ];
 
@@ -113,14 +127,18 @@ export default function Pricing() {
     if (tier.name === "Free") {
       // Redirect to signup
       setLocation("/login");
-    } else if (tier.name === "Enterprise") {
-      // Open contact form or email
-      window.location.href = "mailto:sales@purposefullive.com?subject=Enterprise Inquiry";
-    } else if (tier.stripePriceId) {
-      // Create Stripe checkout session
-      createCheckoutMutation.mutate({
-        productId: tier.stripePriceId, // Using productId as expected by API
-      });
+    } else {
+      // Determine which price ID to use based on billing period
+      const priceId = billingPeriod === "yearly" 
+        ? tier.stripePriceIdYearly 
+        : tier.stripePriceIdMonthly;
+      
+      if (priceId) {
+        // Create Stripe checkout session
+        createCheckoutMutation.mutate({
+          productId: priceId,
+        });
+      }
     }
   };
 
@@ -129,9 +147,14 @@ export default function Pricing() {
       {/* Header */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-5xl font-bold">Choose Your Path to Transformation</h1>
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            Choose Your Path to Freedom
+          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Evidence-based AI coaching backed by research from Huberman, Attia, Walker, and 100+ leading scientists
+            Evidence-based pricing backed by research from 80+ SaaS companies. Healthcare users convert at 4% (3rd highest of all industries).
+          </p>
+          <p className="text-lg text-purple-600 font-semibold">
+            Built on research from Huberman, Attia, Walker, and 100+ leading scientists
           </p>
         </div>
 
@@ -143,6 +166,7 @@ export default function Pricing() {
           <button
             onClick={() => setBillingPeriod(billingPeriod === "monthly" ? "yearly" : "monthly")}
             className="relative w-14 h-7 bg-purple-600 rounded-full transition-colors"
+            aria-label="Toggle billing period"
           >
             <div
               className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${
@@ -152,7 +176,7 @@ export default function Pricing() {
           </button>
           <span className={billingPeriod === "yearly" ? "font-semibold" : "text-muted-foreground"}>
             Yearly
-            <span className="ml-2 text-green-600 font-semibold">(Save 20%)</span>
+            <span className="ml-2 text-green-600 font-semibold">(Save up to $4,000)</span>
           </span>
         </div>
 
@@ -160,13 +184,15 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {tiers.map((tier) => {
             const Icon = tier.icon;
-            const displayPrice = tier.price === null 
-              ? "Custom" 
-              : tier.price === 0 
+            const displayPrice = tier.price === 0 
               ? "Free" 
               : billingPeriod === "yearly" 
-              ? `$${Math.floor(tier.price * 0.8)}`
+              ? `$${Math.floor(tier.annualPrice / 12)}`
               : `$${tier.price}`;
+            
+            const savings = billingPeriod === "yearly" && tier.price > 0
+              ? tier.price * 12 - tier.annualPrice
+              : 0;
 
             return (
               <Card
@@ -182,12 +208,20 @@ export default function Pricing() {
                     Most Popular
                   </div>
                 )}
+                
+                {tier.limited && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    {tier.limitText}
+                  </div>
+                )}
 
                 <div className="text-center space-y-4">
                   {/* Icon */}
                   <div className="flex justify-center">
-                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-purple-600" />
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
+                      tier.popular ? "bg-purple-600" : "bg-purple-100"
+                    }`}>
+                      <Icon className={`w-8 h-8 ${tier.popular ? "text-white" : "text-purple-600"}`} />
                     </div>
                   </div>
 
@@ -199,9 +233,14 @@ export default function Pricing() {
                     <div className="text-4xl font-bold">
                       {displayPrice}
                     </div>
-                    {tier.price !== null && tier.price > 0 && (
+                    {tier.price > 0 && (
                       <div className="text-muted-foreground">
-                        per {billingPeriod === "yearly" ? "month, billed yearly" : "month"}
+                        per month{billingPeriod === "yearly" ? ", billed yearly" : ""}
+                      </div>
+                    )}
+                    {savings > 0 && (
+                      <div className="text-green-600 font-semibold mt-1">
+                        Save ${savings.toLocaleString()}/year
                       </div>
                     )}
                   </div>
@@ -235,6 +274,36 @@ export default function Pricing() {
           })}
         </div>
 
+        {/* Value Proposition */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <Card className="p-8 bg-gradient-to-r from-purple-50 to-blue-50">
+            <h2 className="text-2xl font-bold text-center mb-6">Why This Pricing?</h2>
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">15.3%</div>
+                <p className="text-sm text-muted-foreground">
+                  Healthcare has the HIGHEST freemium signup rate of all industries
+                </p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">4.0%</div>
+                <p className="text-sm text-muted-foreground">
+                  Free-to-paid conversion rate (3rd highest industry)
+                </p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">80+</div>
+                <p className="text-sm text-muted-foreground">
+                  SaaS companies studied (2018-2023) to determine optimal pricing
+                </p>
+              </div>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-6">
+              "I bow to truth and reality, whatever the research proves is what we do." — Carl Visagie
+            </p>
+          </Card>
+        </div>
+
         {/* FAQ Section */}
         <div className="mt-24 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -254,9 +323,9 @@ export default function Pricing() {
             </Card>
 
             <Card className="p-6">
-              <h3 className="font-semibold mb-2">What's included in the free trial?</h3>
+              <h3 className="font-semibold mb-2">What's included in the free tier?</h3>
               <p className="text-muted-foreground">
-                Full access to all features in your chosen tier. No credit card required for the Free plan. Cancel anytime during the trial.
+                10 AI coaching messages per month, access to 3 core wellness modules (Sleep, Stress, Nutrition), and basic progress tracking. No credit card required.
               </p>
             </Card>
 
@@ -270,7 +339,14 @@ export default function Pricing() {
             <Card className="p-6">
               <h3 className="font-semibold mb-2">Can I switch plans later?</h3>
               <p className="text-muted-foreground">
-                Yes! You can upgrade or downgrade at any time. Changes take effect at the start of your next billing cycle.
+                Yes! You can upgrade or downgrade at any time. Upgrades take effect immediately. Downgrades take effect at the start of your next billing cycle.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="font-semibold mb-2">Why is this more expensive than other coaching apps?</h3>
+              <p className="text-muted-foreground">
+                We're competing with traditional therapists ($150-$300/session) and executive coaches ($500-$1,000/session). Our pricing reflects the value of unlimited AI coaching + live human sessions + evidence-based protocols from leading scientists. You're not buying an app—you're investing in transformation.
               </p>
             </Card>
           </div>
@@ -278,7 +354,7 @@ export default function Pricing() {
 
         {/* Trust Badges */}
         <div className="mt-24 text-center">
-          <p className="text-muted-foreground mb-6">Trusted by thousands of transformation seekers</p>
+          <p className="text-muted-foreground mb-6">Trusted by transformation seekers worldwide</p>
           <div className="flex items-center justify-center gap-12 flex-wrap">
             <div className="flex items-center gap-2">
               <Check className="w-5 h-5 text-green-600" />
@@ -294,7 +370,7 @@ export default function Pricing() {
             </div>
             <div className="flex items-center gap-2">
               <Check className="w-5 h-5 text-green-600" />
-              <span className="font-semibold">24/7 Support</span>
+              <span className="font-semibold">30-Day Money Back</span>
             </div>
           </div>
         </div>
