@@ -16,6 +16,7 @@ import {
   uuid,
   jsonb,
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 
 // Enums
 export const roleEnum = pgEnum("role", ["user", "admin"]);
@@ -45,11 +46,11 @@ export const anonymousSessions = pgTable("anonymous_sessions", {
   referrer: text("referrer"),
   
   // Conversation data
-  conversationData: jsonb("conversation_data").default([]), // Array of messages
-  extractedData: jsonb("extracted_data").default({}), // AI-extracted profile info
+  conversationData: jsonb("conversation_data").default(sql`'[]'::jsonb`).notNull(), // Array of messages
+  extractedData: jsonb("extracted_data").default(sql`'{}'::jsonb`).notNull(), // AI-extracted profile info
   
   // Media files
-  mediaFiles: jsonb("media_files").default([]), // Array of file references
+  mediaFiles: jsonb("media_files").default(sql`'[]'::jsonb`).notNull(), // Array of file references
   
   // Engagement metrics
   engagementScore: integer("engagement_score").default(0).notNull(),
