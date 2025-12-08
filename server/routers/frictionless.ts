@@ -190,24 +190,34 @@ export const frictionlessRouter = router({
       })
     )
     .mutation(async ({ input }) => {
-      const sessionToken = generateToken(32);
-      const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+      try {
+        const sessionToken = generateToken(32);
+        const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-      const [session] = await db
-        .insert(anonymousSessions)
-        .values({
-          sessionToken,
-          expiresAt,
-          ipAddress: input.ipAddress,
-          userAgent: input.userAgent,
-          referrer: input.referrer,
-        })
-        .returning();
+        console.log("[createSession] Attempting to insert:", { sessionToken, expiresAt, ...input });
 
-      return {
-        sessionToken: session.sessionToken,
-        sessionId: session.id,
-      };
+        const [session] = await db
+          .insert(anonymousSessions)
+          .values({
+            sessionToken,
+            expiresAt,
+            ipAddress: input.ipAddress,
+            userAgent: input.userAgent,
+            referrer: input.referrer,
+          })
+          .returning();
+
+        console.log("[createSession] Success! Session created:", session.id);
+
+        return {
+          sessionToken: session.sessionToken,
+          sessionId: session.id,
+        };
+      } catch (error) {
+        console.error("[createSession] ERROR:", error);
+        console.error("[createSession] Error details:", JSON.stringify(error, null, 2));
+        throw error;
+      }
     }),
 
   // Get session data
