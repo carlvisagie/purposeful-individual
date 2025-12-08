@@ -5,9 +5,10 @@
  */
 
 import { z } from "zod";
-import { router, publicProcedure, protectedProcedure } from "../trpc";
+import { router, publicProcedure, protectedProcedure } from "../_core/trpc";
 import { db } from "../db";
-import { researchPapers, researchScrapingJobs, moduleResearchUpdates, userResearchNotifications } from "../../drizzle/researchSchema";
+// Research schema tables - need to be added to main schema
+// import { researchPapers, researchScrapingJobs, moduleResearchUpdates, userResearchNotifications } from "../../drizzle/researchSchema";
 import { eq, desc, and, gte, sql } from "drizzle-orm";
 import { 
   searchPubMed, 

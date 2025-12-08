@@ -44,7 +44,7 @@ import Pricing from "./pages/Pricing";
 import WellnessDashboard from "./pages/WellnessDashboard";
 import ControlCenter from "./pages/admin/ControlCenter";
 // FOUNDATIONAL SYSTEMS (Required for AI and all modules)
-import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0
+// import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0 - temporarily disabled for MVP
 import HabitTracking from "./pages/wellness/HabitTracking"; // Habit Formation Engine
 // Truth Keepers already integrated in server/routers/truthKeepers.ts
 // Crisis Detection already integrated in server/routers/aiChat.ts
@@ -109,7 +109,7 @@ function Router() {
       <Route path="/wellness" component={WellnessDashboard} />
       
       {/* FOUNDATIONAL ROUTES - Required for AI and all modules */}
-      <Route path="/research" component={ResearchDashboard} /> {/* Truth Seekers 2.0 */}
+      {/* <Route path="/research" component={ResearchDashboard} /> */} {/* Truth Seekers 2.0 - temporarily disabled */}
       <Route path="/wellness/habits" component={HabitTracking} /> {/* Habit Formation */}
       
       {/* Other wellness module routes temporarily removed for MVP */}
