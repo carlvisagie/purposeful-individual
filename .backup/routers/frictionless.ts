@@ -5,8 +5,8 @@
 
 import { router, publicProcedure } from "../_core/trpc";
 import { z } from "zod";
-import { db } from "../db-standalone";
-import { anonymousSessions, users, clients, clientFolders, magicLinks } from "../../drizzle/schema-postgresql";
+import { db } from "../db";
+import { anonymousSessions, users, clients, clientFolders, magicLinks } from "../../drizzle/schema";
 import { eq, and, lt, sql } from "drizzle-orm";
 import crypto from "crypto";
 import { OpenAI } from "openai";

@@ -28,7 +28,7 @@ import { habitsRouter } from "./routers/habits";
 import { autismRouter } from "./routers/autism";
 import { authRouter } from "./routers/auth-standalone";
 import { migrateRouter } from "./routers/migrate";
-import { frictionlessRouter } from "./routers/frictionless";
+// import { frictionlessRouter } from "./routers/frictionless"; // Moved to backup - needs PostgreSQL tables
 import { clientContextRouter } from "./routers/clientContext";
 import { vapiRouter } from "./routers/vapi";
 import { adminRouter } from "./routers/admin";
@@ -68,7 +68,7 @@ export const appRouter = router({
   habits: habitsRouter,
   autism: autismRouter,
   migrate: migrateRouter,
-  frictionless: frictionlessRouter,
+  // frictionless: frictionlessRouter, // Moved to backup - needs PostgreSQL tables
   clientContext: clientContextRouter,
   vapi: vapiRouter,
   admin: adminRouter,
