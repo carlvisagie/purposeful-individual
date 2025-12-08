@@ -6,7 +6,7 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
-import { AnonymousChat } from "../components/AnonymousChat";
+// import { AnonymousChat } from "../components/AnonymousChat"; // Moved to backup
 import { 
   Sparkles, 
   Brain, 
@@ -37,8 +37,8 @@ export default function Landing() {
             </Button>
           </div>
           
-          <Card className="h-[calc(100vh-200px)]">
-            <AnonymousChat />
+          <Card className="h-[calc(100vh-200px)] p-8">
+            <p className="text-center text-gray-600">Anonymous chat temporarily unavailable during MVP development.</p>
           </Card>
         </div>
       </div>

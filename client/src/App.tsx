@@ -29,20 +29,9 @@ import CreateAutismProfile from "./pages/CreateAutismProfile";
 // import AutismProgress from "./pages/AutismProgress"; // Moved to backup
 // import AutismDailyLog from "./pages/AutismDailyLog"; // Moved to backup
 import Login from "./pages/Login";
-import CoachingSession from "./pages/CoachingSession";
 import CoachView from "./pages/CoachView";
-import AdminDashboard from "./pages/admin/Dashboard";
-import AdminSessions from "./pages/admin/Sessions";
-import AdminSessionDetail from "./pages/admin/SessionDetail";
-import AdminCrisisAlerts from "./pages/admin/CrisisAlerts";
-import AdminAIResponses from "./pages/admin/AIResponses";
-import AdminUsers from "./pages/admin/Users";
-import AdminAnalytics from "./pages/admin/Analytics";
-import AdminSettings from "./pages/admin/Settings";
-import { AdminLayout } from "./components/AdminLayout";
 import Pricing from "./pages/Pricing";
 import WellnessDashboard from "./pages/WellnessDashboard";
-import ControlCenter from "./pages/admin/ControlCenter";
 // FOUNDATIONAL SYSTEMS (Required for AI and all modules)
 // import ResearchDashboard from "./pages/ResearchDashboard"; // Truth Seekers 2.0 - temporarily disabled for MVP
 // import HabitTracking from "./pages/wellness/HabitTracking"; // Moved to backup - Habit Formation Engine
@@ -79,32 +68,7 @@ function Router() {
       <Route path="/autism/create-profile" component={CreateAutismProfile} />
       {/* <Route path="/autism/progress/:id" component={AutismProgress} /> */}
       {/* <Route path="/autism/daily-log/:id" component={AutismDailyLog} /> */}
-      <Route path="/coaching-session" component={CoachingSession} />
       <Route path="/coach-view" component={CoachView} />
-      <Route path="/admin/dashboard">
-        <AdminLayout><AdminDashboard /></AdminLayout>
-      </Route>
-      <Route path="/admin/sessions">
-        <AdminLayout><AdminSessions /></AdminLayout>
-      </Route>
-      <Route path="/admin/sessions/:id">
-        <AdminLayout><AdminSessionDetail /></AdminLayout>
-      </Route>
-      <Route path="/admin/crisis">
-        <AdminLayout><AdminCrisisAlerts /></AdminLayout>
-      </Route>
-      <Route path="/admin/ai-responses">
-        <AdminLayout><AdminAIResponses /></AdminLayout>
-      </Route>
-      <Route path="/admin/users">
-        <AdminLayout><AdminUsers /></AdminLayout>
-      </Route>
-      <Route path="/admin/analytics">
-        <AdminLayout><AdminAnalytics /></AdminLayout>
-      </Route>
-      <Route path="/admin/settings">
-        <AdminLayout><AdminSettings /></AdminLayout>
-      </Route>
       <Route path="/pricing" component={Pricing} />
       <Route path="/wellness" component={WellnessDashboard} />
       
@@ -114,9 +78,6 @@ function Router() {
       
       {/* Other wellness module routes temporarily removed for MVP */}
       {/* Will add back incrementally after MVP is working */}
-      <Route path="/admin/control-center">
-        <AdminLayout><ControlCenter /></AdminLayout>
-      </Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

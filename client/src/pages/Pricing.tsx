@@ -119,9 +119,7 @@ export default function Pricing() {
     } else if (tier.stripePriceId) {
       // Create Stripe checkout session
       createCheckoutMutation.mutate({
-        priceId: tier.stripePriceId,
-        successUrl: window.location.origin + "/dashboard",
-        cancelUrl: window.location.origin + "/pricing",
+        productId: tier.stripePriceId, // Using productId as expected by API
       });
     }
   };
@@ -217,9 +215,9 @@ export default function Pricing() {
                     variant={tier.popular ? "default" : "outline"}
                     size="lg"
                     onClick={() => handleSubscribe(tier)}
-                    disabled={createCheckoutMutation.isLoading}
+                    disabled={createCheckoutMutation.isPending}
                   >
-                    {createCheckoutMutation.isLoading ? "Loading..." : tier.cta}
+                    {createCheckoutMutation.isPending ? "Loading..." : tier.cta}
                   </Button>
                 </div>
 

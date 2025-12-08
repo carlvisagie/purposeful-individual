@@ -24,16 +24,9 @@ import { analyticsRouter } from "./routers/analytics";
 import { videoTestimonialsRouter } from "./routers/videoTestimonials";
 import { identityRouter } from "./routers/identity";
 import { adaptiveLearningRouter } from "./routers/adaptiveLearning";
-import { habitsRouter } from "./routers/habits";
 import { autismRouter } from "./routers/autism";
 import { authRouter } from "./routers/auth-standalone";
-import { migrateRouter } from "./routers/migrate";
 // import { frictionlessRouter } from "./routers/frictionless"; // Moved to backup - needs PostgreSQL tables
-import { clientContextRouter } from "./routers/clientContext";
-import { vapiRouter } from "./routers/vapi";
-import { adminRouter } from "./routers/admin";
-import { debugRouter } from "./routers/debug";
-import { truthKeepersRouter } from "./routers/truthKeepers";
 // Temporarily disabled for MVP - needs schema integration
 // import { researchRouter } from "./routers/research";
 
@@ -65,15 +58,8 @@ export const appRouter = router({
   videoTestimonials: videoTestimonialsRouter,
   identity: identityRouter,
   adaptiveLearning: adaptiveLearningRouter,
-  habits: habitsRouter,
   autism: autismRouter,
-  migrate: migrateRouter,
   // frictionless: frictionlessRouter, // Moved to backup - needs PostgreSQL tables
-  clientContext: clientContextRouter,
-  vapi: vapiRouter,
-  admin: adminRouter,
-  debug: debugRouter,
-  truthKeepers: truthKeepersRouter,
   // research: researchRouter, // Temporarily disabled for MVP
 });
 
