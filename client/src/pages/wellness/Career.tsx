@@ -267,7 +267,7 @@ export default function CareerDevelopment() {
                 </div>
                 <p className="text-sm text-muted-foreground">
                   <strong>The strategy:</strong> Practice at the edge of your ability with immediate feedback. 
-                  Focus on weaknesses, not strengths. Quality > quantity.
+                  Focus on weaknesses, not strengths. Quality &gt; quantity.
                 </p>
                 <p className="text-sm text-muted-foreground">
                   <strong>Why it works:</strong> 10,000 hours doesn't make you an expert - 10,000 hours of 
@@ -460,7 +460,7 @@ export default function CareerDevelopment() {
                 <h3 className="font-semibold">Career Success Factors</h3>
                 
                 <div className="p-3 border rounded-lg">
-                  <h4 className="font-semibold mb-1">Skills > Credentials</h4>
+                  <h4 className="font-semibold mb-1">Skills &gt; Credentials</h4>
                   <p className="text-sm text-muted-foreground">
                     Employers increasingly value demonstrable skills over degrees. Portfolio beats resume. 
                     Build in public to prove your abilities.
@@ -492,7 +492,7 @@ export default function CareerDevelopment() {
                 </div>
 
                 <div className="p-3 border rounded-lg">
-                  <h4 className="font-semibold mb-1">Career Capital > Passion</h4>
+                  <h4 className="font-semibold mb-1">Career Capital &gt; Passion</h4>
                   <p className="text-sm text-muted-foreground">
                     "Follow your passion" is bad advice. Build rare/valuable skills first → gain autonomy → 
                     passion follows (Newport, 2012)

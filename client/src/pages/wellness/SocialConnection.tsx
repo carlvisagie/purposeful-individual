@@ -43,7 +43,7 @@ export default function SocialConnection() {
         <CardContent className="pt-6">
           <p className="text-sm text-blue-900">
             <strong>Social connection is vital for health.</strong> Loneliness is as deadly as smoking 15 cigarettes/day. 
-            Quality > quantity - one deep friendship beats 100 acquaintances.
+            Quality &gt; quantity - one deep friendship beats 100 acquaintances.
           </p>
         </CardContent>
       </Card>

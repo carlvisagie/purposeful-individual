@@ -187,7 +187,7 @@ export async function logCrisisAlert(
   userAgent?: string
 ): Promise<string> {
   const { db } = await import("../db-standalone");
-  const { crisisAlerts } = await import("../../drizzle/schema-crisis-alerts");
+  const { crisisAlerts } = await import("../../drizzle/schema-postgresql");
   
   // Insert crisis alert
   const [inserted] = await db
