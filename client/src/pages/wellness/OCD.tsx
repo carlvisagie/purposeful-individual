@@ -15,10 +15,10 @@ export default function OCDManagement() {
   const [exposureCompleted, setExposureCompleted] = useState(false);
   const [notes, setNotes] = useState("");
   
-  const { trackIntervention, getRecommendations } = useModuleLearning("ocd");
+  const { trackTechniqueUsage, effectiveTechniques } = useModuleLearning("ocd");
   const { createHabit, trackHabitCompletion } = useHabitFormation("ocd");
   
-  const recommendations = getRecommendations();
+  const recommendations = effectiveTechniques;
   
   const handleLogExposure = () => {
     console.log("Logging OCD exposure:", { obsessionType, compulsionType, anxietyLevel, exposureCompleted, notes });
@@ -195,7 +195,7 @@ export default function OCDManagement() {
                 </div>
                 <FeedbackWidget
                   interventionType="exposure_hierarchy"
-                  onFeedback={(helpful, rating) => trackIntervention("exposure_hierarchy", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("exposure_hierarchy", helpful, rating)}
                 />
               </div>
               
@@ -217,7 +217,7 @@ export default function OCDManagement() {
                 </div>
                 <FeedbackWidget
                   interventionType="response_prevention"
-                  onFeedback={(helpful, rating) => trackIntervention("response_prevention", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("response_prevention", helpful, rating)}
                 />
               </div>
               
@@ -239,7 +239,7 @@ export default function OCDManagement() {
                 </div>
                 <FeedbackWidget
                   interventionType="cognitive_restructuring"
-                  onFeedback={(helpful, rating) => trackIntervention("cognitive_restructuring", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("cognitive_restructuring", helpful, rating)}
                 />
               </div>
             </div>

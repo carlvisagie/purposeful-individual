@@ -29,7 +29,7 @@ export default function MeditationPractice() {
   const [notes, setNotes] = useState("");
 
   // Self-learning integration
-  const { trackInteraction, getRecommendations, effectiveness } = useModuleLearning('meditation');
+  const { trackInteraction, effectiveTechniques, effectiveness } = useModuleLearning('meditation');
 
   // Habit formation integration
   const createHabitMutation = trpc.habits.createHabit.useMutation({
@@ -123,7 +123,7 @@ export default function MeditationPractice() {
             </div>
             <div className="space-y-2 text-sm text-purple-800">
               <p>Practice effectiveness: {effectiveness}%</p>
-              {getRecommendations().map((rec, i) => (
+              {effectiveTechniques().map((rec, i) => (
                 <p key={i}>• {rec}</p>
               ))}
             </div>

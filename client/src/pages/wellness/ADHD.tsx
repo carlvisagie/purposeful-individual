@@ -15,10 +15,10 @@ export default function ADHDSupport() {
   const [taskCompleted, setTaskCompleted] = useState(false);
   const [strategy, setStrategy] = useState("");
   
-  const { trackIntervention, getRecommendations } = useModuleLearning("adhd");
+  const { trackTechniqueUsage, effectiveTechniques } = useModuleLearning("adhd");
   const { createHabit, trackHabitCompletion } = useHabitFormation("adhd");
   
-  const recommendations = getRecommendations();
+  const recommendations = effectiveTechniques;
   
   const handleLogSession = () => {
     console.log("Logging ADHD session:", { focusLevel, distractions, taskCompleted, strategy });
@@ -176,7 +176,7 @@ export default function ADHDSupport() {
                 </div>
                 <FeedbackWidget
                   interventionType="pomodoro_movement"
-                  onFeedback={(helpful, rating) => trackIntervention("pomodoro_movement", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("pomodoro_movement", helpful, rating)}
                 />
               </div>
               
@@ -197,7 +197,7 @@ export default function ADHDSupport() {
                 </div>
                 <FeedbackWidget
                   interventionType="body_doubling"
-                  onFeedback={(helpful, rating) => trackIntervention("body_doubling", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("body_doubling", helpful, rating)}
                 />
               </div>
               
@@ -218,7 +218,7 @@ export default function ADHDSupport() {
                 </div>
                 <FeedbackWidget
                   interventionType="visual_timer"
-                  onFeedback={(helpful, rating) => trackIntervention("visual_timer", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("visual_timer", helpful, rating)}
                 />
               </div>
             </div>

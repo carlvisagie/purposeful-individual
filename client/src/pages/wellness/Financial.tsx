@@ -18,7 +18,7 @@ export default function FinancialWellness() {
   const [progress, setProgress] = useState(5);
   const [notes, setNotes] = useState("");
 
-  const { trackInteraction, getRecommendations, effectiveness } = useModuleLearning('financial');
+  const { trackInteraction, effectiveTechniques, effectiveness } = useModuleLearning('financial');
 
   const createHabitMutation = trpc.habits.createHabit.useMutation({
     onSuccess: () => {
@@ -83,7 +83,7 @@ export default function FinancialWellness() {
             </div>
             <div className="space-y-2 text-sm text-purple-800">
               <p>Tracking effectiveness: {effectiveness}%</p>
-              {getRecommendations().map((rec, i) => (
+              {effectiveTechniques().map((rec, i) => (
                 <p key={i}>• {rec}</p>
               ))}
             </div>

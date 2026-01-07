@@ -24,7 +24,7 @@ export default function GratitudeJournal() {
   const [reflection, setReflection] = useState("");
 
   // Self-learning integration
-  const { trackInteraction, getRecommendations, effectiveness } = useModuleLearning('gratitude');
+  const { trackInteraction, effectiveTechniques, effectiveness } = useModuleLearning('gratitude');
 
   // Habit formation integration
   const createHabitMutation = trpc.habits.createHabit.useMutation({
@@ -115,7 +115,7 @@ export default function GratitudeJournal() {
             </div>
             <div className="space-y-2 text-sm text-purple-800">
               <p>Practice effectiveness: {effectiveness}%</p>
-              {getRecommendations().map((rec, i) => (
+              {effectiveTechniques().map((rec, i) => (
                 <p key={i}>• {rec}</p>
               ))}
             </div>

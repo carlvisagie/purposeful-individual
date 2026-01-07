@@ -15,10 +15,10 @@ export default function StressManagement() {
   const [physicalSymptoms, setPhysicalSymptoms] = useState<string[]>([]);
   const [copingStrategy, setCopingStrategy] = useState("");
   
-  const { trackIntervention, getRecommendations } = useModuleLearning("stress");
+  const { trackTechniqueUsage, effectiveTechniques } = useModuleLearning("stress");
   const { createHabit, trackHabitCompletion } = useHabitFormation("stress");
   
-  const recommendations = getRecommendations();
+  const recommendations = effectiveTechniques;
   
   const handleLogStress = () => {
     console.log("Logging stress:", { stressLevel, stressors, physicalSymptoms, copingStrategy });
@@ -208,7 +208,7 @@ export default function StressManagement() {
                 </div>
                 <FeedbackWidget
                   interventionType="physiological_sigh"
-                  onFeedback={(helpful, rating) => trackIntervention("physiological_sigh", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("physiological_sigh", helpful, rating)}
                 />
               </div>
               
@@ -242,7 +242,7 @@ export default function StressManagement() {
                 <p className="text-xs text-gray-500 mt-2">Repeat for 5 minutes</p>
                 <FeedbackWidget
                   interventionType="box_breathing"
-                  onFeedback={(helpful, rating) => trackIntervention("box_breathing", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("box_breathing", helpful, rating)}
                 />
               </div>
               
@@ -263,7 +263,7 @@ export default function StressManagement() {
                 </div>
                 <FeedbackWidget
                   interventionType="cold_exposure"
-                  onFeedback={(helpful, rating) => trackIntervention("cold_exposure", helpful, rating)}
+                  onFeedback={(helpful, rating) => trackTechniqueUsage("cold_exposure", helpful, rating)}
                 />
               </div>
             </div>

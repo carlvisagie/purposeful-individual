@@ -35,7 +35,7 @@ export default function LongevityAntiAging() {
   const [notes, setNotes] = useState("");
 
   // Self-learning integration
-  const { trackInteraction, getRecommendations, effectiveness } = useModuleLearning('longevity');
+  const { trackInteraction, effectiveTechniques, effectiveness } = useModuleLearning('longevity');
 
   // Habit formation integration
   const createHabitMutation = trpc.habits.createHabit.useMutation({
@@ -174,7 +174,7 @@ export default function LongevityAntiAging() {
             </div>
             <div className="space-y-2 text-sm text-blue-800">
               <p>Protocol effectiveness: {effectiveness}%</p>
-              {getRecommendations().map((rec, i) => (
+              {effectiveTechniques().map((rec, i) => (
                 <p key={i}>• {rec}</p>
               ))}
             </div>

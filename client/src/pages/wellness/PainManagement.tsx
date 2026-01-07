@@ -31,7 +31,7 @@ export default function PainManagement() {
   const [notes, setNotes] = useState("");
 
   // Self-learning integration
-  const { trackInteraction, getRecommendations, effectiveness: moduleEffectiveness } = useModuleLearning('pain_management');
+  const { trackInteraction, effectiveTechniques, effectiveness: moduleEffectiveness } = useModuleLearning('pain_management');
 
   // Habit formation integration
   const createHabitMutation = trpc.habits.createHabit.useMutation({
@@ -143,7 +143,7 @@ export default function PainManagement() {
             </div>
             <div className="space-y-2 text-sm text-purple-800">
               <p>Module effectiveness: {moduleEffectiveness}%</p>
-              {getRecommendations().map((rec, i) => (
+              {effectiveTechniques().map((rec, i) => (
                 <p key={i}>• {rec}</p>
               ))}
             </div>
