@@ -73,7 +73,7 @@ const wellnessModules = [
     color: "from-orange-400 to-red-500",
     description: "Identify stressors and build resilience",
     route: "/wellness/stress",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "adhd",
@@ -83,7 +83,7 @@ const wellnessModules = [
     color: "from-pink-400 to-rose-500",
     description: "Focus, organization, and productivity tools",
     route: "/wellness/adhd",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "autism",
@@ -103,7 +103,7 @@ const wellnessModules = [
     color: "from-teal-400 to-cyan-500",
     description: "Track compulsions and exposure therapy progress",
     route: "/wellness/ocd",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "ptsd",
@@ -113,7 +113,7 @@ const wellnessModules = [
     color: "from-slate-400 to-gray-500",
     description: "Trauma processing and healing journey",
     route: "/wellness/ptsd",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "bipolar",
@@ -123,7 +123,7 @@ const wellnessModules = [
     color: "from-amber-400 to-orange-500",
     description: "Mood cycles, triggers, and stability monitoring",
     route: "/wellness/bipolar",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 
   // Physical Health (7 modules)
@@ -165,7 +165,7 @@ const wellnessModules = [
     color: "from-blue-400 to-indigo-500",
     description: "Track supplements, dosages, and effects",
     route: "/wellness/supplements",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "pain",
@@ -175,7 +175,7 @@ const wellnessModules = [
     color: "from-red-500 to-orange-500",
     description: "Chronic pain tracking and relief strategies",
     route: "/wellness/pain",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "energy",
@@ -185,7 +185,7 @@ const wellnessModules = [
     color: "from-yellow-400 to-orange-500",
     description: "Daily energy, fatigue, and vitality tracking",
     route: "/wellness/energy",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "hydration",
@@ -195,7 +195,7 @@ const wellnessModules = [
     color: "from-cyan-400 to-blue-500",
     description: "Water intake and hydration goals",
     route: "/wellness/hydration",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 
   // Emotional & Social (6 modules)
@@ -217,7 +217,7 @@ const wellnessModules = [
     color: "from-purple-400 to-pink-500",
     description: "Track relationship quality and communication",
     route: "/wellness/relationships",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "social",
@@ -227,7 +227,7 @@ const wellnessModules = [
     color: "from-blue-400 to-cyan-500",
     description: "Social interactions and community engagement",
     route: "/wellness/social",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "identity",
@@ -237,7 +237,7 @@ const wellnessModules = [
     color: "from-yellow-400 to-amber-500",
     description: "Self-discovery and purpose exploration",
     route: "/wellness/identity",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "confidence",
@@ -247,7 +247,7 @@ const wellnessModules = [
     color: "from-green-400 to-teal-500",
     description: "Self-esteem and confidence development",
     route: "/wellness/confidence",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "boundaries",
@@ -257,7 +257,7 @@ const wellnessModules = [
     color: "from-indigo-400 to-purple-500",
     description: "Setting and maintaining personal boundaries",
     route: "/wellness/boundaries",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 
   // Spiritual & Mindfulness (4 modules)
@@ -269,7 +269,7 @@ const wellnessModules = [
     color: "from-purple-500 to-indigo-600",
     description: "Meditation sessions and mindfulness practice",
     route: "/wellness/meditation",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "gratitude",
@@ -279,7 +279,7 @@ const wellnessModules = [
     color: "from-yellow-400 to-orange-500",
     description: "Daily gratitude and positive psychology",
     route: "/wellness/gratitude",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "spiritual",
@@ -289,7 +289,7 @@ const wellnessModules = [
     color: "from-indigo-500 to-purple-600",
     description: "Spiritual practices and growth journey",
     route: "/wellness/spiritual",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "meaning",
@@ -299,7 +299,7 @@ const wellnessModules = [
     color: "from-blue-500 to-indigo-600",
     description: "Life purpose and meaningful living",
     route: "/wellness/meaning",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 
   // Career & Financial (3 modules)
@@ -311,7 +311,7 @@ const wellnessModules = [
     color: "from-blue-500 to-cyan-600",
     description: "Career goals, skills, and professional growth",
     route: "/wellness/career",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "financial",
@@ -321,7 +321,7 @@ const wellnessModules = [
     color: "from-green-500 to-emerald-600",
     description: "Financial goals, budgeting, and money mindset",
     route: "/wellness/financial",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "productivity",
@@ -331,7 +331,7 @@ const wellnessModules = [
     color: "from-orange-500 to-red-600",
     description: "Time management and productivity optimization",
     route: "/wellness/productivity",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 
   // Lifestyle & Habits (3 modules)
@@ -343,7 +343,7 @@ const wellnessModules = [
     color: "from-green-400 to-teal-500",
     description: "Build and track positive habits",
     route: "/wellness/habits",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "addiction",
@@ -353,7 +353,7 @@ const wellnessModules = [
     color: "from-red-500 to-pink-600",
     description: "Substance use tracking and recovery support",
     route: "/wellness/addiction",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
   {
     id: "screentime",
@@ -363,7 +363,7 @@ const wellnessModules = [
     color: "from-blue-400 to-purple-500",
     description: "Digital wellness and screen time management",
     route: "/wellness/screentime",
-    status: "coming-soon" as const,
+    status: "active" as const,
   },
 ];
 
