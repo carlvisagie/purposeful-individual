@@ -5351,24 +5351,6 @@ export const dailyCheckins = pgTable("dailyCheckins", {
 
 export type DailyCheckin = typeof dailyCheckins.$inferSelect;
 export type InsertDailyCheckin = typeof dailyCheckins.$inferInsert;
-export const habits = pgTable("habits", {
-  id: integer("id").autoincrement().primaryKey(),
-  clientId: integer("clientId").notNull().references(() => clients.id),
-  
-  // Habit definition
-  habitName: varchar("habitName", { length: 255 }).notNull(),
-  habitDescription: text("habitDescription"),
-  identityConnection: text("identityConnection"), // "This habit makes me [identity]"
-  
-  // Frequency
-  frequency: pgEnum("frequency", ["daily", "weekly", "custom"]).default("daily").notNull(),
-  
-  // Status
-  isActive: pgEnum("isActive", ["true", "false"]).default("true").notNull(),
-  
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
 
 export type Habit = typeof habits.$inferSelect;
 export type InsertHabit = typeof habits.$inferInsert;
@@ -5875,88 +5857,6 @@ export const journalProfiles = pgTable("journal_profiles", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const journalEntries = pgTable("journal_entries", {
-  id: varchar("id", { length: 255 }).primaryKey(),
-  profileId: varchar("profile_id", { length: 255 }).notNull(),
-  userId: varchar("user_id", { length: 255 }).notNull(),
-  
-  // Entry Details
-  title: varchar("title", { length: 255 }),
-  content: text("content").notNull(),
-  
-  // Entry Type
-  entryType: pgEnum("entry_type", [
-    "free_form",
-    "gratitude",
-    "reflective",
-    "expressive",
-    "goal_reflection",
-    "best_possible_self",
-    "daily_review",
-    "crisis_processing"
-  ]).notNull(),
-  
-  // Prompt (if used)
-  promptId: varchar("prompt_id", { length: 255 }),
-  promptText: text("prompt_text"),
-  
-  // Mood Before/After
-  moodBefore: integer("mood_before"), // 1-10
-  moodAfter: integer("mood_after"), // 1-10
-  
-  // Emotions (AI-Detected)
-  primaryEmotion: pgEnum("primary_emotion", [
-    "joy",
-    "gratitude",
-    "peace",
-    "excitement",
-    "hope",
-    "sadness",
-    "anxiety",
-    "anger",
-    "frustration",
-    "fear",
-    "shame",
-    "guilt",
-    "neutral"
-  ]),
-  
-  emotionIntensity: integer("emotion_intensity"), // 1-10
-  secondaryEmotions: text("secondary_emotions"), // JSON array
-  
-  // Themes (AI-Detected)
-  themes: text("themes"), // JSON: relationships, work, health, etc.
-  
-  // Cognitive Patterns (AI-Detected)
-  cognitiveDistortions: text("cognitive_distortions"), // JSON: catastrophizing, black-and-white thinking, etc.
-  
-  // Insights (AI-Generated)
-  aiInsights: text("ai_insights"), // JSON: patterns, suggestions, reflections
-  
-  // Word Count
-  wordCount: integer("word_count"),
-  
-  // Duration
-  writingDurationMinutes: integer("writing_duration_minutes"),
-  
-  // Privacy
-  privacy: pgEnum("privacy", ["private", "shared_with_coach", "shared_with_community"]).default("private"),
-  
-  // Favorite
-  isFavorite: boolean("is_favorite").default(false),
-  
-  // Tags
-  tags: text("tags"), // JSON array
-  
-  // Related
-  relatedGoalId: varchar("related_goal_id", { length: 255 }),
-  relatedEventId: varchar("related_event_id", { length: 255 }),
-  
-  entryDate: timestamp("entry_date").defaultNow(),
-  
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
 
 export const journalPrompts = pgTable("journal_prompts", {
   id: varchar("id", { length: 255 }).primaryKey(),
@@ -6894,52 +6794,6 @@ export const memoryPractices = pgTable("memory_practices", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const learningSessions = pgTable("learning_sessions", {
-  id: varchar("id", { length: 255 }).primaryKey(),
-  profileId: varchar("profile_id", { length: 255 }).notNull(),
-  userId: varchar("user_id", { length: 255 }).notNull(),
-  sessionDate: timestamp("session_date").notNull(),
-  
-  // What You're Learning
-  topic: varchar("topic", { length: 255 }).notNull(),
-  subject: varchar("subject", { length: 255 }),
-  
-  // Learning Method
-  learningMethod: pgEnum("learning_method", [
-    "reading",
-    "video",
-    "course",
-    "practice",
-    "teaching_others", // Feynman technique
-    "project_based",
-    "discussion",
-    "experimentation"
-  ]).notNull(),
-  
-  // Duration
-  duration: integer("duration"), // minutes
-  
-  // Engagement
-  engagementLevel: integer("engagement_level"), // 1-10
-  comprehensionLevel: integer("comprehension_level"), // 1-10
-  
-  // Techniques Used
-  techniquesUsed: text("techniques_used"), // JSON: active_recall, note_taking, summarizing, etc.
-  
-  // Output
-  notesCreated: boolean("notes_created"),
-  practiceCompleted: boolean("practice_completed"),
-  taughtToSomeone: boolean("taught_to_someone"),
-  
-  // Retention
-  immediateRecall: integer("immediate_recall"), // 1-10 (can you explain it now?)
-  
-  // Follow-up
-  willReview: boolean("will_review"),
-  nextReviewDate: timestamp("next_review_date"),
-  
-  createdAt: timestamp("created_at").defaultNow(),
-});
 
 export const cognitivePerformance = pgTable("cognitive_performance", {
   id: varchar("id", { length: 255 }).primaryKey(),
@@ -7208,37 +7062,6 @@ export const thoughtRecords = pgTable("thought_records", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const dbtSkillsPractice = pgTable("dbt_skills_practice", {
-  id: varchar("id", { length: 255 }).primaryKey(),
-  profileId: varchar("profile_id", { length: 255 }).notNull(),
-  userId: varchar("user_id", { length: 255 }).notNull(),
-  practiceDate: timestamp("practice_date").notNull(),
-  
-  // DBT Module
-  module: pgEnum("module", ["mindfulness", "distress_tolerance", "emotion_regulation", "interpersonal_effectiveness"]).notNull(),
-  
-  // Specific Skill
-  skillName: varchar("skill_name", { length: 255 }).notNull(), // e.g., "TIPP", "DEAR MAN", "Opposite Action"
-  
-  // Practice Details
-  situation: text("situation"),
-  emotionBefore: varchar("emotion_before", { length: 255 }),
-  intensityBefore: integer("intensity_before"), // 1-10
-  
-  // Skill Application
-  skillStepsUsed: text("skill_steps_used"), // JSON array
-  effectiveness: integer("effectiveness"), // 1-10
-  
-  emotionAfter: varchar("emotion_after", { length: 255 }),
-  intensityAfter: integer("intensity_after"), // 1-10
-  
-  // Reflection
-  whatWorked: text("what_worked"),
-  whatDidntWork: text("what_didnt_work"),
-  nextTime: text("next_time"),
-  
-  createdAt: timestamp("created_at").defaultNow(),
-});
 
 export const safetyPlans = pgTable("safety_plans", {
   id: varchar("id", { length: 255 }).primaryKey(),
@@ -8788,85 +8611,18 @@ export const loveLanguageActions = pgTable("love_language_actions", {
 
 
 // From schema.ts
-export const users = pgTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
-  id: integer("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
-  openId: varchar("openId", { length: 64 }).unique(),
-  name: text("name"),
-  email: varchar("email", { length: 320 }).unique(),
-  passwordHash: varchar("passwordHash", { length: 255 }),
-  passwordSalt: varchar("passwordSalt", { length: 64 }),
-  loginMethod: varchar("loginMethod", { length: 64 }),
-  role: pgEnum("role", ["user", "admin"]).default("user").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-  lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
-});
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
-export const authSessions = pgTable("authSessions", {
-  id: integer("id").autoincrement().primaryKey(),
-  userId: integer("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
-  token: varchar("token", { length: 255 }).notNull().unique(),
-  expiresAt: timestamp("expiresAt").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
 
 export type AuthSession = typeof authSessions.$inferSelect;
 export type InsertAuthSession = typeof authSessions.$inferInsert;
-export const coaches = pgTable("coaches", {
-  id: integer("id").autoincrement().primaryKey(),
-  userId: integer("userId").notNull().references(() => users.id),
-  specialization: text("specialization"),
-  bio: text("bio"),
-  certifications: text("certifications"),
-  yearsExperience: integer("yearsExperience"),
-  isActive: pgEnum("isActive", ["true", "false"]).default("true").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
 
 export type Coach = typeof coaches.$inferSelect;
 export type InsertCoach = typeof coaches.$inferInsert;
-export const clients = pgTable("clients", {
-  id: integer("id").autoincrement().primaryKey(),
-  coachId: integer("coachId").notNull().references(() => coaches.id),
-  name: varchar("name", { length: 255 }).notNull(),
-  email: varchar("email", { length: 320 }),
-  phone: varchar("phone", { length: 50 }),
-  dateOfBirth: timestamp("dateOfBirth"),
-  goals: text("goals"),
-  notes: text("notes"),
-  status: pgEnum("status", ["active", "inactive", "completed"]).default("active").notNull(),
-  startDate: timestamp("startDate").defaultNow().notNull(),
-  endDate: timestamp("endDate"),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
 
 export type Client = typeof clients.$inferSelect;
 export type InsertClient = typeof clients.$inferInsert;
-export const journalEntries = pgTable("journalEntries", {
-  id: integer("id").autoincrement().primaryKey(),
-  clientId: integer("clientId").notNull().references(() => clients.id),
-  entryDate: timestamp("entryDate").defaultNow().notNull(),
-  content: text("content").notNull(),
-  mood: varchar("mood", { length: 50 }),
-  moodIntensity: integer("moodIntensity"), // 1-10 scale
-  emotions: text("emotions"), // JSON array of emotions
-  triggers: text("triggers"), // What triggered the emotions
-  copingStrategies: text("copingStrategies"), // What they did to cope
-  copingEffectiveness: integer("copingEffectiveness"), // 1-10 scale
-  resilienceScore: integer("resilienceScore"), // Calculated resilience score
-  isPrivate: pgEnum("isPrivate", ["true", "false"]).default("false").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-});
 
 export type JournalEntry = typeof journalEntries.$inferSelect;
 export type InsertJournalEntry = typeof journalEntries.$inferInsert;
@@ -10383,30 +10139,6 @@ export const purposeExplorations = pgTable("purpose_explorations", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const gratitudeEntries = pgTable("gratitude_entries", {
-  id: varchar("id", { length: 255 }).primaryKey(),
-  profileId: varchar("profile_id", { length: 255 }).notNull(),
-  userId: varchar("user_id", { length: 255 }).notNull(),
-  entryDate: timestamp("entry_date").notNull(),
-  
-  // Gratitude Items (research shows 3-5 is optimal)
-  gratitude1: text("gratitude_1").notNull(),
-  gratitude2: text("gratitude_2"),
-  gratitude3: text("gratitude_3"),
-  gratitude4: text("gratitude_4"),
-  gratitude5: text("gratitude_5"),
-  
-  // Depth
-  gratitudeDepth: pgEnum("gratitude_depth", ["surface", "moderate", "deep"]), // Surface = "coffee", Deep = "my health that allows me to enjoy coffee"
-  
-  // Emotional Impact
-  emotionalImpact: integer("emotional_impact"), // 1-10
-  
-  // Savoring
-  savoringTime: integer("savoring_time"), // seconds spent savoring each gratitude
-  
-  createdAt: timestamp("created_at").defaultNow(),
-});
 
 export const compassionPractices = pgTable("compassion_practices", {
   id: varchar("id", { length: 255 }).primaryKey(),

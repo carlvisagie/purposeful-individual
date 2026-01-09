@@ -235,7 +235,7 @@ export const stripeRouter = router({
       }
 
       // Check if booking already exists (prevent duplicates)
-      const { sessions: sessionsTable, clients: clientsTable } = await import('../../drizzle/schema');
+      const { sessions: sessionsTable, clients: clientsTable } = await import('../../drizzle/schema-postgresql');
       const existingBooking = await db
         .select()
         .from(sessionsTable)
