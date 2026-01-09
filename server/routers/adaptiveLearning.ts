@@ -13,7 +13,7 @@ import {
   adaptiveOutcomeTracking,
   trendDetection,
   strategyAdjustments,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 import { eq, desc, gte, sql } from "drizzle-orm";
 
 export const adaptiveLearningRouter = router({

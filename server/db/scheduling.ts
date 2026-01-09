@@ -15,7 +15,7 @@ import {
   InsertCoachAvailability,
   InsertAvailabilityException,
   InsertSessionReminder,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 
 /**
  * Get coach availability for a specific day of week

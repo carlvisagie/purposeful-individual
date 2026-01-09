@@ -1,6 +1,6 @@
 import { eq, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { videoTestimonials, InsertVideoTestimonial, VideoTestimonial } from "../../drizzle/schema";
+import { videoTestimonials, InsertVideoTestimonial, VideoTestimonial } from "../../drizzle/schema-postgresql";
 import { ENV } from "../_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;

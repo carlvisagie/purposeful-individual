@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { protectedProcedure, router } from "../_core/trpc";
 import { getDb } from "../db";
-import { aiInsights, journalEntries, emotionLogs } from "../../drizzle/schema";
+import { aiInsights, journalEntries, emotionLogs } from "../../drizzle/schema-postgresql";
 import { eq, desc, and } from "drizzle-orm";
 import { invokeLLM } from "../_core/llm";
 

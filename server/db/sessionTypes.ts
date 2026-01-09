@@ -7,7 +7,7 @@ import { getDb } from "../db";
 import {
   sessionTypes,
   InsertSessionType,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 
 /**
  * Get all session types for a coach

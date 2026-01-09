@@ -6,7 +6,7 @@ if (!connectionString) {
 }
 
 export default defineConfig({
-  schema: "./drizzle/index.ts", // Updated to use unified schema index
+  schema: "./drizzle/schema-postgresql.ts",
   out: "./drizzle/migrations",
   dialect: "postgresql",
   dbCredentials: {

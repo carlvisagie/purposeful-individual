@@ -2,7 +2,7 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { getDb } from "../db";
-import { platformSettings } from "../../drizzle/schema";
+import { platformSettings } from "../../drizzle/schema-postgresql";
 
 export const platformSettingsRouter = router({
   /**

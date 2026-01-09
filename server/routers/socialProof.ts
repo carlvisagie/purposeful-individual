@@ -1,7 +1,7 @@
 import { publicProcedure, router } from "../_core/trpc";
 import { z } from "zod";
 import { getDb } from "../db";
-import { sessions, clients } from "../../drizzle/schema";
+import { sessions, clients } from "../../drizzle/schema-postgresql";
 import { eq } from "drizzle-orm";
 import { desc } from "drizzle-orm";
 

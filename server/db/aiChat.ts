@@ -9,7 +9,7 @@ import {
   aiChatMessages,
   InsertAiChatConversation,
   InsertAiChatMessage,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 
 /**
  * Get all conversations for a user

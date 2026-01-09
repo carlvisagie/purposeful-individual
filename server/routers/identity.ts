@@ -14,7 +14,7 @@ import {
   habitCompletions,
   disciplineEvents,
   microHabits,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 import { eq, and, desc, gte } from "drizzle-orm";
 
 export const identityRouter = router({

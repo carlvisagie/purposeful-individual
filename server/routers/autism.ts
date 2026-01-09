@@ -12,7 +12,7 @@ import {
   autismPatternDetection,
   autismProviders,
   autismDailyLogs,
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 import { eq, and, desc } from "drizzle-orm";
 
 /**

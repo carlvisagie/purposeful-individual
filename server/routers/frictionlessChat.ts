@@ -8,8 +8,8 @@ import { publicProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
 import { invokeLLM } from "../_core/llm";
 import { safetyCheck } from "../safetyGuardrails";
-import { db } from "../../drizzle/db";
-import { aiChatConversations, aiChatMessages } from "../../drizzle/schema";
+import { db } from "../db";
+import { aiChatConversations, aiChatMessages } from "../../drizzle/schema-postgresql";
 import { eq, and, desc } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
 

@@ -2,7 +2,7 @@ import { Router } from "express";
 import Stripe from "stripe";
 import { ENV } from "../_core/env";
 import { getDb } from "../db";
-import { subscriptions, users, sessions, clients } from "../../drizzle/schema";
+import { subscriptions, users, sessions, clients } from "../../drizzle/schema-postgresql";
 import { eq } from "drizzle-orm";
 
 const stripe = new Stripe(ENV.stripeSecretKey, {

@@ -3,7 +3,7 @@ import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import Stripe from "stripe";
 import { ENV } from "../_core/env";
 import { getDb } from "../db";
-import { subscriptions, sessionTypes } from "../../drizzle/schema";
+import { subscriptions, sessionTypes } from "../../drizzle/schema-postgresql";
 import { eq } from "drizzle-orm";
 import { PRODUCTS, type ProductId } from "../products";
 

@@ -1,7 +1,7 @@
 import { invokeLLM } from "./_core/llm";
 import { safetyCheck, COACH_ASSISTANT_SYSTEM_PROMPT } from "./safetyGuardrails";
 import { getDb } from "./db";
-import { liveSessionTranscripts, coachGuidance, similarCases } from "../drizzle/schema";
+import { liveSessionTranscripts, coachGuidance, similarCases } from "../drizzle/schema-postgresql";
 import { desc, eq, and } from "drizzle-orm";
 
 /**

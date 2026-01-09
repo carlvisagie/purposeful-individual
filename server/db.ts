@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from "../drizzle/schema";
-import { InsertUser, users } from "../drizzle/schema";
+import * as schema from "../drizzle/schema-postgresql";
+import { InsertUser, users } from "../drizzle/schema-postgresql";
 import { ENV } from './_core/env';
 
 const connectionString = process.env.DATABASE_URL || '';

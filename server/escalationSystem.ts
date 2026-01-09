@@ -1,6 +1,6 @@
 import { notifyOwner } from "./_core/notification";
 import { getDb } from "./db";
-import { escalationQueue, coachNotifications, aiChatMessages, coaches } from "../drizzle/schema";
+import { escalationQueue, coachNotifications, aiChatMessages, coaches } from "../drizzle/schema-postgresql";
 import { desc, eq } from "drizzle-orm";
 
 /**

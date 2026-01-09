@@ -9,7 +9,7 @@ import {
   copingStrategies, 
   aiInsights,
   sessions 
-} from "../../drizzle/schema";
+} from "../../drizzle/schema-postgresql";
 import { eq, and, desc, sql } from "drizzle-orm";
 
 /**

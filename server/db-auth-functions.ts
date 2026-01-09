@@ -4,7 +4,7 @@
  */
 
 import { db } from "./db";
-import { users, sessions } from "../drizzle/schema";
+import { users, sessions } from "../drizzle/schema-postgresql";
 import { eq } from "drizzle-orm";
 
 // User functions

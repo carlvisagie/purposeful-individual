@@ -1,5 +1,5 @@
 import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
-import type { User } from "../../drizzle/schema";
+import type { User } from "../../drizzle/schema-postgresql";
 import * as authDb from "../db-auth";
 
 export type TrpcContext = {
