@@ -108,7 +108,7 @@ export const frictionlessChatRouter = router({
         sessionId: z.string().uuid(),
       })
     )
-    .mutation(async ({ input }) => {
+    .query(async ({ input }) => {
       // Check if conversation exists for this sessionId
       const existingConversations = await db
         .select()
