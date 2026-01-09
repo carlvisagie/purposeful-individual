@@ -20,7 +20,7 @@ import {
   crisisInterventionLogs,
   professionalBoundaryViolations,
   brandSafetyKeywords,
-} from "../../drizzle/contentModerationSchema";
+} from "../../drizzle/schema-postgresql";
 import { eq, and, desc } from "drizzle-orm";
 import { nanoid } from "nanoid";
 

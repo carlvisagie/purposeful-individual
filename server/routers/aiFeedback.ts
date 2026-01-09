@@ -1,7 +1,7 @@
 import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { z } from "zod";
 import { getDb } from "../db";
-import { int, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 /**
  * AI Feedback Router

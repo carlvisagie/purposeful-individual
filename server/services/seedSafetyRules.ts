@@ -6,7 +6,7 @@
  */
 
 import { db } from "../db";
-import { forbiddenContentDictionary, aiSafetyRules, brandSafetyKeywords, complianceCheckpoints } from "../../drizzle/contentModerationSchema";
+import { forbiddenContentDictionary, aiSafetyRules, brandSafetyKeywords, complianceCheckpoints } from "../../drizzle/schema-postgresql";
 import { nanoid } from "nanoid";
 
 export async function seedSafetyRules() {

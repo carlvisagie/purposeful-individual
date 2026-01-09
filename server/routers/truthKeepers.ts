@@ -11,7 +11,7 @@ import {
   platformRecommendations, 
   pseudoscienceBlocklist,
   researchQualityReviews 
-} from "../../drizzle/truthKeepersSchema";
+} from "../../drizzle/schema-postgresql";
 import { eq, and, desc, sql } from "drizzle-orm";
 
 export const truthKeepersRouter = router({

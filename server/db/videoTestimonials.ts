@@ -1,5 +1,5 @@
 import { eq, desc } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
+import { drizzle } from "drizzle-orm/postgres-js";
 import { videoTestimonials, InsertVideoTestimonial, VideoTestimonial } from "../../drizzle/schema-postgresql";
 import { ENV } from "../_core/env";
 

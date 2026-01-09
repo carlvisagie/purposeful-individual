@@ -6,7 +6,7 @@
 import { z } from "zod";
 import { protectedProcedure, router } from "../_core/trpc";
 import { db } from "../db";
-import { habits, habitTracking, habitProfiles } from "../../drizzle/habitFormationSchema";
+import { habits, habitTracking, habitProfiles } from "../../drizzle/schema-postgresql";
 import { eq, desc, and, gte, sql } from "drizzle-orm";
 
 export const habitsRouter = router({
