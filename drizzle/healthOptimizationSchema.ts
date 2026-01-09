@@ -3,7 +3,7 @@
  * Evidence-based approach using Longevity Science, Preventive Medicine, Biomarker Research, and Biohacking
  * Research sources: Peter Attia (longevity), David Sinclair (aging), Andrew Huberman (protocols), Bryan Johnson (Blueprint)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks biomarker trends and interventions
  * - Identifies health risks early
  * - Learns which protocols work for each user

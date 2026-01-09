@@ -6,7 +6,7 @@
  * Sonja Lyubomirsky (gratitude journaling), David Kolb (experiential learning cycle),
  * Donald Schön (reflective practice), Carol Dweck (growth mindset reflection)
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Writing Heals (Pennebaker's research on expressive writing)
  * 2. Reflection Drives Growth (learning from experience)
  * 3. Gratitude Rewires the Brain (positive psychology)
@@ -14,7 +14,7 @@
  * 5. Future Self Visualization (best possible self exercise)
  * 6. Pattern Recognition (AI identifies themes over time)
  * 
- * JOURNAL TYPES:
+ * JOURNALTYPES:
  * - Free-form journaling (stream of consciousness)
  * - Gratitude journaling (3 good things)
  * - Reflective journaling (what did I learn?)
@@ -23,13 +23,13 @@
  * - Best possible self (future visualization)
  * - Daily review (what went well/poorly)
  * 
- * PROMPTS LIBRARY:
+ * PROMPTSLIBRARY:
  * - Evidence-based prompts from research
  * - Adaptive prompts based on user state
  * - Themed prompts (relationships, career, health, etc.)
  * - Crisis prompts (when struggling)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies emotional patterns over time
  * - Detects cognitive distortions
  * - Recognizes growth areas

@@ -2,7 +2,7 @@
  * USER SETTINGS & PREFERENCES SYSTEM
  * Comprehensive platform customization and user control
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. User Control (users own their experience)
  * 2. Privacy First (transparent data practices)
  * 3. Accessibility (WCAG 2.1 AA compliance)
@@ -10,7 +10,7 @@
  * 5. Sensible Defaults (works out of box)
  * 6. Progressive Disclosure (don't overwhelm)
  * 
- * SETTINGS CATEGORIES:
+ * SETTINGSCATEGORIES:
  * - Account (profile, email, password)
  * - Privacy (data sharing, visibility)
  * - Notifications (channels, frequency, timing)

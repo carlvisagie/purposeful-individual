@@ -5,7 +5,7 @@
  * HeartMath Institute (HRV & coherence), Jon Kabat-Zinn (MBSR), Kelly McGonigal (stress mindset),
  * Peter Levine (somatic experiencing), Bessel van der Kolk (body keeps the score)
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Stress is NOT the enemy (eustress vs distress)
  * 2. HRV is the gold standard biomarker
  * 3. Perception matters (stress mindset research)
@@ -13,7 +13,7 @@
  * 5. Chronic stress kills (cortisol dysregulation)
  * 6. Somatic awareness (body-based stress release)
  * 
- * TRACKING METHODS:
+ * TRACKINGMETHODS:
  * - Subjective stress ratings (perceived stress)
  * - HRV measurements (objective stress)
  * - Cortisol patterns (morning/evening)
@@ -31,7 +31,7 @@
  * - Exercise (stress inoculation)
  * - Social connection (stress buffer)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies personal stress triggers
  * - Predicts stress spikes before they happen
  * - Learns which interventions work best for you

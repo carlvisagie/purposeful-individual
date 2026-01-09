@@ -6,7 +6,7 @@
  * Jerry Bresser (language patterns), NLP (reframing), Marshall Rosenberg (NVC),
  * Byron Katie (The Work), Carol Dweck (growth mindset language)
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Identity-Based Habits (who you are, not what you do)
  * 2. Tiny Habits (start ridiculously small)
  * 3. Habit Stacking (anchor to existing habits)
@@ -16,14 +16,14 @@
  * 7. Language Patterns (empowering self-talk)
  * 8. Spaced Repetition (memory integration from Memory Engine)
  * 
- * LANGUAGE PATTERN INTEGRATION:
+ * LANGUAGE PATTERNINTEGRATION:
  * - Limiting language → Empowering language
  * - Fixed mindset → Growth mindset
  * - "I can't" → "I'm learning to"
  * - "I have to" → "I choose to"
  * - "I'm bad at" → "I'm becoming better at"
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks which habit formation strategies work best per user
  * - Identifies optimal cue-routine-reward combinations
  * - Learns ideal habit stack sequences

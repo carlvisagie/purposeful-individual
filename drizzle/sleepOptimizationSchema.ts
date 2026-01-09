@@ -4,7 +4,7 @@
  * Research sources: Matthew Walker (Why We Sleep), Andrew Huberman (circadian optimization),
  * Peter Attia (sleep & longevity), Oura Ring research, WHOOP recovery science
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Sleep Hygiene (evidence-based protocols)
  * 2. Circadian Rhythm Optimization
  * 3. Sleep Stages & Quality
@@ -12,7 +12,7 @@
  * 5. Sleep-Performance Correlation
  * 6. Memory Consolidation (integrates with Memory Engine)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies personal sleep need (7-9 hours varies by individual)
  * - Learns optimal bedtime/wake time for each user
  * - Correlates sleep quality with next-day performance

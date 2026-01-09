@@ -6,7 +6,7 @@
  * Matthew Walker (sleep & memory consolidation), John Medina (Brain Rules),
  * Harry Lorayne (name-face association, link system, phonetic number system)
  * 
- * CORE MEMORY TECHNIQUES:
+ * CORE MEMORYTECHNIQUES:
  * 1. Spaced Repetition (Ebbinghaus Forgetting Curve)
  * 2. Active Recall (retrieval practice)
  * 3. Memory Palace / Method of Loci
@@ -21,7 +21,7 @@
  * 12. Link System (absurd imagery)
  * 13. Phonetic Number System (Major System)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks which techniques work best for each user
  * - Optimizes review timing based on individual forgetting curves
  * - Identifies optimal study/review times based on retention data
@@ -437,14 +437,14 @@ export const nameFaceMemory = mysqlTable("name_face_memory", {
   // Face Photo
   facePhoto: varchar("face_photo", { length: 255 }),
   
-  // Harry Lorayne Technique: Outstanding Feature
+  // Harry LorayneTechnique: Outstanding Feature
   outstandingFeature: text("outstanding_feature"), // Most memorable facial feature
   
-  // Harry Lorayne Technique: Name Association
+  // Harry LorayneTechnique: Name Association
   nameAssociation: text("name_association"), // Mental image/story for the name
   substituteWord: varchar("substitute_word", { length: 255 }), // If name is abstract
   
-  // Harry Lorayne Technique: Link Feature to Name
+  // Harry LorayneTechnique: Link Feature to Name
   mentalLink: text("mental_link"), // Absurd image linking feature to name
   
   // Context

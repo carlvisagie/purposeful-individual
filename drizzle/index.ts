@@ -3,7 +3,7 @@
  * 
  * This file exports all database schemas from all modules for use throughout the application.
  * 
- * MODULE CATEGORIES:
+ * MODULECATEGORIES:
  * 1. LIFE CHALLENGE MODULES (6)
  *    - Mental Health & Recovery
  *    - Relationships

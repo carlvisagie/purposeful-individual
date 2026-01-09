@@ -3,7 +3,7 @@
  * Evidence-based approach using DBT, ACT, Emotion Regulation Research, and Resilience Science
  * Research sources: Marsha Linehan (DBT), Steven Hayes (ACT), Lisa Feldman Barrett (emotion construction), Susan David (emotional agility)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies emotional patterns and triggers for each user
  * - Learns which regulation strategies work best per individual
  * - Predicts emotional states based on context

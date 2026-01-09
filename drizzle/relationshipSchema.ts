@@ -289,10 +289,10 @@ export const loveLanguageActions = mysqlTable("love_language_actions", {
   
   // Examples by type:
   // Words: "Said 'I'm proud of you'", "Wrote a love note", "Complimented their effort"
-  // Quality Time: "Had dinner without phones", "Went for a walk together", "Had deep conversation"
+  // QualityTime: "Had dinner without phones", "Went for a walk together", "Had deep conversation"
   // Gifts: "Brought their favorite coffee", "Surprise flowers", "Meaningful book"
-  // Acts of Service: "Did the dishes", "Filled their car with gas", "Made their favorite meal"
-  // Physical Touch: "Long hug", "Held hands during movie", "Back massage"
+  // Acts ofService: "Did the dishes", "Filled their car with gas", "Made their favorite meal"
+  // PhysicalTouch: "Long hug", "Held hands during movie", "Back massage"
   
   // Impact
   emotionalImpact: int("emotional_impact"), // 1-10

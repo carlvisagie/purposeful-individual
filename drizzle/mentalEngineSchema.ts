@@ -3,7 +3,7 @@
  * Evidence-based approach using Cognitive Psychology, Neuroscience, Learning Science, and Memory Research
  * Research sources: Barbara Oakley (learning), Jim Kwik (memory), Andrew Huberman (neuroscience), Cal Newport (deep work)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks cognitive performance patterns
  * - Identifies optimal focus times for each user
  * - Adapts difficulty based on cognitive load

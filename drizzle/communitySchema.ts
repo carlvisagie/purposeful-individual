@@ -5,7 +5,7 @@
  * Robert Putnam (social capital), AA/12-step peer support models, Alcoholics Anonymous research,
  * Social support & health outcomes (Julianne Holt-Lunstad), accountability partner research
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Shared Struggles Create Connection (you're not alone)
  * 2. Accountability Partners (peer support)
  * 3. Vulnerability & Authenticity (Brené Brown)
@@ -13,12 +13,12 @@
  * 5. Safe Spaces (moderated, supportive environment)
  * 6. Mentorship (those ahead help those behind)
  * 
- * COMMUNITY TYPES:
+ * COMMUNITYTYPES:
  * - Challenge-based (mental health, addiction, autism parents, young men, etc.)
  * - Goal-based (fitness, career, relationships)
  * - General support (daily check-ins, wins, struggles)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Matches users with compatible accountability partners
  * - Identifies most supportive community members
  * - Learns which types of support are most effective

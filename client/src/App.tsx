@@ -17,7 +17,7 @@ import BookSessionNew from "./pages/BookSessionNew";
 import MySessions from "./pages/MySessions";
 import CoachAvailability from "./pages/CoachAvailability";
 import ManageSessionTypes from "./pages/ManageSessionTypes";
-import AICoach from "./pages/AICoach";
+import AICoachFrictionless from "./pages/AICoachFrictionless";
 import EmotionTracker from "./pages/EmotionTracker";
 import InsightsDashboard from "./pages/InsightsDashboard";
 import CoachDashboard from "./pages/CoachDashboard";
@@ -95,7 +95,7 @@ function Router() {
       <Route path="/my-sessions" component={MySessions} />
       <Route path="/coach/availability" component={CoachAvailability} />
       <Route path="/coach/session-types" component={ManageSessionTypes} />
-      <Route path="/ai-coach" component={AICoach} />
+      <Route path="/ai-coach" component={AICoachFrictionless} />
       <Route path="/emotions" component={EmotionTracker} />
       <Route path="/insights" component={InsightsDashboard} />
       <Route path="/coach/dashboard" component={CoachDashboard} />

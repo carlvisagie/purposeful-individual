@@ -63,7 +63,7 @@ export const developmentalAssets = mysqlTable("developmental_assets", {
   // EXTERNAL ASSETS
   // Support (4 assets)
   familySupport: int("family_support"), // 1-10
-  positiveFamily Communication: int("positive_family_communication"),
+  positiveFamilyCommunication: int("positive_family_communication"),
   otherAdultRelationships: int("other_adult_relationships"),
   caringNeighborhood: int("caring_neighborhood"),
   

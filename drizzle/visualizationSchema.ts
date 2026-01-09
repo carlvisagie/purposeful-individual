@@ -5,7 +5,7 @@
  * Teresa Amabile (progress principle), Karl Weick (small wins), BJ Fogg (celebration),
  * Chip & Dan Heath (progress tracking), visual feedback research
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Progress is Motivating (Teresa Amabile's research)
  * 2. Visual > Numerical (easier to process)
  * 3. Trends > Snapshots (show trajectory)
@@ -13,7 +13,7 @@
  * 5. Celebrate Small Wins (momentum building)
  * 6. Multiple Perspectives (different views reveal different insights)
  * 
- * VISUALIZATION TYPES:
+ * VISUALIZATIONTYPES:
  * - Line charts (trends over time)
  * - Bar charts (comparisons)
  * - Heatmaps (patterns & intensity)
@@ -22,7 +22,7 @@
  * - Calendar views (consistency tracking)
  * - Milestone timelines (journey visualization)
  * 
- * DATA SOURCES:
+ * DATASOURCES:
  * - Habits (completion rates, streaks)
  * - Goals (progress, milestones)
  * - Wellness scores (physical, mental, emotional, spiritual)
@@ -32,7 +32,7 @@
  * - Journal entries (frequency, themes)
  * - Achievements (unlocks over time)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies which visualizations drive action
  * - Learns preferred chart types per user
  * - Optimizes dashboard layout

@@ -2,7 +2,7 @@
  * TRUTH KEEPERS - RESEARCH VALIDATION SYSTEM
  * Ensures all platform recommendations are backed by peer-reviewed, empirical science
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * - Only evidence-based, empirical science allowed
  * - Every claim must have peer-reviewed citations
  * - Research quality rated using standardized criteria
@@ -15,7 +15,7 @@
  * - Level C (Low): Case-control studies, expert consensus, limited evidence
  * - Level D (Insufficient): Anecdotal, single studies, not peer-reviewed → REJECTED
  * 
- * RESEARCH QUALITY CRITERIA:
+ * RESEARCH QUALITYCRITERIA:
  * 1. Peer-reviewed publication in reputable journal
  * 2. Adequate sample size (statistical power)
  * 3. Proper study design (RCT > cohort > case-control > case series)

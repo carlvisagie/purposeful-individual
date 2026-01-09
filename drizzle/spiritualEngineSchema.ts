@@ -3,7 +3,7 @@
  * Evidence-based approach using Mindfulness Research, Contemplative Science, Purpose Psychology, and Meditation Studies
  * Research sources: Jon Kabat-Zinn (MBSR), Richie Davidson (neuroscience of meditation), Viktor Frankl (logotherapy), William Damon (purpose research)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks what practices work best for each user
  * - Adapts recommendations based on user response
  * - Learns optimal timing and duration for each individual

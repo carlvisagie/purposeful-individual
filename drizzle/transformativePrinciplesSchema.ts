@@ -4,7 +4,7 @@
  * Research sources: James Clear (Atomic Habits), BJ Fogg (Tiny Habits), Tony Robbins (identity transformation),
  * Charles Duhigg (habit loops), Carol Dweck (growth mindset), Angela Duckworth (grit)
  * 
- * THE 12 TRANSFORMATIVE PRINCIPLES:
+ * THE 12 TRANSFORMATIVEPRINCIPLES:
  * Based on Og Mandino's philosophy but modernized with habit science and identity psychology
  * 
  * 1. I AM DISCIPLINED - Master of my habits, creator of my destiny
@@ -20,7 +20,7 @@
  * 11. I AM CONNECTED - I nurture meaningful relationships
  * 12. I AM WHOLE - I integrate all parts of myself
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks which principles resonate most with each user
  * - Identifies patterns between principle practice and life outcomes
  * - Learns optimal practice frequency and format per user

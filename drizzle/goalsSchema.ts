@@ -5,7 +5,7 @@
  * Peter Gollwitzer (implementation intentions), Angela Duckworth (grit), Carol Dweck (growth mindset),
  * Heidi Grant Halvorson (goal achievement), James Clear (systems vs goals), Charles Duhigg (goal frameworks)
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Specific > Vague (SMART goals)
  * 2. Process > Outcome (systems thinking)
  * 3. Implementation Intentions (if-then planning)
@@ -13,7 +13,7 @@
  * 5. Progress Tracking (what gets measured gets done)
  * 6. Identity-Based Goals (who you're becoming)
  * 
- * GOAL FRAMEWORKS SUPPORTED:
+ * GOAL FRAMEWORKSSUPPORTED:
  * - SMART (Specific, Measurable, Achievable, Relevant, Time-bound)
  * - OKRs (Objectives & Key Results)
  * - WOOP (Wish, Outcome, Obstacle, Plan)
@@ -21,14 +21,14 @@
  * - Habit-Based Goals (systems approach)
  * - Identity-Based Goals (I am X type of person)
  * 
- * GOAL TYPES:
+ * GOALTYPES:
  * - Outcome goals (what you want to achieve)
  * - Process goals (what you'll do)
  * - Performance goals (standards to meet)
  * - Learning goals (skills to acquire)
  * - Avoidance goals (what to stop doing)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies which goal types you achieve most
  * - Predicts goal success probability
  * - Learns optimal goal difficulty for you

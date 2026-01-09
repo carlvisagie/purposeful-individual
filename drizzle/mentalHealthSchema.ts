@@ -141,9 +141,7 @@ export const safetyPlans = mysqlTable("safety_plans", {
   userId: varchar("user_id", { length: 255 }).notNull(),
   
   // Warning Signs
-  warningSign
-
-s: text("warning_signs"), // JSON array
+  warningSigns: text("warning_signs"), // JSON array
   
   // Coping Strategies (ordered by escalation)
   internalCopingStrategies: text("internal_coping_strategies"), // JSON array

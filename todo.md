@@ -1545,3 +1545,14 @@
 - [ ] Test payment flow
 - [ ] Final checkpoint
 - [ ] Deploy to Render
+
+
+## CRITICAL FIX - FRICTIONLESS AI COACH (January 9, 2026)
+
+- [ ] Remove authentication requirement from AICoach.tsx (lines 152-155)
+- [ ] Implement anonymous session handling (localStorage UUID)
+- [ ] Modify backend aiChat router to accept anonymous users (publicProcedure)
+- [ ] Add sessionId support to database schema (nullable userId)
+- [ ] Test AI Coach works without login
+- [ ] Verify conversation persistence across browser sessions
+- [ ] Test crisis detection works for anonymous users

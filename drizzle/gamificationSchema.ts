@@ -5,7 +5,7 @@
  * Edward Deci & Richard Ryan (Self-Determination Theory), Dan Ariely (behavioral economics),
  * Jane McGonigal (gamification for real-world change)
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Intrinsic > Extrinsic Motivation (SDT: autonomy, competence, relatedness)
  * 2. Progress Visibility (small wins compound)
  * 3. Social Proof (others are doing it)
@@ -13,7 +13,7 @@
  * 5. Meaningful Achievements (not just badges)
  * 6. Identity Reinforcement (who you're becoming)
  * 
- * GAMIFICATION ELEMENTS:
+ * GAMIFICATIONELEMENTS:
  * - Progress tracking & streaks
  * - Achievements & milestones
  * - Levels & experience points
@@ -21,7 +21,7 @@
  * - Leaderboards (optional, opt-in)
  * - Rewards & unlocks
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies which rewards motivate each user
  * - Learns optimal challenge difficulty
  * - Predicts when users need motivation boost

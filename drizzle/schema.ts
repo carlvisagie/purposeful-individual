@@ -323,7 +323,8 @@ export type InsertDiscountCodeUsage = typeof discountCodeUsage.$inferInsert;
  */
 export const aiChatConversations = mysqlTable("aiChatConversations", {
   id: int("id").autoincrement().primaryKey(),
-  userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  userId: int("userId").references(() => users.id, { onDelete: "cascade" }), // Nullable for anonymous users
+  sessionId: varchar("sessionId", { length: 255 }), // UUID for anonymous users (stored in localStorage)
   clientId: int("clientId").references(() => clients.id, { onDelete: "cascade" }), // Optional link to client profile
   title: varchar("title", { length: 255 }), // Auto-generated conversation title
   lastMessageAt: timestamp("lastMessageAt").defaultNow().notNull(),

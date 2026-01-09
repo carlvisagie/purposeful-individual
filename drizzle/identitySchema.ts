@@ -3,7 +3,7 @@ import { clients } from "./schema";
 
 /**
  * Identity Profiles - Track user's evolving identity
- * Based on Master Prompt: Identity over motivation
+ * Based on MasterPrompt: Identity over motivation
  */
 export const identityProfiles = mysqlTable("identityProfiles", {
   id: int("id").autoincrement().primaryKey(),

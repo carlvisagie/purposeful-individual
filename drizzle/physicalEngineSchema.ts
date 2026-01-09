@@ -3,7 +3,7 @@
  * Evidence-based approach using Exercise Science, Biomechanics, Recovery Science, and Movement Research
  * Research sources: Andrew Huberman (exercise neuroscience), Peter Attia (longevity), Kelly Starrett (mobility), Pavel Tsatsouline (strength)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks exercise response and recovery patterns
  * - Learns optimal training frequency/volume for each user
  * - Identifies injury risk patterns
@@ -108,7 +108,7 @@ export const workouts = mysqlTable("workouts", {
   
   // State Before
   energyBefore: int("energy_before"), // 1-10
-  soreness Before: int("soreness_before"), // 1-10
+  sorenessBefore: int("soreness_before"), // 1-10
   motivationBefore: int("motivation_before"), // 1-10
   
   // Performance

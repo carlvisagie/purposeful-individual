@@ -29,6 +29,7 @@ import { autismRouter } from "./routers/autism";
 import { authRouter } from "./routers/auth-standalone";
 import { migrateRouter } from "./routers/migrate";
 import { frictionlessRouter } from "./routers/frictionless";
+import { frictionlessChatRouter } from "./routers/frictionlessChat";
 import { clientContextRouter } from "./routers/clientContext";
 import { vapiRouter } from "./routers/vapi";
 import { adminRouter } from "./routers/admin";
@@ -67,6 +68,7 @@ export const appRouter = router({
   autism: autismRouter,
   migrate: migrateRouter,
   frictionless: frictionlessRouter,
+  frictionlessChat: frictionlessChatRouter,
   clientContext: clientContextRouter,
   vapi: vapiRouter,
   admin: adminRouter,

@@ -4,7 +4,7 @@
  * Research sources: Peter Drucker (what gets measured gets managed), Quantified Self movement,
  * N-of-1 trials (personalized experimentation), time series analysis, correlation vs causation research
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Measure What Matters (not vanity metrics)
  * 2. Visualize Progress (charts, trends, patterns)
  * 3. Find Correlations (sleep → performance, etc.)
@@ -12,7 +12,7 @@
  * 5. Actionable Insights (not just data dumps)
  * 6. Personalized Benchmarks (compare to YOUR baseline, not others)
  * 
- * ANALYTICS TYPES:
+ * ANALYTICSTYPES:
  * - Individual module analytics (habits, sleep, nutrition, etc.)
  * - Cross-module correlations (how areas affect each other)
  * - Trend analysis (are you improving?)
@@ -20,7 +20,7 @@
  * - Comparative analytics (this week vs last week)
  * - Goal progress tracking
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies personal success patterns
  * - Predicts optimal interventions
  * - Learns what insights drive action

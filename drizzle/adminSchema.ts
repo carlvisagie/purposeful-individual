@@ -2,7 +2,7 @@
  * ADMIN & SUPPORT SYSTEM
  * Platform administration, user support, and operational management
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Role-Based Access Control (RBAC)
  * 2. Audit Everything (complete transparency)
  * 3. User-First Support (empathy & efficiency)
@@ -10,7 +10,7 @@
  * 5. Proactive Monitoring (prevent issues)
  * 6. Continuous Improvement (learn from tickets)
  * 
- * ADMIN CAPABILITIES:
+ * ADMINCAPABILITIES:
  * - User management
  * - Content moderation
  * - System monitoring
@@ -18,7 +18,7 @@
  * - Analytics & reporting
  * - Support ticket management
  * 
- * SUPPORT FEATURES:
+ * SUPPORTFEATURES:
  * - Help desk ticketing
  * - Live chat
  * - Knowledge base

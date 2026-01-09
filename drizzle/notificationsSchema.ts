@@ -5,7 +5,7 @@
  * Eyal Nir (external triggers), Thaler & Sunstein (nudge theory), notification fatigue research,
  * optimal timing research, context-aware computing
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Timely > Frequent (right time beats more notifications)
  * 2. Personalized > Generic (context matters)
  * 3. Actionable > Informational (enable action)
@@ -13,7 +13,7 @@
  * 5. Smart Batching (reduce notification fatigue)
  * 6. Multi-Channel (email, push, SMS, in-app)
  * 
- * NOTIFICATION TYPES:
+ * NOTIFICATIONTYPES:
  * - Reminders (habit, goal, task)
  * - Encouragement (motivation boost)
  * - Celebration (achievement unlocked)
@@ -22,13 +22,13 @@
  * - Social (community activity, support)
  * - System (updates, maintenance)
  * 
- * TIMING OPTIMIZATION:
+ * TIMINGOPTIMIZATION:
  * - Learn optimal times per user
  * - Respect quiet hours
  * - Batch non-urgent notifications
  * - Context-aware (don't interrupt deep work)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Identifies optimal notification times
  * - Learns which notification types drive action
  * - Predicts notification fatigue

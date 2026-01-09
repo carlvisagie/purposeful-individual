@@ -5,7 +5,7 @@
  * Michael Bungay Stanier (coaching questions), Marshall Goldsmith (behavioral coaching),
  * Motivational Interviewing (Miller & Rollnick), Socratic questioning, Solution-Focused Brief Therapy
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Ask > Tell (Socratic method)
  * 2. Personalized > Generic (context-aware)
  * 3. Empowering > Prescriptive (build self-efficacy)
@@ -13,7 +13,7 @@
  * 5. Timely > Reactive (proactive interventions)
  * 6. Conversational > Robotic (natural language)
  * 
- * COACHING APPROACHES:
+ * COACHINGAPPROACHES:
  * - Motivational Interviewing (explore ambivalence)
  * - Socratic Questioning (guide discovery)
  * - Solution-Focused (build on strengths)
@@ -21,7 +21,7 @@
  * - Positive Psychology (leverage strengths)
  * - Goal-Focused (clarify & pursue goals)
  * 
- * AI CAPABILITIES:
+ * AICAPABILITIES:
  * - Contextual awareness (knows your data)
  * - Personalized recommendations
  * - Pattern recognition (spots trends)
@@ -29,7 +29,7 @@
  * - Natural conversation (not scripted)
  * - Multi-modal support (text, voice, visual)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Learns which coaching styles work for you
  * - Adapts question types based on effectiveness
  * - Optimizes intervention timing

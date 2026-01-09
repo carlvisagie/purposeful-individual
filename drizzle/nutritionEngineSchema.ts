@@ -3,7 +3,7 @@
  * Evidence-based approach using Nutritional Science, Metabolic Health, Gut Health Research, and Behavioral Nutrition
  * Research sources: Layne Norton (protein research), Peter Attia (metabolic health), Tim Spector (gut microbiome), Brian Wansink (eating behavior)
  * 
- * SELF-LEARNING CAPABILITIES:
+ * SELF-LEARNINGCAPABILITIES:
  * - Tracks food-mood-energy correlations
  * - Identifies trigger foods and sensitivities
  * - Learns optimal macronutrient ratios for each user

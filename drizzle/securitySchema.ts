@@ -2,7 +2,7 @@
  * SECURITY & AUDIT SYSTEM
  * Comprehensive security, compliance, and audit trail management
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Defense in Depth (multiple security layers)
  * 2. Least Privilege (minimal access by default)
  * 3. Zero Trust (verify everything)
@@ -10,7 +10,7 @@
  * 5. Privacy by Design (GDPR, HIPAA compliant)
  * 6. Incident Response (detect & respond)
  * 
- * SECURITY FEATURES:
+ * SECURITYFEATURES:
  * - Multi-factor authentication (MFA)
  * - Session management
  * - IP whitelisting/blacklisting

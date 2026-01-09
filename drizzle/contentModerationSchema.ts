@@ -4,14 +4,14 @@
  * Enterprise-grade content moderation with self-learning capabilities
  * Protects against legal, ethical, financial, and reputational risks
  * 
- * COMPLIANCE FRAMEWORKS:
+ * COMPLIANCEFRAMEWORKS:
  * - HIPAA (Health Insurance Portability and Accountability Act)
  * - GDPR (General Data Protection Regulation)
  * - Professional Liability Protection
  * - Insurance Requirements
  * - Brand Safety
  * 
- * CORE PRINCIPLES:
+ * COREPRINCIPLES:
  * 1. Self-Learning: Automatically updates from flagged content
  * 2. Multi-Layered: Pre-filter, real-time, post-analysis
  * 3. Context-Aware: Understands coaching vs therapy boundaries
